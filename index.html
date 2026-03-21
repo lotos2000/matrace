@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SleepItalia — Італійські матраци для дивана</title>
+  <meta name="description" content="SleepItalia — інтернет-магазин італійських матраців для дивана. Натуральний латекс, меморіформ, ортопедичні матраци. Доставка по всій Україні.">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --blue: #35B7FF;
+  --blue-bright: #4FAFE2;
+  --blue-glow: rgba(53,183,255,0.35);
+  --dark: #020810;
+  --dark2: #051220;
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.55);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ====== NAVBAR ====== */
+.navbar {
+  position: fixed; top:0; left:0; width:100%; z-index:1000;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 40px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.92), transparent);
+  backdrop-filter: blur(6px);
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px; letter-spacing: 3px;
+  color: var(--blue);
+  text-shadow: 0 0 30px var(--blue-glow);
+  flex-shrink: 0;
+}
+.logo span { color: var(--white); }
+.status-badge {
+  display:flex; align-items:center; gap:8px;
+  padding:6px 14px; border-radius:20px;
+  font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+  user-select:none; transition:all 0.4s; border:1px solid transparent;
+  position:absolute; left:50%; transform:translateX(-50%);
+}
+.status-badge.open  { background:rgba(34,197,94,0.12); border-color:rgba(34,197,94,0.35); color:#4ade80; }
+.status-badge.closed { background:rgba(239,68,68,0.12); border-color:rgba(239,68,68,0.35); color:#f87171; }
+.status-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.status-badge.open .status-dot { background:#4ade80; animation:statusPulse 2s ease-in-out infinite; }
+.status-badge.closed .status-dot { background:#f87171; }
+@keyframes statusPulse {
+  0%   { box-shadow:0 0 0 0 rgba(74,222,128,0.6); }
+  70%  { box-shadow:0 0 0 6px rgba(74,222,128,0); }
+  100% { box-shadow:0 0 0 0 rgba(74,222,128,0); }
+}
+.status-time { font-size:9px; font-weight:500; opacity:0.75; letter-spacing:0.5px; margin-left:2px; }
+.navbar-right { display:flex; align-items:center; gap:10px; margin-left:auto; }
+.nav-links { display:flex; gap:10px; }
+.nav-links button {
+  background:transparent; border:1px solid rgba(53,183,255,0.3);
+  color:rgba(255,255,255,0.8); font-family:'Montserrat',sans-serif;
+  font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  padding:10px 20px; border-radius:3px; cursor:pointer; transition:all 0.3s;
+}
+.nav-links button:hover, .nav-links button.active-nav {
+  background:var(--blue); border-color:var(--blue); color:white;
+  box-shadow:0 0 20px var(--blue-glow);
+}
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.hamburger div { width:28px; height:2px; background:var(--blue); border-radius:2px; }
+.menu-mobile {
+  display:none; position:fixed; top:70px; right:-260px; width:230px;
+  background:rgba(10,10,10,0.98); border-left:1px solid rgba(53,183,255,0.2);
+  padding:20px; z-index:900; transition:right 0.4s ease;
+}
+.menu-mobile.open { right:0; }
+.menu-mobile button {
+  display:block; width:100%; margin:8px 0; padding:12px;
+  font-family:'Montserrat',sans-serif; font-size:13px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase; border:none;
+  background:rgba(53,183,255,0.08); color:white; border-radius:4px;
+  cursor:pointer; border-left:3px solid var(--blue); transition:background 0.2s;
+}
+.menu-mobile button:hover { background:rgba(53,183,255,0.2); }
+
+/* ====== PAGES ====== */
+.page { display:none; min-height:100vh; opacity:0; transition:opacity 0.5s ease; }
+.page.active { display:block; }
+.page.fade-in { opacity:1; }
+
+/* ====== PAGE HERO (shared) ====== */
+.page-hero {
+  position:relative; width:100%; height:100vh;
+  display:flex; align-items:center; overflow:hidden;
+}
+.page-hero-bg {
+  position:absolute; inset:-30px; z-index:0;
+  background-size:cover; background-position:center;
+  transform:scale(1.06);
+}
+.page-hero::before {
+  content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(120deg,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.6) 55%,rgba(0,0,0,0.25) 100%);
+}
+.page-hero::after {
+  content:''; position:absolute; top:0; left:-50px;
+  width:7px; height:100%; background:var(--blue);
+  transform:skewX(-5deg); box-shadow:0 0 40px var(--blue-glow); z-index:2;
+}
+.page-hero-content {
+  position:relative; z-index:4; padding:0 100px; padding-top:130px; max-width:820px;
+}
+.page-eyebrow {
+  font-size:11px; font-weight:700; letter-spacing:6px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:14px; display:flex; align-items:center; gap:12px;
+}
+.page-eyebrow::before { content:''; display:inline-block; width:30px; height:2px; background:var(--blue); }
+.page-big-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(72px,10vw,130px);
+  line-height:0.88; letter-spacing:4px; color:var(--white);
+  text-shadow:0 8px 40px rgba(0,0,0,0.6); margin-bottom:22px;
+}
+.page-big-title .acc { color:var(--blue); }
+.page-desc {
+  font-size:15px; font-weight:300; color:rgba(255,255,255,0.62);
+  letter-spacing:1px; line-height:1.75; max-width:500px; margin-bottom:36px;
+}
+.page-scroll {
+  position:absolute; bottom:36px; left:50%; transform:translateX(-50%);
+  z-index:3; display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.page-scroll span { font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,0.22); }
+.page-scroll .arr { width:1px; height:50px; background:linear-gradient(to bottom,var(--blue),transparent); animation:ap 2s ease infinite; }
+@keyframes ap {
+  0%,100%{ opacity:0.4; transform:scaleY(1); }
+  50%{ opacity:1; transform:scaleY(1.2); }
+}
+
+/* ====== BUTTONS ====== */
+.btn-primary {
+  padding:15px 34px; background:var(--blue); color:white;
+  font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase; border:none; border-radius:3px;
+  cursor:pointer; transition:all 0.3s; box-shadow:0 8px 28px rgba(53,183,255,0.38);
+}
+.btn-primary:hover { background:var(--blue-bright); transform:translateY(-2px); box-shadow:0 12px 38px rgba(53,183,255,0.55); }
+.btn-secondary {
+  padding:15px 34px; background:transparent; color:white;
+  font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase; border:1px solid rgba(255,255,255,0.28);
+  border-radius:3px; cursor:pointer; transition:all 0.3s;
+}
+.btn-secondary:hover { border-color:var(--blue); color:var(--blue); }
+
+/* ====== HOME ====== */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+#home { position:relative; overflow:hidden; }
+.hero { position:relative; width:100%; height:100vh; overflow:hidden; }
+.slide { position:absolute; inset:0; opacity:0; transition:opacity 1.2s ease; background-size:cover; background-position:center; }
+.slide.active { opacity:1; }
+.slide::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.5) 55%,rgba(0,0,0,0.22) 100%);
+}
+.slide-brand {
+  position:absolute; bottom:40px; right:50px; z-index:3;
+  font-family:'Bebas Neue',sans-serif; font-size:100px; letter-spacing:6px;
+  color:rgba(255,255,255,0.04); pointer-events:none; line-height:1;
+}
+.hero-content {
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; justify-content:flex-start;
+  padding:0 80px; padding-top:140px;
+}
+.hero-eyebrow {
+  font-size:11px; font-weight:700; letter-spacing:5px; text-transform:uppercase;
+  color:var(--blue); margin-bottom:20px; opacity:0; animation:fadeUp 0.8s 0.3s forwards;
+}
+.hero-title {
+  font-family:'Bebas Neue',sans-serif; font-size:clamp(42px,6vw,88px);
+  line-height:0.95; letter-spacing:3px; color:var(--white);
+  margin-bottom:16px; opacity:0; animation:fadeUp 0.8s 0.5s forwards;
+}
+.hero-title .accent { color:var(--blue); text-shadow:0 0 60px var(--blue-glow),0 0 120px rgba(53,183,255,0.2); }
+.hero-tagline-box {
+  display:flex; align-items:center; gap:14px; margin-bottom:24px;
+  opacity:0; animation:fadeUp 0.8s 0.9s forwards;
+}
+.hero-tagline-bar { width:3px; height:44px; flex-shrink:0; background:linear-gradient(to bottom,var(--blue),transparent); border-radius:2px; }
+.hero-tagline { font-size:clamp(15px,2vw,22px); font-weight:300; color:rgba(255,255,255,0.85); letter-spacing:0.5px; min-height:34px; overflow:hidden; }
+.tagline-inner { transition:transform 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.6s ease; }
+.tagline-inner.out { transform:translateY(-110%); opacity:0; }
+.tagline-inner.in  { transform:translateY(0); opacity:1; }
+.hero-divider {
+  width:80px; height:2px; background:linear-gradient(to right,var(--blue),transparent);
+  margin-bottom:24px; opacity:0; animation:fadeUp 0.8s 0.9s forwards;
+}
+.hero-stats {
+  display:flex; gap:50px; margin-bottom:32px;
+  opacity:0; animation:fadeUp 0.8s 1.1s forwards;
+}
+.stat-num { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--blue); line-height:1; text-shadow:0 0 30px var(--blue-glow); }
+.stat-label { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gray); margin-top:2px; }
+.hero-cta { display:flex; gap:16px; opacity:0; animation:fadeUp 0.8s 1.3s forwards; }
+.slide-dots { position:absolute; bottom:40px; right:80px; z-index:3; display:flex; gap:8px; }
+.dot { width:24px; height:2px; background:rgba(255,255,255,0.3); border-radius:2px; cursor:pointer; transition:all 0.3s; }
+.dot.active { width:48px; background:var(--blue); box-shadow:0 0 8px var(--blue-glow); }
+.vertical-text {
+  position:absolute; right:40px; top:50%; transform:translateY(-50%) rotate(90deg); z-index:3;
+  font-size:10px; font-weight:700; letter-spacing:5px; text-transform:uppercase;
+  color:rgba(255,255,255,0.14); white-space:nowrap;
+}
+.scroll-hint {
+  position:absolute; bottom:44px; left:50%; transform:translateX(-50%);
+  z-index:3; display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+.scroll-hint span { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.28); }
+.scroll-arrow { width:1px; height:40px; background:linear-gradient(to bottom,var(--blue),transparent); animation:scrollPulse 2s ease infinite; }
+@keyframes scrollPulse {
+  0%,100%{ opacity:0.4; transform:scaleY(1); }
+  50%{ opacity:1; transform:scaleY(1.3); }
+}
+
+/* ====== FEATURES STRIP ====== */
+.features-strip {
+  background:var(--dark2);
+  border-top:1px solid rgba(53,183,255,0.12);
+  border-bottom:1px solid rgba(53,183,255,0.12);
+  display:flex; justify-content:center;
+}
+.features-inner { display:flex; width:100%; max-width:1200px; }
+.feature-item {
+  flex:1; display:flex; align-items:center; gap:16px;
+  padding:28px 30px; border-right:1px solid rgba(255,255,255,0.05); transition:background 0.3s;
+}
+.feature-item:last-child { border-right:none; }
+.feature-item:hover { background:rgba(53,183,255,0.04); }
+.feature-icon { font-size:28px; flex-shrink:0; }
+.feature-title { font-size:13px; font-weight:700; letter-spacing:0.5px; margin-bottom:3px; }
+.feature-desc { font-size:11px; color:var(--gray); font-weight:300; }
+
+/* ====== BRANDS (матеріали) ====== */
+.brands-section { position:relative; padding:60px 80px; text-align:center; overflow:hidden; min-height:180px; }
+.brands-label { font-size:10px; font-weight:700; letter-spacing:5px; text-transform:uppercase; color:rgba(255,255,255,0.18); margin-bottom:28px; position:relative; z-index:3; }
+.brands-row { display:flex; justify-content:center; gap:48px; flex-wrap:wrap; position:relative; z-index:3; }
+.brand-name { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:4px; color:rgba(255,255,255,0.09); transition:color 0.3s; cursor:default; }
+.brand-name:hover { color:var(--blue); }
+
+/* ====== CATALOG ====== */
+#catalog { background:var(--dark); }
+.catalog-stats-row {
+  display:flex; align-items:center; gap:30px; padding:36px 80px;
+  background:rgba(53,183,255,0.04); border-bottom:1px solid rgba(53,183,255,0.1);
+}
+.ss-num { font-family:'Bebas Neue',sans-serif; font-size:54px; color:var(--blue); line-height:1; text-shadow:0 0 20px var(--blue-glow); flex-shrink:0; }
+.ss-lbl { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gray); }
+.ss-div { width:1px; height:60px; background:rgba(53,183,255,0.2); flex-shrink:0; }
+.ss-text { font-size:14px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.8; }
+.catalog-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:2px; padding:2px 0;
+}
+.card-wrap { perspective:1000px; height:320px; cursor:pointer; }
+.card-inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform 0.7s ease; }
+.card-wrap.flipped .card-inner { transform:rotateY(180deg); }
+.card-front, .card-back { position:absolute; width:100%; height:100%; backface-visibility:hidden; -webkit-backface-visibility:hidden; overflow:hidden; }
+.card-front { background-size:cover; background-position:center; }
+.card-front .card-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.04) 0%,rgba(0,0,0,0.86) 100%);
+  display:flex; flex-direction:column; justify-content:flex-end; padding:20px; transition:background 0.3s;
+}
+.card-front .card-title { font-size:15px; font-weight:700; color:white; letter-spacing:0.5px; }
+.card-front .card-hint { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-top:5px; font-weight:600; }
+.card-back {
+  background:linear-gradient(135deg,#0f0f0f 0%,#1c1c1c 100%);
+  border:1px solid rgba(53,183,255,0.2); transform:rotateY(180deg);
+  display:flex; flex-direction:column; padding:20px; box-sizing:border-box; overflow-y:auto;
+}
+.card-back .back-title { font-size:14px; font-weight:700; color:var(--blue); margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid rgba(53,183,255,0.2); letter-spacing:0.5px; }
+.card-back .back-price { font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--white); letter-spacing:2px; margin-bottom:10px; }
+.card-back .back-price span { font-family:'Montserrat',sans-serif; font-size:12px; color:var(--gray); letter-spacing:1px; }
+.card-back ul { list-style:none; padding:0; margin:0 0 14px; }
+.card-back ul li {
+  font-size:12px; color:rgba(255,255,255,0.82); padding:6px 8px; margin:1px 0;
+  border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center;
+  gap:8px; font-weight:400; border-radius:6px; transition:background .18s,color .18s;
+}
+.card-back ul li::before { content:"▸"; color:var(--blue); font-size:10px; flex-shrink:0; }
+.card-back ul li:hover { background:rgba(53,183,255,0.12); color:#fff; }
+.card-back .order-btn {
+  margin-top:auto; padding:10px; background:var(--blue); border:none; color:white;
+  font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; border-radius:4px; cursor:pointer; transition:all 0.3s;
+}
+.card-back .order-btn:hover { background:var(--blue-bright); }
+.card-front-icon {
+  position:absolute; width:100%; height:100%;
+  background:linear-gradient(135deg,#141414 0%,#222 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+}
+.card-front-icon .mattress-icon { font-size:56px; filter:drop-shadow(0 0 12px rgba(53,183,255,0.4)); }
+.card-front-icon .card-title { font-size:15px; font-weight:700; color:white; letter-spacing:0.5px; text-align:center; padding:0 16px; }
+.card-front-icon .card-hint { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); font-weight:600; }
+.card-wrap:hover .card-front-icon { background:linear-gradient(135deg,#001420 0%,#001e2e 100%); }
+
+/* ====== CONTACTS ====== */
+#contacts { background:var(--dark); }
+.contacts-content { padding:60px 80px 80px; }
+.contacts-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.contact-card {
+  background:rgba(255,255,255,0.025); border:1px solid rgba(53,183,255,0.15);
+  border-radius:14px; padding:36px; position:relative; overflow:hidden;
+}
+.contact-card::before {
+  content:''; position:absolute; top:0; left:0;
+  width:3px; height:100%; background:linear-gradient(to bottom,var(--blue),transparent);
+}
+.contact-card h3 { font-family:'Bebas Neue',sans-serif; font-size:30px; letter-spacing:2px; color:var(--blue); margin-bottom:28px; }
+.contact-info-row {
+  display:flex; align-items:flex-start; gap:16px; margin-bottom:22px;
+  padding-bottom:22px; border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.contact-info-row:last-of-type { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.contact-icon {
+  font-size:20px; flex-shrink:0; width:42px; height:42px;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(53,183,255,0.1); border-radius:8px;
+}
+.contact-label { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gray); margin-bottom:5px; }
+.contact-value { font-size:15px; font-weight:600; color:var(--white); line-height:1.5; }
+.hours-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px; }
+.hours-row { display:flex; justify-content:space-between; font-size:12px; color:rgba(255,255,255,0.55); font-weight:500; }
+.hours-row span:last-child { color:var(--blue); font-weight:600; }
+.hours-row.off span:last-child { color:rgba(255,80,80,0.8); }
+.call-btn {
+  margin-top:16px; padding:14px 32px; background:var(--blue); border:none; color:white;
+  font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; border-radius:5px; cursor:pointer; transition:all 0.3s;
+  box-shadow:0 6px 24px rgba(53,183,255,0.35); width:100%;
+}
+.call-btn:hover { background:var(--blue-bright); transform:translateY(-2px); box-shadow:0 10px 32px rgba(53,183,255,0.5); }
+.map-wrap { border-radius:14px; overflow:hidden; border:1px solid rgba(53,183,255,0.15); min-height:440px; }
+
+/* ====== FORM ====== */
+#form-page { background:var(--dark); }
+.form-body { padding:60px 80px 80px; display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+.form-card {
+  background:rgba(255,255,255,0.025); border:1px solid rgba(53,183,255,0.15);
+  border-radius:14px; padding:40px; position:relative; overflow:hidden;
+}
+.form-card::before {
+  content:''; position:absolute; top:0; left:0;
+  width:3px; height:100%; background:linear-gradient(to bottom,var(--blue),transparent);
+}
+.form-group { margin-bottom:22px; }
+.form-group label { display:block; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gray); margin-bottom:8px; }
+.form-group input, .form-group select, .form-group textarea {
+  width:100%; padding:14px 16px; background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08); border-radius:6px; color:white;
+  font-family:'Montserrat',sans-serif; font-size:14px; transition:border-color 0.3s,box-shadow 0.3s;
+  resize:none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(53,183,255,0.1);
+}
+.form-group input::placeholder, .form-group textarea::placeholder { color:rgba(255,255,255,0.2); }
+.form-group select option { background:#1a1a1a; color:#fff; }
+.form-group select optgroup { background:#0d1a2a; color:#35B7FF; font-style:normal; font-weight:700; }
+.form-submit {
+  width:100%; padding:16px; background:var(--blue); border:none; color:white;
+  font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; border-radius:6px; cursor:pointer; transition:all 0.3s;
+  box-shadow:0 6px 24px rgba(53,183,255,0.35); margin-top:6px;
+}
+.form-submit:hover { background:var(--blue-bright); box-shadow:0 10px 32px rgba(53,183,255,0.5); transform:translateY(-2px); }
+.form-notice {
+  display:flex; align-items:flex-start; gap:10px; margin-top:16px;
+  padding:14px 16px; background:rgba(53,183,255,0.08); border:1px solid rgba(53,183,255,0.35);
+  border-left:3px solid var(--blue); border-radius:6px;
+  font-size:13px; font-weight:400; color:rgba(255,255,255,0.8); line-height:1.5;
+}
+.form-notice strong { color:var(--blue); font-weight:700; }
+.form-right-title { font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:2px; color:var(--white); margin-bottom:24px; }
+.form-right-title span { color:var(--blue); }
+.why-card {
+  display:flex; gap:16px; padding:20px; background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.05); border-radius:10px; margin-bottom:14px;
+  transition:border-color 0.3s,background 0.3s;
+}
+.why-card:hover { border-color:rgba(53,183,255,0.3); background:rgba(53,183,255,0.04); }
+.why-icon {
+  font-size:24px; flex-shrink:0; width:48px; height:48px;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(53,183,255,0.1); border-radius:10px;
+}
+.why-title { font-size:13px; font-weight:700; color:var(--white); margin-bottom:4px; }
+.why-desc { font-size:12px; color:rgba(255,255,255,0.45); line-height:1.6; font-weight:300; }
+
+/* ====== SECTION HEADER ====== */
+.section-header { padding:80px 80px 40px; }
+.section-eyebrow { font-size:11px; font-weight:700; letter-spacing:6px; text-transform:uppercase; color:var(--blue); margin-bottom:12px; display:flex; align-items:center; gap:12px; }
+.section-eyebrow::before { content:''; display:inline-block; width:30px; height:2px; background:var(--blue); }
+.section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,7vw,96px); line-height:0.88; letter-spacing:4px; color:var(--white); }
+.section-title .acc { color:var(--blue); }
+
+/* ====== CALLBACK FAB ====== */
+.callback-fab {
+  position:fixed; bottom:28px; right:28px; z-index:500;
+  width:58px; height:58px; border-radius:50%;
+  background:var(--blue); border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:26px;
+  box-shadow:0 4px 24px rgba(53,183,255,0.5); transition:transform 0.2s,box-shadow 0.2s;
+  animation:fabPulse 3s ease-in-out infinite;
+}
+.callback-fab:hover { transform:scale(1.1); box-shadow:0 8px 32px rgba(53,183,255,0.7); }
+@keyframes fabPulse {
+  0%,100%{ box-shadow:0 4px 24px rgba(53,183,255,0.5); }
+  50%{ box-shadow:0 4px 40px rgba(53,183,255,0.8),0 0 0 10px rgba(53,183,255,0.1); }
+}
+
+/* ====== CALLBACK MODAL ====== */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:800;
+  opacity:0; visibility:hidden; transition:all 0.3s;
+}
+.modal-overlay.active { opacity:1; visibility:visible; }
+.callback-modal {
+  position:fixed; top:50%; left:50%; transform:translate(-50%,-60%);
+  z-index:801; width:360px; background:#0a1520;
+  border:1px solid rgba(53,183,255,0.25); border-radius:16px; padding:36px;
+  opacity:0; visibility:hidden; transition:all 0.35s ease;
+}
+.callback-modal.active { opacity:1; visibility:visible; transform:translate(-50%,-50%); }
+.callback-modal h3 { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:2px; color:var(--blue); margin-bottom:8px; }
+.callback-modal p { font-size:13px; color:var(--gray); margin-bottom:24px; font-weight:300; line-height:1.5; }
+.callback-modal input {
+  width:100%; padding:14px 16px; background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08); border-radius:6px; color:white;
+  font-family:'Montserrat',sans-serif; font-size:14px; margin-bottom:14px;
+}
+.callback-modal input:focus { outline:none; border-color:var(--blue); }
+.callback-modal input::placeholder { color:rgba(255,255,255,0.2); }
+.modal-submit {
+  width:100%; padding:14px; background:var(--blue); border:none; color:white;
+  font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; border-radius:6px; cursor:pointer; transition:all 0.3s;
+}
+.modal-submit:hover { background:var(--blue-bright); }
+.modal-close {
+  position:absolute; top:16px; right:16px; background:none; border:none;
+  color:rgba(255,255,255,0.35); font-size:20px; cursor:pointer; transition:color 0.2s;
+}
+.modal-close:hover { color:var(--white); }
+#callbackSuccess { display:none; text-align:center; padding:16px 0; color:#4ade80; font-weight:600; font-size:14px; }
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:900px){
+  .nav-links { display:none; }
+  .hamburger { display:flex; }
+  .menu-mobile { display:block; }
+  .hero-content { padding:0 24px; padding-top:120px; }
+  .page-hero-content { padding:0 24px; padding-top:130px; }
+  .features-inner { flex-direction:column; }
+  .catalog-stats-row { padding:24px; flex-wrap:wrap; }
+  .section-header { padding:40px 24px 20px; }
+  .catalog-grid { grid-template-columns:1fr 1fr; }
+  .contacts-content { padding:30px 24px 40px; }
+  .contacts-grid { grid-template-columns:1fr; }
+  .map-wrap { min-height:280px; }
+  .form-body { padding:30px 24px 40px; grid-template-columns:1fr; }
+  .brands-section { padding:40px 24px; }
+  .brands-row { gap:24px; }
+}
+@media(max-width:560px){
+  .catalog-grid { grid-template-columns:1fr; }
+  .hero-stats { gap:24px; }
+  .hero-stats .stat-num { font-size:36px; }
+}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">Sleep<span>Italia</span></div>
+
+  <div class="status-badge open" id="status-badge">
+    <div class="status-dot"></div>
+    <span id="status-text">Працюємо</span>
+    <span class="status-time" id="status-time">до 19:00</span>
+  </div>
+
+  <div class="navbar-right">
+    <div class="nav-links">
+      <button id="nav-home"     onclick="show('home')"      class="active-nav">Головна</button>
+      <button id="nav-catalog"  onclick="show('catalog')">Каталог</button>
+      <button id="nav-contacts" onclick="show('contacts')">Контакти</button>
+      <button id="nav-form"     onclick="show('form-page')">Замовити</button>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+  </div>
+</nav>
+
+<div class="menu-mobile" id="mobile-menu">
+  <button onclick="show('home');toggleMenu()">Головна</button>
+  <button onclick="show('catalog');toggleMenu()">Каталог</button>
+  <button onclick="show('contacts');toggleMenu()">Контакти</button>
+  <button onclick="show('form-page');toggleMenu()">Замовити</button>
+</div>
+
+<!-- ============================================================ HOME -->
+<div class="page active fade-in" id="home">
+  <!-- HERO SLIDER -->
+  <section class="hero">
+    <div class="slide active" style="background:linear-gradient(135deg,#020a14 0%,#0a1a28 50%,#020810 100%);">
+      <div class="slide-brand">VENEZIA</div>
+    </div>
+    <div class="slide" style="background:linear-gradient(135deg,#03080f 0%,#081624 50%,#010608 100%);">
+      <div class="slide-brand">FIRENZE</div>
+    </div>
+    <div class="slide" style="background:linear-gradient(135deg,#050a10 0%,#0d1e2e 50%,#030810 100%);">
+      <div class="slide-brand">ROMA</div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">SleepItalia — Офіційний дистриб'ютор</div>
+      <h1 class="hero-title">
+        СПІТЬ ЯК<br>
+        В <span class="accent">ІТАЛІЇ</span><br>
+        ЩОНОЧІ
+      </h1>
+      <div class="hero-tagline-box">
+        <div class="hero-tagline-bar"></div>
+        <div class="hero-tagline"><div class="tagline-inner in" id="tagline-text">Натуральний латекс прямо з Болоньї</div></div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Задоволених клієнтів</div>
+        </div>
+        <div>
+          <div class="stat-num">12</div>
+          <div class="stat-label">Років досвіду</div>
+        </div>
+        <div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">Років гарантії</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="show('catalog')">Переглянути каталог</button>
+        <button class="btn-secondary" onclick="show('form-page')">Замовити зараз</button>
+      </div>
+    </div>
+
+    <div class="vertical-text">MADE IN ITALY — НАТУРАЛЬНІ МАТЕРІАЛИ</div>
+    <div class="slide-dots" id="slide-dots">
+      <div class="dot active" onclick="goSlide(0)"></div>
+      <div class="dot" onclick="goSlide(1)"></div>
+      <div class="dot" onclick="goSlide(2)"></div>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="scroll-arrow"></div></div>
+  </section>
+
+  <!-- FEATURES STRIP -->
+  <div class="features-strip">
+    <div class="features-inner">
+      <div class="feature-item">
+        <div class="feature-icon">🌿</div>
+        <div><div class="feature-title">100% Натуральний латекс</div><div class="feature-desc">Без синтетики та хімії</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🚚</div>
+        <div><div class="feature-title">Безкоштовна доставка</div><div class="feature-desc">По всій Україні</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🛡️</div>
+        <div><div class="feature-title">Гарантія 5 років</div><div class="feature-desc">Офіційна гарантія</div></div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">↩️</div>
+        <div><div class="feature-title">Повернення 14 днів</div><div class="feature-desc">Без зайвих питань</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERIALS -->
+  <div class="brands-section">
+    <div class="brands-label">Матеріали наших матраців</div>
+    <div class="brands-row">
+      <div class="brand-name">Латекс</div>
+      <div class="brand-name">Меморіформ</div>
+      <div class="brand-name">Кокосова койра</div>
+      <div class="brand-name">Льон</div>
+      <div class="brand-name">Бамбук</div>
+      <div class="brand-name">Бавовна</div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <div style="padding:0 80px 80px;">
+    <div class="section-eyebrow" style="margin-bottom:16px;">Чому обирають нас</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div class="why-card">
+        <div class="why-icon">🇮🇹</div>
+        <div><div class="why-title">Пряме виробництво</div><div class="why-desc">Партнери з Болоньї та Флоренції з 40-річним досвідом. Сертифіковано OEKO-TEX.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📐</div>
+        <div><div class="why-title">Індивідуальні розміри</div><div class="why-desc">Виготовляємо під будь-який диван. Нестандартні розміри без доплати.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💤</div>
+        <div><div class="why-title">Ортопедична підтримка</div><div class="why-desc">Правильна постава під час сну — без болю в спині вже з першого тижня.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📦</div>
+        <div><div class="why-title">Зручне пакування</div><div class="why-desc">Матрац у рулоні — легко доставити навіть на верхні поверхи без ліфта.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <div><div class="why-title">Оплата після отримання</div><div class="why-desc">Оплачуйте тільки коли переконаєтесь — оплата при отриманні або онлайн.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📞</div>
+        <div><div class="why-title">Підбір безкоштовно</div><div class="why-desc">Консультант підбере оптимальний матрац під ваш диван і бюджет.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ CATALOG -->
+<div class="page" id="catalog">
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background:linear-gradient(135deg,#020a14 0%,#0a1e30 60%,#010810 100%);"></div>
+    <div class="page-hero-content">
+      <div class="page-eyebrow">Каталог продукції</div>
+      <h1 class="page-big-title">НАШІ<br><span class="acc">МАТРАЦИ</span></h1>
+      <p class="page-desc">Натисніть на картку, щоб побачити характеристики та ціну. Кожна модель — ручна робота, матеріали з Італії.</p>
+      <button class="btn-primary" onclick="show('form-page')">Замовити зараз</button>
+    </div>
+    <div class="page-scroll"><span>Scroll</span><div class="arr"></div></div>
+  </section>
+
+  <!-- STATS ROW -->
+  <div class="catalog-stats-row">
+    <div><div class="ss-num">8</div><div class="ss-lbl">Моделей</div></div>
+    <div class="ss-div"></div>
+    <div><div class="ss-num">500+</div><div class="ss-lbl">Продано</div></div>
+    <div class="ss-div"></div>
+    <div><div class="ss-num">100%</div><div class="ss-lbl">Натуральне</div></div>
+    <div class="ss-div"></div>
+    <p class="ss-text">Всі матраци виготовлені в Італії з натуральних матеріалів.<br>Підходять для щоденного сну та гостьового використання.</p>
+  </div>
+
+  <!-- SECTION HEADER -->
+  <div class="section-header">
+    <div class="section-eyebrow">Всі моделі</div>
+    <h2 class="section-title">КАТАЛОГ <span class="acc">МАТРАЦІВ</span></h2>
+  </div>
+
+  <!-- CARDS GRID -->
+  <div class="catalog-grid">
+    <!-- Card 1 -->
+    <div class="card-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-front-icon">
+            <div class="mattress-icon">🛏️</div>
+            <div class="card-title">Venezia Classic</div>
+            <div class="card-hint">Натисніть для деталей →</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="back-title">Venezia Classic</div>
+          <div class="back-price">3 490 ₴ <span>/ шт</span></div>
+          <ul>
+            <li>Натуральний латекс 3 см</li>
+            <li>Кокосова койра 2 см</li>
+            <li>Середня жорсткість</li>
+            <li>Чохол: бавовна + бамбук</li>
+            <li>Висота: 10 см</li>
+            <li>Гарантія 5 років</li>
+          </ul>
+          <button class="order-btn" onclick="event.stopPropagation();show('form-page')">Замовити →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-front-icon">
+            <div class="mattress-icon">💤</div>
+            <div class="card-title">Firenze Memory</div>
+            <div class="card-hint">Натисніть для деталей →</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="back-title">Firenze Memory</div>
+          <div class="back-price">5 290 ₴ <span>/ шт</span></div>
+          <ul>
+            <li>Меморіформ 4 см</li>
+            <li>Незалежні пружини</li>
+            <li>М'яка жорсткість</li>
+            <li>Анатомічна підтримка</li>
+            <li>Висота: 14 см</li>
+            <li>Гарантія 5 років</li>
+          </ul>
+          <button class="order-btn" onclick="event.stopPropagation();show('form-page')">Замовити →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-front-icon">
+            <div class="mattress-icon">🌿</div>
+            <div class="card-title">Roma Ortho</div>
+            <div class="card-hint">Натисніть для деталей →</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="back-title">Roma Ortho</div>
+          <div class="back-price">4 190 ₴ <span>/ шт</span></div>
+          <ul>
+            <li>Кокосова койра висока щільність</li>
+            <li>Жорсткість: тверда</li>
+            <li>Для болю у спині</li>
+            <li>Чохол: льон + бавовна</li>
+            <li>Висота: 8 см</li>
+            <li>Гарантія 5 років</li>
+          </ul>
+          <button class="order-btn" onclick="event.stopPropagation();show('form-page')">Замовити →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="card-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-front-icon">
+            <div class="mattress-icon">⭐</div>
+            <div class="card-title">Milano Luxury</div>
+            <div class="card-hint">Натисніть для деталей →</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="back-title">Milano Luxury</div>
+          <div class="back-price">7 490 ₴ <span>/ шт</span></div>
+          <ul>
+            <li>Латекс натуральний 6 см</li>
+            <li>Меморіформ 3 см</li>
+            <li>Двостороній (зима/літо)</li>
+            <li>Чохол: бамбук + шовк</li>
+            <li>Висота: 18 см</li>
+            <li>Гарантія 7 років</li>
+          </ul>
+          <button class="order-btn" onclick="event.stopPropagation();show('form-page')">Замовити →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="card-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-front-icon">
+            <div class="mattress-icon">🧸</div>
+            <div class="card-title">Piccolo Kids</div>
+            <div class="card-hint">Натисніть для деталей →</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="back-title">Piccolo Kids</div>
+          <div class="back-price">2 890 ₴ <span>/ шт</span></div>
+          <ul>
+            <li>Спеціально для дітей</li>
+            <li>Кокос + латекс натуральний</li>
+            <li>Антиалергенний чохол</li>
+            <li>Середня жорсткість</li>
+            <li>Висота: 8 см</li>
+            <li>Сертифікат безпеки</li>
+          </ul>
+          <button class="order-btn" onclick="event.stopPropagation();show('form-page')">Замовити →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="card-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-front-icon">
+            <div class="mattress-icon">📐</div>
+            <div class="card-title">Individuale</div>
+            <div class="card-hint">Натисніть для деталей →</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="back-title">Individuale (на замовлення)</div>
+          <div class="back-price">від 3 200 ₴</div>
+          <ul>
+            <li>Будь-який нестандартний розмір</li>
+            <li>Вибір матеріалу на ваш смак</li>
+            <li>Вибір жорсткості</li>
+            <li>Термін виготовлення: 5-7 днів</li>
+            <li>Гарантія 5 років</li>
+          </ul>
+          <button class="order-btn" onclick="event.stopPropagation();show('form-page')">Замовити →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="padding:60px 80px;text-align:center;">
+    <div class="section-eyebrow" style="justify-content:center;margin-bottom:16px;">Не знайшли підходящий?</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:3px;color:var(--white);margin-bottom:14px;">
+      ПІДБЕРЕМО <span style="color:var(--blue)">РАЗОМ</span>
+    </h2>
+    <p style="font-size:14px;color:var(--gray);margin-bottom:32px;font-weight:300;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7;">
+      Залиште заявку — наш консультант безкоштовно підбере матрац під ваш диван, жорсткість та бюджет.
+    </p>
+    <button class="btn-primary" onclick="show('form-page')">Отримати консультацію</button>
+  </div>
+</div>
+
+<!-- ============================================================ CONTACTS -->
+<div class="page" id="contacts">
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background:linear-gradient(135deg,#020a14 0%,#081828 60%,#010810 100%);"></div>
+    <div class="page-hero-content">
+      <div class="page-eyebrow">Зв'яжіться з нами</div>
+      <h1 class="page-big-title">КОН<span class="acc">ТАКТИ</span></h1>
+      <p class="page-desc">Ми готові відповісти на всі ваші питання. Зателефонуйте або напишіть — підберемо матрац разом.</p>
+      <button class="btn-primary" onclick="openCallback()">Передзвоніть мені</button>
+    </div>
+    <div class="page-scroll"><span>Scroll</span><div class="arr"></div></div>
+  </section>
+
+  <div class="contacts-content">
+    <div class="contacts-grid">
+      <!-- INFO -->
+      <div class="contact-card">
+        <h3>SleepItalia</h3>
+        <div class="contact-info-row">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Телефон</div>
+            <div class="contact-value">+38 (000) 000-00-00<br>+38 (000) 000-00-01</div>
+          </div>
+        </div>
+        <div class="contact-info-row">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">info@sleepitalia.ua</div>
+          </div>
+        </div>
+        <div class="contact-info-row">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Адреса</div>
+            <div class="contact-value">вул. Назва вулиці, 1<br>Ваше місто, Україна</div>
+          </div>
+        </div>
+        <div class="contact-info-row">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Графік роботи</div>
+            <div class="hours-grid">
+              <div class="hours-row"><span>Пн–Пт</span><span>9:00–19:00</span></div>
+              <div class="hours-row"><span>Субота</span><span>9:00–16:00</span></div>
+              <div class="hours-row off"><span>Неділя</span><span>Вихідний</span></div>
+            </div>
+          </div>
+        </div>
+        <button class="call-btn" onclick="window.location='tel:+380000000000'">📞 Зателефонувати</button>
+      </div>
+
+      <!-- MAP PLACEHOLDER -->
+      <div class="map-wrap" style="display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.02);flex-direction:column;gap:16px;">
+        <div style="font-size:48px;">🗺️</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--blue);">КАРТА</div>
+        <div style="font-size:12px;color:var(--gray);text-align:center;max-width:260px;font-weight:300;line-height:1.6;">Вставте посилання на Google Maps<br>для відображення карти</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ FORM -->
+<div class="page" id="form-page">
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background:linear-gradient(135deg,#020a14 0%,#061524 60%,#010810 100%);"></div>
+    <div class="page-hero-content">
+      <div class="page-eyebrow">Оформлення замовлення</div>
+      <h1 class="page-big-title">ЗА<span class="acc">МОВИТИ</span></h1>
+      <p class="page-desc">Заповніть форму — ми зателефонуємо впродовж 30 хвилин та підтвердимо замовлення.</p>
+    </div>
+    <div class="page-scroll"><span>Scroll</span><div class="arr"></div></div>
+  </section>
+
+  <div class="form-body" id="form-anchor">
+    <!-- FORM CARD -->
+    <div class="form-card">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--blue);margin-bottom:24px;">ЗАЛИШИТИ ЗАЯВКУ</div>
+
+      <div class="form-group">
+        <label>Ваше ім'я</label>
+        <input type="text" id="f-name" placeholder="Іван Іваненко" required>
+      </div>
+      <div class="form-group">
+        <label>Номер телефону</label>
+        <input type="tel" id="f-phone" placeholder="+38 (0XX) XXX-XX-XX" required>
+      </div>
+      <div class="form-group">
+        <label>Місто доставки</label>
+        <input type="text" id="f-city" placeholder="Ваше місто">
+      </div>
+      <div class="form-group">
+        <label>Модель матрацу</label>
+        <select id="f-model">
+          <option value="">— Оберіть модель —</option>
+          <optgroup label="Стандартні моделі">
+            <option>Venezia Classic — 3 490 ₴</option>
+            <option>Firenze Memory — 5 290 ₴</option>
+            <option>Roma Ortho — 4 190 ₴</option>
+            <option>Milano Luxury — 7 490 ₴</option>
+            <option>Piccolo Kids — 2 890 ₴</option>
+          </optgroup>
+          <optgroup label="Індивідуальне замовлення">
+            <option>Individuale (нестандартний розмір)</option>
+            <option>Консультація — не визначився</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Розмір дивана (якщо знаєте)</label>
+        <input type="text" id="f-size" placeholder="напр. 60×120 см або Стандарт 80×200">
+      </div>
+      <div class="form-group">
+        <label>Коментар</label>
+        <textarea id="f-comment" rows="3" placeholder="Уточнення, побажання по жорсткості..."></textarea>
+      </div>
+
+      <button class="form-submit" id="form-btn" onclick="handleOrder()">Відправити заявку →</button>
+
+      <div class="form-notice">
+        <span>💬</span>
+        <span><strong>Без попередньої оплати.</strong> Ми передзвонимо впродовж 30 хвилин у робочий час для підтвердження замовлення.</span>
+      </div>
+    </div>
+
+    <!-- WHY US (right side) -->
+    <div>
+      <div class="form-right-title">ЧОМУ <span>SLEEPITALIA?</span></div>
+      <div class="why-card">
+        <div class="why-icon">🇮🇹</div>
+        <div><div class="why-title">Пряме виробництво з Італії</div><div class="why-desc">Без посередників — ціни нижче ринкових на 20–30%.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🚚</div>
+        <div><div class="why-title">Безкоштовна доставка</div><div class="why-desc">Нова Пошта або Укрпошта по всій Україні — безкоштовно.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">↩️</div>
+        <div><div class="why-title">Повернення без питань</div><div class="why-desc">14 днів на повернення якщо матрац не підійшов.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <div><div class="why-title">Офіційна гарантія 5 років</div><div class="why-desc">Письмова гарантія на кожен матрац. Безкоштовний ремонт або заміна.</div></div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📐</div>
+        <div><div class="why-title">Нестандартні розміри</div><div class="why-desc">Зробимо під будь-який диван — без доплати за нестандарт.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALLBACK FAB -->
+<button class="callback-fab" onclick="openCallback()" title="Передзвоніть мені">📲</button>
+
+<!-- CALLBACK MODAL -->
+<div class="modal-overlay" id="callbackOverlay" onclick="closeCallback()"></div>
+<div class="callback-modal" id="callbackModal">
+  <button class="modal-close" onclick="closeCallback()">✕</button>
+  <h3>Передзвоніть мені</h3>
+  <p>Залиште номер — зателефонуємо впродовж 30 хвилин у робочий час.</p>
+  <input type="tel" id="callbackPhone" placeholder="+38 (0XX) XXX-XX-XX" oninput="formatPhone(this)">
+  <button class="modal-submit" id="callbackSubmit" onclick="sendCallback()">Передзвоніть мені</button>
+  <div id="callbackSuccess">✅ Отримали! Зателефонуємо найближчим часом.</div>
+</div>
+
+<script>
+// ─── Page switching ────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active','fade-in'));
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active-nav'));
+  const page = document.getElementById(id);
+  const nav  = document.getElementById('nav-' + (id === 'form-page' ? 'form' : id));
+  if (!page) return;
+  page.classList.add('active');
+  if (nav) nav.classList.add('active-nav');
+  window.scrollTo(0,0);
+  requestAnimationFrame(() => requestAnimationFrame(() => page.classList.add('fade-in')));
+}
+
+// ─── Mobile menu ───────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// ─── Hero slider ───────────────────────────────────────────────
+let currentSlide = 0;
+const taglines = [
+  'Натуральний латекс прямо з Болоньї',
+  'Меморіформ, що адаптується до вашого тіла',
+  'Ортопедична підтримка — без болю в спині'
+];
+function goSlide(n) {
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('.dot');
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  const el = document.getElementById('tagline-text');
+  el.classList.remove('in'); el.classList.add('out');
+  setTimeout(() => { el.textContent = taglines[n]; el.classList.remove('out'); el.classList.add('in'); }, 400);
+}
+setInterval(() => goSlide((currentSlide + 1) % 3), 5000);
+
+// ─── Status badge ──────────────────────────────────────────────
+(function updateStatus() {
+  const badge  = document.getElementById('status-badge');
+  const textEl = document.getElementById('status-text');
+  const timeEl = document.getElementById('status-time');
+  if (!badge) return;
+  const now   = new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Kiev'}));
+  const day   = now.getDay(), hhmm = now.getHours()*60 + now.getMinutes();
+  let open = false, closeAt = '';
+  if (day>=1 && day<=5) {
+    open = hhmm>=540 && hhmm<1140;
+    closeAt = open ? 'до 19:00' : (hhmm<540 ? 'відкр. о 9:00' : 'відкр. завтра');
+  } else if (day===6) {
+    open = hhmm>=540 && hhmm<960;
+    closeAt = open ? 'до 16:00' : (hhmm<540 ? 'відкр. о 9:00' : 'відкр. Пн');
+  } else {
+    closeAt = 'відкр. Пн 9:00';
+  }
+  badge.className = 'status-badge ' + (open ? 'open' : 'closed');
+  textEl.textContent = open ? 'Працюємо' : 'Зачинено';
+  timeEl.textContent = closeAt;
+  setTimeout(updateStatus, 60000);
+})();
+
+// ─── Callback modal ────────────────────────────────────────────
+function openCallback() {
+  document.getElementById('callbackOverlay').classList.add('active');
+  document.getElementById('callbackModal').classList.add('active');
+  setTimeout(() => document.getElementById('callbackPhone').focus(), 400);
+}
+function closeCallback() {
+  document.getElementById('callbackOverlay').classList.remove('active');
+  document.getElementById('callbackModal').classList.remove('active');
+}
+function formatPhone(el) {
+  let v = el.value.replace(/\D/g,'');
+  if (v.startsWith('380')) v = '+' + v;
+  else if (v.startsWith('0')) v = '+38' + v;
+  el.value = v.startsWith('+') ? v : (v ? '+'+v : '');
+}
+function sendCallback() {
+  const phone = document.getElementById('callbackPhone').value.trim();
+  if (phone.length < 10) {
+    document.getElementById('callbackPhone').style.borderColor = '#f87171';
+    setTimeout(() => document.getElementById('callbackPhone').style.borderColor = '', 1500);
+    return;
+  }
+  document.getElementById('callbackSubmit').style.display = 'none';
+  document.getElementById('callbackSuccess').style.display = 'block';
+  setTimeout(closeCallback, 2500);
+}
+
+// ─── Order form ────────────────────────────────────────────────
+function handleOrder() {
+  const name  = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  const btn   = document.getElementById('form-btn');
+  if (!name || !phone) {
+    btn.style.background = '#c62828'; btn.textContent = '❌ Заповніть ім\'я та телефон';
+    setTimeout(() => { btn.style.background = ''; btn.textContent = 'Відправити заявку →'; }, 3000);
+    return;
+  }
+  btn.textContent = 'Відправляємо...'; btn.disabled = true;
+  // TODO: підключити Telegram / email / Google Sheets
+  setTimeout(() => {
+    btn.textContent = '✅ Заявку прийнято! Передзвонимо найближчим часом';
+    btn.style.background = '#1a5c2a';
+    setTimeout(() => { btn.textContent = 'Відправити заявку →'; btn.style.background = ''; btn.disabled = false; }, 5000);
+  }, 1000);
+}
+</script>
+</body>
+</html>
