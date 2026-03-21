@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sogni d'Oro — Итальянские матрасы</title>
   <meta name="description" content="Sogni d'Oro — итальянские матрасы. Независимые пружины, Memory Foam, натуральный латекс. Виробництво Італія.">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https:
   <style>
 :root {
   --gold: #C9A96E;
@@ -29,15 +29,13 @@ body {
   cursor: default;
 }
 
-/* ====== NOISE TEXTURE OVERLAY ====== */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http:
   opacity: 0.4;
 }
 
-/* ====== NAVBAR ====== */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
   display: flex; justify-content: space-between; align-items: center;
@@ -103,12 +101,10 @@ body::before {
 .mobile-menu button:hover { color: var(--gold); }
 .mobile-close { position: absolute; top: 28px; right: 28px; background: none; border: none; color: var(--gold); font-size: 28px; cursor: pointer; }
 
-/* ====== PAGES ====== */
 .page { display: none; min-height: 100vh; opacity: 0; transition: opacity 0.4s ease; position: relative; z-index: 1; }
 .page.active { display: block; }
 .page.fade-in { opacity: 1; }
 
-/* ====== HOME ====== */
 #home { overflow: hidden; }
 .hero {
   position: relative; width: 100%; height: 100vh; overflow: hidden;
@@ -213,7 +209,6 @@ body::before {
 }
 @keyframes fadeUp { from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)} }
 
-/* ====== MARQUEE ====== */
 .marquee-wrap {
   overflow: hidden; border-top: 1px solid rgba(201,169,110,0.12); border-bottom: 1px solid rgba(201,169,110,0.12);
   background: var(--dark2); padding: 16px 0;
@@ -227,7 +222,6 @@ body::before {
 .marquee-dot { color: var(--gold); margin: 0 8px; font-style: normal; font-family: 'Jost', sans-serif; }
 @keyframes marquee { from{transform:translateX(0)}to{transform:translateX(-50%)} }
 
-/* ====== WHY STRIP ====== */
 .why-strip { display: flex; background: var(--dark3); border-bottom: 1px solid rgba(201,169,110,0.1); }
 .why-item {
   flex: 1; padding: 40px 36px; border-right: 1px solid rgba(201,169,110,0.08);
@@ -242,7 +236,6 @@ body::before {
 .why-title { font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
 .why-desc { font-size: 12px; font-weight: 200; color: var(--gray); line-height: 1.7; letter-spacing: 0.04em; }
 
-/* ====== ABOUT SECTION ====== */
 .about-section { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
 .about-left {
   background: var(--dark3); padding: 80px 72px;
@@ -285,7 +278,6 @@ body::before {
 }
 .about-quote strong { display: block; font-size: 64px; font-weight: 400; color: rgba(201,169,110,0.15); letter-spacing: -0.02em; line-height: 0.9; margin-bottom: 16px; font-style: normal; }
 
-/* ====== CATALOG PAGE ====== */
 #catalog { background: var(--dark); }
 .cat-hero {
   position: relative; padding: 160px 80px 80px;
@@ -308,7 +300,6 @@ body::before {
 .cat-hero-title em { font-style: italic; color: var(--gold); }
 .cat-hero-sub { font-size: 13px; font-weight: 200; color: var(--gray); line-height: 1.8; letter-spacing: 0.05em; max-width: 500px; }
 
-/* CATEGORY TABS */
 .cat-tabs { display: flex; padding: 0 80px; border-bottom: 1px solid rgba(201,169,110,0.1); background: var(--dark2); }
 .cat-tab {
   background: none; border: none; color: rgba(245,240,230,0.35);
@@ -320,7 +311,6 @@ body::before {
 .cat-tab:hover { color: rgba(245,240,230,0.7); }
 .cat-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
 
-/* PRODUCTS GRID */
 .products-section { padding: 60px 80px 100px; }
 .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,169,110,0.08); }
 .prod-card {
@@ -377,7 +367,6 @@ body::before {
 }
 .prod-btn:hover { background: var(--gold); color: var(--dark); }
 
-/* ====== CONTACTS ====== */
 #contacts { background: var(--dark); }
 .contacts-hero {
   padding: 160px 80px 80px;
@@ -432,7 +421,6 @@ body::before {
 .map-placeholder p { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: rgba(201,169,110,0.4); }
 .map-placeholder small { font-size: 11px; font-weight: 200; color: rgba(245,240,230,0.25); letter-spacing: 0.1em; }
 
-/* ====== ORDER FORM ====== */
 #order { background: var(--dark); }
 .order-hero {
   padding: 160px 80px 80px;
@@ -511,7 +499,6 @@ body::before {
 .perk-title { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--white); margin-bottom: 4px; }
 .perk-desc { font-size: 11px; font-weight: 200; color: var(--gray); line-height: 1.6; letter-spacing: 0.03em; }
 
-/* ====== FAB ====== */
 .fab {
   position: fixed; bottom: 28px; right: 28px; z-index: 500;
   width: 54px; height: 54px; background: var(--gold); border: none; cursor: pointer;
@@ -525,7 +512,6 @@ body::before {
   50%{box-shadow:0 4px 36px rgba(201,169,110,0.6),0 0 0 8px rgba(201,169,110,0.08)}
 }
 
-/* ====== CALLBACK MODAL ====== */
 .overlay { position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:800;opacity:0;visibility:hidden;transition:all 0.3s; }
 .overlay.on { opacity:1;visibility:visible; }
 .modal {
@@ -554,7 +540,6 @@ body::before {
 .modal-btn:hover { background:var(--gold2); }
 #modal-ok { display:none;text-align:center;padding:16px 0;color:#4ade80;font-size:14px;font-weight:300;letter-spacing:0.08em; }
 
-/* ====== FOOTER ====== */
 .site-footer {
   background: var(--dark2); border-top: 1px solid rgba(201,169,110,0.1);
   padding: 60px 80px 32px; display: grid; grid-template-columns: 2fr 1fr 1fr;
@@ -569,7 +554,6 @@ body::before {
 .footer-bottom { padding:24px 80px;border-top:1px solid rgba(201,169,110,0.08);display:flex;justify-content:space-between;align-items:center;background:var(--dark2); }
 .footer-copy { font-size:10px;font-weight:200;color:rgba(245,240,230,0.2);letter-spacing:0.1em; }
 
-/* ====== RESPONSIVE ====== */
 @media(max-width:960px){
   .navbar{padding:18px 24px;}
   .nav-center{display:none;}
@@ -603,7 +587,6 @@ body::before {
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="logo">Sogni <em>d'Oro</em></div>
   <div class="nav-center">
@@ -613,7 +596,7 @@ body::before {
     <button id="btn-order">Замовити</button>
   </div>
   <div class="nav-right">
-    <span class="nav-phone">+39 389.584.7556</span>
+    <span class="nav-phone">+38 (0XX) XXX-XX-XX</span>
     <button class="nav-cta">Зв'язатись</button>
   </div>
   <div class="hamburger" id="hamburger">
@@ -621,7 +604,6 @@ body::before {
   </div>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
   <button class="modal-close">✕</button>
   <button>Головна</button>
@@ -630,10 +612,8 @@ body::before {
   <button>Замовити</button>
 </div>
 
-<!-- ================================================================ HOME -->
 <div class="page active fade-in" id="home">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-lines"></div>
@@ -644,7 +624,7 @@ body::before {
       <div class="hero-deco-gold"></div>
     </div>
     <div class="hero-content">
-      <div class="hero-tag">З 1985 року — Фрозіноне, Італія</div>
+      <div class="hero-tag">Офіційний дистриб'ютор в Україні</div>
       <h1 class="hero-title">Відпочинок<br>який ти <em>заслуговуєш</em>,<br>кожної ночі.</h1>
       <div class="hero-divider"></div>
       <p class="hero-subtitle">Матраци повністю виробляються на наших італійських фабриках. Натуральний латекс, незалежні пружини, Memory Foam — для ідеального сну.</p>
@@ -670,7 +650,6 @@ body::before {
     <div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-line"></div></div>
   </section>
 
-  <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
       <span class="marquee-item">Excelsior 3000<span class="marquee-dot">·</span></span>
@@ -683,7 +662,7 @@ body::before {
       <span class="marquee-item">Ventotene<span class="marquee-dot">·</span></span>
       <span class="marquee-item">Ponza Memory Gel<span class="marquee-dot">·</span></span>
       <span class="marquee-item">Lipari Waterlily<span class="marquee-dot">·</span></span>
-      <!-- repeat for seamless loop -->
+    
       <span class="marquee-item">Excelsior 3000<span class="marquee-dot">·</span></span>
       <span class="marquee-item">Absolute 1600<span class="marquee-dot">·</span></span>
       <span class="marquee-item">Panarea<span class="marquee-dot">·</span></span>
@@ -697,7 +676,6 @@ body::before {
     </div>
   </div>
 
-  <!-- WHY -->
   <div class="why-strip">
     <div class="why-item">
       <div class="why-num">01</div>
@@ -721,7 +699,6 @@ body::before {
     </div>
   </div>
 
-  <!-- ABOUT -->
   <div class="about-section">
     <div class="about-left">
       <div class="section-tag">Наша філософія</div>
@@ -741,7 +718,6 @@ body::before {
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div>
       <div class="footer-brand">Sogni <em>d'Oro</em></div>
@@ -759,17 +735,16 @@ body::before {
       <a href="#">Контакти</a>
       <a href="#">Запросити розрахунок</a>
       <a href="#"><span class="__cf_email__" data-cfemail="6900070f06291a060e07000d061b0606070500070c47001d">[email&#160;protected]</span></a>
-      <a href="#">+39 389.584.7556</a>
+      <a href="#">+38 (0XX) XXX-XX-XX</a>
     </div>
   </footer>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Sogni d'Oro Матраци — Via le Noci 31/A, 03100 Frosinone</span>
-    <span class="footer-copy">Усі права захищені</span>
+    <span class="footer-copy">© 2025 Sogni d'Oro Матраци — вул. Назва вулиці, 1, Ваше місто</span>
+    <span class="footer-copy">Всі права захищені</span>
   </div>
 
 </div>
 
-<!-- ================================================================ CATALOG -->
 <div class="page" id="catalog">
   <div class="cat-hero">
     <div class="cat-hero-inner">
@@ -791,7 +766,7 @@ body::before {
   <div class="products-section">
     <div class="products-grid" id="prod-grid">
 
-      <!-- EXCELSIOR 3000 -->
+    
       <div class="prod-card visible" data-cat="molle">
         <div class="prod-top" data-category="Незалежні пружини">
           <div class="prod-badge">Топ серії</div>
@@ -813,7 +788,7 @@ body::before {
         </div>
       </div>
 
-      <!-- ABSOLUTE 1600 -->
+    
       <div class="prod-card visible" data-cat="molle">
         <div class="prod-top" data-category="Незалежні пружини">
           <div class="prod-icon">💤</div>
@@ -833,7 +808,7 @@ body::before {
         </div>
       </div>
 
-      <!-- PANAREA -->
+    
       <div class="prod-card visible" data-cat="molle">
         <div class="prod-top" data-category="Незалежні пружини">
           <div class="prod-badge">Премиум</div>
@@ -854,7 +829,7 @@ body::before {
         </div>
       </div>
 
-      <!-- POCKET MEMORY -->
+    
       <div class="prod-card visible" data-cat="molle">
         <div class="prod-top" data-category="Незалежні пружини">
           <div class="prod-icon">🌿</div>
@@ -874,7 +849,7 @@ body::before {
         </div>
       </div>
 
-      <!-- POCKET -->
+    
       <div class="prod-card visible" data-cat="molle">
         <div class="prod-top" data-category="Незалежні пружини">
           <div class="prod-icon">🛏️</div>
@@ -894,7 +869,7 @@ body::before {
         </div>
       </div>
 
-      <!-- FISIO SYSTEM -->
+    
       <div class="prod-card visible" data-cat="molle">
         <div class="prod-top" data-category="Незалежні пружини">
           <div class="prod-icon">🔬</div>
@@ -914,7 +889,7 @@ body::before {
         </div>
       </div>
 
-      <!-- ALOE BIANCA -->
+    
       <div class="prod-card visible" data-cat="bonnel">
         <div class="prod-top" data-category="Пружини Бонель">
           <div class="prod-icon">🌱</div>
@@ -934,7 +909,7 @@ body::before {
         </div>
       </div>
 
-      <!-- CAMOMILLA -->
+    
       <div class="prod-card visible" data-cat="bonnel">
         <div class="prod-top" data-category="Пружини Бонель">
           <div class="prod-badge">Новинка</div>
@@ -955,7 +930,7 @@ body::before {
         </div>
       </div>
 
-      <!-- ORTOMOL MEMORY -->
+    
       <div class="prod-card visible" data-cat="bonnel">
         <div class="prod-top" data-category="Пружини Бонель">
           <div class="prod-icon">🧬</div>
@@ -975,7 +950,7 @@ body::before {
         </div>
       </div>
 
-      <!-- ORTOMOL -->
+    
       <div class="prod-card visible" data-cat="bonnel">
         <div class="prod-top" data-category="Пружини Бонель">
           <div class="prod-icon">💪</div>
@@ -995,7 +970,7 @@ body::before {
         </div>
       </div>
 
-      <!-- PROMO -->
+    
       <div class="prod-card visible" data-cat="memory">
         <div class="prod-top" data-category="Memory Foam">
           <div class="prod-icon">✨</div>
@@ -1014,7 +989,7 @@ body::before {
         </div>
       </div>
 
-      <!-- CAPRI -->
+    
       <div class="prod-card visible" data-cat="memory">
         <div class="prod-top" data-category="Memory Foam">
           <div class="prod-icon">🏝️</div>
@@ -1034,7 +1009,7 @@ body::before {
         </div>
       </div>
 
-      <!-- ISCHIA -->
+    
       <div class="prod-card visible" data-cat="memory">
         <div class="prod-top" data-category="Memory Foam">
           <div class="prod-icon">🌊</div>
@@ -1054,7 +1029,7 @@ body::before {
         </div>
       </div>
 
-      <!-- VENTOTENE -->
+    
       <div class="prod-card visible" data-cat="memory">
         <div class="prod-top" data-category="Memory Foam">
           <div class="prod-icon">🏖️</div>
@@ -1074,7 +1049,7 @@ body::before {
         </div>
       </div>
 
-      <!-- LIPARI WATERLILY -->
+    
       <div class="prod-card visible" data-cat="memory">
         <div class="prod-top" data-category="Memory Foam">
           <div class="prod-badge">Ексклюзив</div>
@@ -1095,7 +1070,7 @@ body::before {
         </div>
       </div>
 
-      <!-- PONZA MEMORY GEL -->
+    
       <div class="prod-card visible" data-cat="memory">
         <div class="prod-top" data-category="Memory Foam">
           <div class="prod-icon">💎</div>
@@ -1115,7 +1090,7 @@ body::before {
         </div>
       </div>
 
-      <!-- RETI -->
+    
       <div class="prod-card visible" data-cat="reti">
         <div class="prod-top" data-category="Основи">
           <div class="prod-icon">🪵</div>
@@ -1139,7 +1114,7 @@ body::before {
         </div>
       </div>
 
-      <!-- CUSCINI -->
+    
       <div class="prod-card visible" data-cat="cuscini">
         <div class="prod-top" data-category="Подушки">
           <div class="prod-icon">😴</div>
@@ -1152,10 +1127,9 @@ body::before {
         </div>
       </div>
 
-    </div><!-- /grid -->
+    </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div>
       <div class="footer-brand">Sogni <em>d'Oro</em></div>
@@ -1170,18 +1144,17 @@ body::before {
     </div>
     <div class="footer-col">
       <h4>Контакти</h4>
-      <a href="#">+39 389.584.7556</a>
+      <a href="#">+38 (0XX) XXX-XX-XX</a>
       <a href="#"><span class="__cf_email__" data-cfemail="b2dbdcd4ddf2c1ddd5dcdbd6ddc0dddddcdedbdcd79cdbc6">[email&#160;protected]</span></a>
-      <a href="#">Via le Noci 31/A, Frosinone</a>
+      <a href="#">вул. Назва вулиці, 1</a>
     </div>
   </footer>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Sogni d'Oro Матраци — Frosinone, Italia</span>
-    <span class="footer-copy">Усі права захищені</span>
+    <span class="footer-copy">© 2025 Sogni d'Oro Матраци</span>
+    <span class="footer-copy">Всі права захищені</span>
   </div>
 </div>
 
-<!-- ================================================================ CONTACTS -->
 <div class="page" id="contacts">
   <div class="contacts-hero">
     <div class="section-tag">Ми до ваших послуг</div>
@@ -1194,7 +1167,7 @@ body::before {
         <div class="info-icon">📞</div>
         <div>
           <div class="info-label">Телефон</div>
-          <div class="info-val">+39 389.584.7556</div>
+          <div class="info-val">+38 (0XX) XXX-XX-XX</div>
         </div>
       </div>
       <div class="info-row">
@@ -1208,7 +1181,7 @@ body::before {
         <div class="info-icon">📍</div>
         <div>
           <div class="info-label">Адреса</div>
-          <div class="info-val">Via le Noci, 31/A<br>03100 Frosinone (FR)</div>
+          <div class="info-val">вул. Ваша вулиця, 1<br>Ваше місто</div>
         </div>
       </div>
       <div class="info-row">
@@ -1224,24 +1197,18 @@ body::before {
       </div>
       <button class="call-gold">📞 Зателефонувати</button>
     </div>
-    <div class="map-placeholder">
-      <span>🗺️</span>
-      <p>Інтерактивна карта</p>
-      <small>Вставте посилання на Google Maps</small>
     </div>
-  </div>
   <footer class="site-footer">
-    <div><div class="footer-brand">Sogni <em>d'Oro</em></div><p class="footer-tagline">Via le Noci, 31/A · 03100 Frosinone</p></div>
+    <div><div class="footer-brand">Sogni <em>d'Oro</em></div><p class="footer-tagline">вул. Назва вулиці, 1</p></div>
     <div class="footer-col"><h4>Каталог</h4><a href="#">Всі товари</a></div>
-    <div class="footer-col"><h4>Контакти</h4><a href="#">+39 389.584.7556</a><a href="#"><span class="__cf_email__" data-cfemail="b7ded9d1d8f7c4d8d0d9ded3d8c5d8d8d9dbded9d299dec3">[email&#160;protected]</span></a></div>
+    <div class="footer-col"><h4>Контакти</h4><a href="#">+38 (0XX) XXX-XX-XX</a><a href="#"><span class="__cf_email__" data-cfemail="b7ded9d1d8f7c4d8d0d9ded3d8c5d8d8d9dbded9d299dec3">[email&#160;protected]</span></a></div>
   </footer>
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Sogni d'Oro Матраци</span>
-    <span class="footer-copy">Усі права захищені</span>
+    <span class="footer-copy">Всі права захищені</span>
   </div>
 </div>
 
-<!-- ================================================================ ORDER -->
 <div class="page" id="order">
   <div class="order-hero">
     <div class="section-tag">Оформлення замовлення</div>
@@ -1257,7 +1224,7 @@ body::before {
         </div>
         <div class="form-group">
           <label>Телефон</label>
-          <input type="tel" id="f-phone" placeholder="+39 3XX XXX XXXX">
+          <input type="tel" id="f-phone" placeholder="+38 (0XX) XXX-XX-XX">
         </div>
         <div class="form-group">
           <label>Email</label>
@@ -1339,26 +1306,24 @@ body::before {
   </div>
 
   <footer class="site-footer">
-    <div><div class="footer-brand">Sogni <em>d'Oro</em></div><p class="footer-tagline">Via le Noci, 31/A · 03100 Frosinone · +39 389.584.7556</p></div>
+    <div><div class="footer-brand">Sogni <em>d'Oro</em></div><p class="footer-tagline">вул. Назва вулиці, 1 · +38 (0XX) XXX-XX-XX</p></div>
     <div class="footer-col"><h4>Каталог</h4><a href="#">Всі товари</a></div>
-    <div class="footer-col"><h4>Контакти</h4><a href="#">+39 389.584.7556</a><a href="#"><span class="__cf_email__" data-cfemail="9ef7f0f8f1deedf1f9f0f7faf1ecf1f1f0f2f7f0fbb0f7ea">[email&#160;protected]</span></a></div>
+    <div class="footer-col"><h4>Контакти</h4><a href="#">+38 (0XX) XXX-XX-XX</a><a href="#"><span class="__cf_email__" data-cfemail="9ef7f0f8f1deedf1f9f0f7faf1ecf1f1f0f2f7f0fbb0f7ea">[email&#160;protected]</span></a></div>
   </footer>
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Sogni d'Oro Матраци</span>
-    <span class="footer-copy">Усі права захищені</span>
+    <span class="footer-copy">Всі права захищені</span>
   </div>
 </div>
 
-<!-- FAB -->
 <button class="fab" title="Зв'язатисьrmazioni">💬</button>
 
-<!-- MODAL -->
 <div class="overlay" id="overlay"></div>
 <div class="modal" id="modal">
   <button class="modal-close">✕</button>
   <h3>Залишити заявку</h3>
   <p>Залиште номер — передзвонимо протягом 24 робочих годин.</p>
-  <input type="tel" id="m-phone" placeholder="+39 3XX XXX XXXX">
+  <input type="tel" id="m-phone" placeholder="+38 (0XX) XXX-XX-XX">
   <button class="modal-btn" id="modal-send">Передзвоніть мені</button>
   <div id="modal-ok">✓ Отримали! Зв'яжемося з вами найближчим часом.</div>
 </div>
@@ -1366,7 +1331,6 @@ body::before {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-  // ─── Show page ───────────────────────────────────────────────
   function show(id) {
     document.querySelectorAll('.page').forEach(p => {
       p.classList.remove('active','fade-in');
@@ -1385,12 +1349,10 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function(){ pg.style.opacity = '1'; pg.classList.add('fade-in'); }, 20);
   }
 
-  // ─── Mobile menu ─────────────────────────────────────────────
   function toggleMenu() {
     document.getElementById('mobile-menu').classList.toggle('open');
   }
 
-  // ─── Modal ───────────────────────────────────────────────────
   function openModal() {
     document.getElementById('overlay').classList.add('on');
     document.getElementById('modal').classList.add('on');
@@ -1401,7 +1363,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('modal').classList.remove('on');
   }
 
-  // ─── Catalog filter ──────────────────────────────────────────
   function filterCat(cat, el) {
     document.querySelectorAll('.cat-tab').forEach(function(t){ t.classList.remove('active'); });
     el.classList.add('active');
@@ -1414,18 +1375,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ─── Bind nav buttons ─────────────────────────────────────────
   var navMap = { 'btn-home':'home', 'btn-catalog':'catalog', 'btn-contacts':'contacts', 'btn-order':'order' };
   Object.keys(navMap).forEach(function(id){
     var el = document.getElementById(id);
     if (el) el.addEventListener('click', function(){ show(navMap[id]); });
   });
 
-  // ─── Bind hamburger ───────────────────────────────────────────
   var ham = document.getElementById('hamburger');
   if (ham) ham.addEventListener('click', toggleMenu);
 
-  // ─── Bind mobile menu buttons ─────────────────────────────────
   var mobileMenu = document.getElementById('mobile-menu');
   if (mobileMenu) {
     var mBtns = mobileMenu.querySelectorAll('button');
@@ -1439,23 +1397,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ─── Bind nav-cta (Зв'язатись) ────────────────────────────────
   var navCta = document.querySelector('.nav-cta');
   if (navCta) navCta.addEventListener('click', openModal);
 
-  // ─── Bind FAB ─────────────────────────────────────────────────
   var fab = document.querySelector('.fab');
   if (fab) fab.addEventListener('click', openModal);
 
-  // ─── Bind overlay close ───────────────────────────────────────
   var overlay = document.getElementById('overlay');
   if (overlay) overlay.addEventListener('click', closeModal);
 
-  // ─── Bind modal close btn ─────────────────────────────────────
   var modalClose = document.querySelector('.modal .modal-close');
   if (modalClose) modalClose.addEventListener('click', closeModal);
 
-  // ─── Bind modal send ──────────────────────────────────────────
   var modalSend = document.getElementById('modal-send');
   if (modalSend) modalSend.addEventListener('click', function(){
     var phone = document.getElementById('m-phone').value.trim();
@@ -1469,29 +1422,24 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(closeModal, 2500);
   });
 
-  // ─── Bind hero buttons ────────────────────────────────────────
   document.querySelectorAll('.btn-gold, .btn-outline').forEach(function(btn){
     var txt = btn.textContent.trim();
     if (txt === 'Переглянути каталог') btn.addEventListener('click', function(){ show('catalog'); });
     if (txt === 'Запросити розрахунок') btn.addEventListener('click', function(){ show('order'); });
   });
 
-  // ─── Bind "Замовити" buttons in catalog cards ─────────────────
   document.querySelectorAll('.prod-btn').forEach(function(btn){
     btn.addEventListener('click', function(){ show('order'); });
   });
 
-  // ─── Bind catalog "Замовити" in about/footer links ────────────
   document.querySelectorAll('[data-goto]').forEach(function(el){
     el.addEventListener('click', function(){ show(el.dataset.goto); });
   });
 
-  // ─── Bind footer/about anchor links ───────────────────────────
   document.querySelectorAll('a[href="#"]').forEach(function(a){
     a.addEventListener('click', function(e){ e.preventDefault(); });
   });
 
-  // ─── Bind cat tabs ────────────────────────────────────────────
   document.querySelectorAll('.cat-tab').forEach(function(tab){
     tab.addEventListener('click', function(){
       var cat = tab.getAttribute('data-cat') || 'all';
@@ -1499,7 +1447,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // ─── Bind order form submit ───────────────────────────────────
   var formBtn = document.getElementById('form-btn');
   if (formBtn) formBtn.addEventListener('click', function(){
     var name = document.getElementById('f-name').value.trim();
@@ -1519,22 +1466,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1000);
   });
 
-  // ─── Bind "Зателефонувати" ────────────────────────────────────
   var callBtn = document.querySelector('.call-gold');
-  if (callBtn) callBtn.addEventListener('click', function(){ window.location='tel:+393895847556'; });
+  if (callBtn) callBtn.addEventListener('click', function(){ window.location='tel:+380000000000'; });
 
-  // ─── Navbar scroll ────────────────────────────────────────────
   window.addEventListener('scroll', function(){
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // ─── Set cat-tab data-cat attributes ──────────────────────────
   var tabCats = ['all','molle','bonnel','memory','reti','cuscini'];
   document.querySelectorAll('.cat-tab').forEach(function(tab, i){
     tab.setAttribute('data-cat', tabCats[i] || 'all');
   });
 
-  // ─── Bind all "Замовити →" / "Запросити розрахунок" links in footers ─
   document.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(e){
       var txt = a.textContent.trim();
