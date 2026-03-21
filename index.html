@@ -104,7 +104,7 @@ body::before {
 .mobile-close { position: absolute; top: 28px; right: 28px; background: none; border: none; color: var(--gold); font-size: 28px; cursor: pointer; }
 
 /* ====== PAGES ====== */
-.page { display: none; min-height: 100vh; opacity: 0; transition: opacity 0.5s; position: relative; z-index: 1; }
+.page { display: none; min-height: 100vh; opacity: 0; transition: opacity 0.4s ease; position: relative; z-index: 1; }
 .page.active { display: block; }
 .page.fade-in { opacity: 1; }
 
@@ -607,27 +607,27 @@ body::before {
 <nav class="navbar" id="navbar">
   <div class="logo">Sogni <em>d'Oro</em></div>
   <div class="nav-center">
-    <button id="btn-home" onclick="show('home')" class="active-nav">Головна</button>
-    <button id="btn-catalog" onclick="show('catalog')">Каталог</button>
-    <button id="btn-contacts" onclick="show('contacts')">Контакти</button>
-    <button id="btn-order" onclick="show('order')">Замовити</button>
+    <button id="btn-home" class="active-nav">Головна</button>
+    <button id="btn-catalog">Каталог</button>
+    <button id="btn-contacts">Контакти</button>
+    <button id="btn-order">Замовити</button>
   </div>
   <div class="nav-right">
     <span class="nav-phone">+39 389.584.7556</span>
-    <button class="nav-cta" onclick="openModal()">Зв'язатись</button>
+    <button class="nav-cta">Зв'язатись</button>
   </div>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <div class="hamburger" id="hamburger">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
-  <button class="modal-close" onclick="toggleMenu()">✕</button>
-  <button onclick="show('home');toggleMenu()">Головна</button>
-  <button onclick="show('catalog');toggleMenu()">Каталог</button>
-  <button onclick="show('contacts');toggleMenu()">Контакти</button>
-  <button onclick="show('order');toggleMenu()">Замовити</button>
+  <button class="modal-close">✕</button>
+  <button>Головна</button>
+  <button>Каталог</button>
+  <button>Контакти</button>
+  <button>Замовити</button>
 </div>
 
 <!-- ================================================================ HOME -->
@@ -649,8 +649,8 @@ body::before {
       <div class="hero-divider"></div>
       <p class="hero-subtitle">Матраци повністю виробляються на наших італійських фабриках. Натуральний латекс, незалежні пружини, Memory Foam — для ідеального сну.</p>
       <div class="hero-cta-row">
-        <button class="btn-gold" onclick="show('catalog')">Переглянути каталог</button>
-        <button class="btn-outline" onclick="show('order')">Запросити розрахунок</button>
+        <button class="btn-gold">Переглянути каталог</button>
+        <button class="btn-outline">Запросити розрахунок</button>
       </div>
     </div>
     <div class="hero-stats">
@@ -749,15 +749,15 @@ body::before {
     </div>
     <div class="footer-col">
       <h4>Каталог</h4>
-      <a href="#" onclick="show('catalog')">Незалежні пружини</a>
-      <a href="#" onclick="show('catalog')">Memory Foam</a>
-      <a href="#" onclick="show('catalog')">Ортопедичні основи</a>
-      <a href="#" onclick="show('catalog')">Подушки</a>
+      <a href="#">Незалежні пружини</a>
+      <a href="#">Memory Foam</a>
+      <a href="#">Ортопедичні основи</a>
+      <a href="#">Подушки</a>
     </div>
     <div class="footer-col">
       <h4>Компанія</h4>
-      <a href="#" onclick="show('contacts')">Контакти</a>
-      <a href="#" onclick="show('order')">Запросити розрахунок</a>
+      <a href="#">Контакти</a>
+      <a href="#">Запросити розрахунок</a>
       <a href="#"><span class="__cf_email__" data-cfemail="6900070f06291a060e07000d061b0606070500070c47001d">[email&#160;protected]</span></a>
       <a href="#">+39 389.584.7556</a>
     </div>
@@ -780,12 +780,12 @@ body::before {
   </div>
 
   <div class="cat-tabs">
-    <button class="cat-tab active" onclick="filterCat('all', this)">Всі</button>
-    <button class="cat-tab" onclick="filterCat('molle', this)">Незалежні пружини</button>
-    <button class="cat-tab" onclick="filterCat('bonnel', this)">Пружини Бонель</button>
-    <button class="cat-tab" onclick="filterCat('memory', this)">Memory Foam</button>
-    <button class="cat-tab" onclick="filterCat('reti', this)">Основи</button>
-    <button class="cat-tab" onclick="filterCat('cuscini', this)">Подушки</button>
+    <button class="cat-tab active">Всі</button>
+    <button class="cat-tab">Незалежні пружини</button>
+    <button class="cat-tab">Пружини Бонель</button>
+    <button class="cat-tab">Memory Foam</button>
+    <button class="cat-tab">Основи</button>
+    <button class="cat-tab">Подушки</button>
   </div>
 
   <div class="products-section">
@@ -808,7 +808,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -828,7 +828,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -849,7 +849,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -869,7 +869,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -889,7 +889,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -909,7 +909,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -929,7 +929,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -950,7 +950,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -970,7 +970,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -990,7 +990,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -1009,7 +1009,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -1029,7 +1029,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -1049,7 +1049,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -1069,7 +1069,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -1090,7 +1090,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -1110,7 +1110,7 @@ body::before {
           </div>
           <div class="prod-footer">
             <div class="prod-sizes">Розміри: <span>80 · 90 · 120 · 140 · 160 · 170 · 180</span></div>
-            <button class="prod-btn" onclick="show('order')">Замовити →</button>
+            <button class="prod-btn">Замовити →</button>
           </div>
         </div>
       </div>
@@ -1124,7 +1124,7 @@ body::before {
           <h3 class="prod-name">Rete Singola — 13 Doghe</h3>
           <p class="prod-desc">Сталева конструкція Ш.89 × Г.190 см. 13 вузьких ламелей. Ортопедична основа для одного.</p>
           <div class="prod-tags"><span class="prod-tag">Ортопедична</span><span class="prod-tag">Ручна</span></div>
-          <div class="prod-footer"><div class="prod-sizes">89 × 190 см</div><button class="prod-btn" onclick="show('order')">Замовити →</button></div>
+          <div class="prod-footer"><div class="prod-sizes">89 × 190 см</div><button class="prod-btn">Замовити →</button></div>
         </div>
       </div>
       <div class="prod-card visible" data-cat="reti">
@@ -1135,7 +1135,7 @@ body::before {
           <h3 class="prod-name">Rete Matrimoniale — 14 Doghe</h3>
           <p class="prod-desc">Сталева конструкція Ш.160 × Г.190 см. 14 ламелей. Також доступна моторизована версія з безшумним керуванням.</p>
           <div class="prod-tags"><span class="prod-tag">Ортопедична</span><span class="prod-tag">Моторизована</span></div>
-          <div class="prod-footer"><div class="prod-sizes">160 × 190 см</div><button class="prod-btn" onclick="show('order')">Замовити →</button></div>
+          <div class="prod-footer"><div class="prod-sizes">160 × 190 см</div><button class="prod-btn">Замовити →</button></div>
         </div>
       </div>
 
@@ -1148,7 +1148,7 @@ body::before {
           <h3 class="prod-name">Cuscini Memory & Fibra</h3>
           <p class="prod-desc">Повна лінійка: силіконізоване волокно, волокно 500г та 900г, Memory мильниця (H12-15см), Memory подвійна хвиля перфорована, Memory подвійна хвиля. Для шиї, потилиці та плечей.</p>
           <div class="prod-tags"><span class="prod-tag">Memory Foam</span><span class="prod-tag">Lattice</span><span class="prod-tag">Гіпоалергенний</span></div>
-          <div class="prod-footer"><div class="prod-sizes">Різні розміри</div><button class="prod-btn" onclick="show('order')">Замовити →</button></div>
+          <div class="prod-footer"><div class="prod-sizes">Різні розміри</div><button class="prod-btn">Замовити →</button></div>
         </div>
       </div>
 
@@ -1163,10 +1163,10 @@ body::before {
     </div>
     <div class="footer-col">
       <h4>Навігація</h4>
-      <a href="#" onclick="show('home')">Головна</a>
-      <a href="#" onclick="show('catalog')">Каталог</a>
-      <a href="#" onclick="show('contacts')">Контакти</a>
-      <a href="#" onclick="show('order')">Замовити</a>
+      <a href="#">Головна</a>
+      <a href="#">Каталог</a>
+      <a href="#">Контакти</a>
+      <a href="#">Замовити</a>
     </div>
     <div class="footer-col">
       <h4>Контакти</h4>
@@ -1222,7 +1222,7 @@ body::before {
           </div>
         </div>
       </div>
-      <button class="call-gold" onclick="window.location='tel:+393895847556'">📞 Зателефонувати</button>
+      <button class="call-gold">📞 Зателефонувати</button>
     </div>
     <div class="map-placeholder">
       <span>🗺️</span>
@@ -1232,7 +1232,7 @@ body::before {
   </div>
   <footer class="site-footer">
     <div><div class="footer-brand">Sogni <em>d'Oro</em></div><p class="footer-tagline">Via le Noci, 31/A · 03100 Frosinone</p></div>
-    <div class="footer-col"><h4>Каталог</h4><a href="#" onclick="show('catalog')">Всі товари</a></div>
+    <div class="footer-col"><h4>Каталог</h4><a href="#">Всі товари</a></div>
     <div class="footer-col"><h4>Контакти</h4><a href="#">+39 389.584.7556</a><a href="#"><span class="__cf_email__" data-cfemail="b7ded9d1d8f7c4d8d0d9ded3d8c5d8d8d9dbded9d299dec3">[email&#160;protected]</span></a></div>
   </footer>
   <div class="footer-bottom">
@@ -1309,7 +1309,7 @@ body::before {
           <textarea id="f-note" rows="3" placeholder="Особливі побажання, бажана жорсткість..."></textarea>
         </div>
       </div>
-      <button class="form-submit" id="form-btn" onclick="handleSubmit()">Надіслати заявку →</button>
+      <button class="form-submit" id="form-btn">Надіслати заявку →</button>
       <div class="form-note"><strong>Без зобов'язань.</strong> Ми зв'яжемося з вами протягом 24 робочих годин для підтвердження наявності та цін.</div>
     </div>
 
@@ -1340,7 +1340,7 @@ body::before {
 
   <footer class="site-footer">
     <div><div class="footer-brand">Sogni <em>d'Oro</em></div><p class="footer-tagline">Via le Noci, 31/A · 03100 Frosinone · +39 389.584.7556</p></div>
-    <div class="footer-col"><h4>Каталог</h4><a href="#" onclick="show('catalog')">Всі товари</a></div>
+    <div class="footer-col"><h4>Каталог</h4><a href="#">Всі товари</a></div>
     <div class="footer-col"><h4>Контакти</h4><a href="#">+39 389.584.7556</a><a href="#"><span class="__cf_email__" data-cfemail="9ef7f0f8f1deedf1f9f0f7faf1ecf1f1f0f2f7f0fbb0f7ea">[email&#160;protected]</span></a></div>
   </footer>
   <div class="footer-bottom">
@@ -1350,82 +1350,202 @@ body::before {
 </div>
 
 <!-- FAB -->
-<button class="fab" onclick="openModal()" title="Зв'язатисьrmazioni">💬</button>
+<button class="fab" title="Зв'язатисьrmazioni">💬</button>
 
 <!-- MODAL -->
-<div class="overlay" id="overlay" onclick="closeModal()"></div>
+<div class="overlay" id="overlay"></div>
 <div class="modal" id="modal">
-  <button class="modal-close" onclick="closeModal()">✕</button>
+  <button class="modal-close">✕</button>
   <h3>Залишити заявку</h3>
   <p>Залиште номер — передзвонимо протягом 24 робочих годин.</p>
   <input type="tel" id="m-phone" placeholder="+39 3XX XXX XXXX">
-  <button class="modal-btn" id="modal-send" onclick="sendModal()">Передзвоніть мені</button>
+  <button class="modal-btn" id="modal-send">Передзвоніть мені</button>
   <div id="modal-ok">✓ Отримали! Зв'яжемося з вами найближчим часом.</div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ─── Pages ───────────────────────────────────────────────────
-function show(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active','fade-in'));
-  document.querySelectorAll('.nav-center button').forEach(b => b.classList.remove('active-nav'));
-  const pg = document.getElementById(id);
-  const btn = document.getElementById('btn-' + id);
-  if (!pg) return;
-  pg.classList.add('active');
-  if (btn) btn.classList.add('active-nav');
-  window.scrollTo(0,0);
-  requestAnimationFrame(() => requestAnimationFrame(() => pg.classList.add('fade-in')));
-}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
 
-// ─── Navbar scroll ───────────────────────────────────────────
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-});
-
-// ─── Mobile menu ─────────────────────────────────────────────
-function toggleMenu() {
-  document.getElementById('mobile-menu').classList.toggle('open');
-}
-
-// ─── Catalog filter ──────────────────────────────────────────
-function filterCat(cat, el) {
-  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.prod-card').forEach(c => {
-    if (cat === 'all' || c.dataset.cat === cat) {
-      c.classList.add('visible');
-    } else {
-      c.classList.remove('visible');
-    }
-  });
-}
-
-// ─── Modal ───────────────────────────────────────────────────
-function openModal() {
-  document.getElementById('overlay').classList.add('on');
-  document.getElementById('modal').classList.add('on');
-  setTimeout(() => document.getElementById('m-phone').focus(), 400);
-}
-function closeModal() {
-  document.getElementById('overlay').classList.remove('on');
-  document.getElementById('modal').classList.remove('on');
-}
-function sendModal() {
-  const phone = document.getElementById('m-phone').value.trim();
-  if (phone.length < 8) {
-    document.getElementById('m-phone').style.borderColor = 'rgba(255,100,100,0.5)';
-    setTimeout(() => document.getElementById('m-phone').style.borderColor = '', 1500);
-    return;
+  // ─── Show page ───────────────────────────────────────────────
+  function show(id) {
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active','fade-in');
+      p.style.display = 'none';
+      p.style.opacity = '0';
+    });
+    document.querySelectorAll('.nav-center button').forEach(b => b.classList.remove('active-nav'));
+    var pg = document.getElementById(id);
+    var btn = document.getElementById('btn-' + id);
+    if (!pg) return;
+    pg.style.display = 'block';
+    pg.style.opacity = '0';
+    pg.classList.add('active');
+    if (btn) btn.classList.add('active-nav');
+    window.scrollTo(0, 0);
+    setTimeout(function(){ pg.style.opacity = '1'; pg.classList.add('fade-in'); }, 20);
   }
-  document.getElementById('modal-send').style.display = 'none';
-  document.getElementById('modal-ok').style.display = 'block';
-  setTimeout(closeModal, 2500);
-}
 
-// ─── Order form ──────────────────────────────────────────────
-function handleSubmit() {
-  const name = document.getElementById('f-name').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  const btn = document.getElementById('form-btn');
-  if (!name || !phone) {
-    btn.style.background = '#8B3A3A'; btn.textContent = '✕
+  // ─── Mobile menu ─────────────────────────────────────────────
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  // ─── Modal ───────────────────────────────────────────────────
+  function openModal() {
+    document.getElementById('overlay').classList.add('on');
+    document.getElementById('modal').classList.add('on');
+    setTimeout(function(){ document.getElementById('m-phone').focus(); }, 400);
+  }
+  function closeModal() {
+    document.getElementById('overlay').classList.remove('on');
+    document.getElementById('modal').classList.remove('on');
+  }
+
+  // ─── Catalog filter ──────────────────────────────────────────
+  function filterCat(cat, el) {
+    document.querySelectorAll('.cat-tab').forEach(function(t){ t.classList.remove('active'); });
+    el.classList.add('active');
+    document.querySelectorAll('.prod-card').forEach(function(c){
+      if (cat === 'all' || c.dataset.cat === cat) {
+        c.classList.add('visible');
+      } else {
+        c.classList.remove('visible');
+      }
+    });
+  }
+
+  // ─── Bind nav buttons ─────────────────────────────────────────
+  var navMap = { 'btn-home':'home', 'btn-catalog':'catalog', 'btn-contacts':'contacts', 'btn-order':'order' };
+  Object.keys(navMap).forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', function(){ show(navMap[id]); });
+  });
+
+  // ─── Bind hamburger ───────────────────────────────────────────
+  var ham = document.getElementById('hamburger');
+  if (ham) ham.addEventListener('click', toggleMenu);
+
+  // ─── Bind mobile menu buttons ─────────────────────────────────
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (mobileMenu) {
+    var mBtns = mobileMenu.querySelectorAll('button');
+    var mPages = ['', 'home', 'catalog', 'contacts', 'order'];
+    mBtns.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        if (i === 0) { toggleMenu(); return; }
+        show(mPages[i]);
+        toggleMenu();
+      });
+    });
+  }
+
+  // ─── Bind nav-cta (Зв'язатись) ────────────────────────────────
+  var navCta = document.querySelector('.nav-cta');
+  if (navCta) navCta.addEventListener('click', openModal);
+
+  // ─── Bind FAB ─────────────────────────────────────────────────
+  var fab = document.querySelector('.fab');
+  if (fab) fab.addEventListener('click', openModal);
+
+  // ─── Bind overlay close ───────────────────────────────────────
+  var overlay = document.getElementById('overlay');
+  if (overlay) overlay.addEventListener('click', closeModal);
+
+  // ─── Bind modal close btn ─────────────────────────────────────
+  var modalClose = document.querySelector('.modal .modal-close');
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+
+  // ─── Bind modal send ──────────────────────────────────────────
+  var modalSend = document.getElementById('modal-send');
+  if (modalSend) modalSend.addEventListener('click', function(){
+    var phone = document.getElementById('m-phone').value.trim();
+    if (phone.length < 8) {
+      document.getElementById('m-phone').style.borderColor = 'rgba(255,100,100,0.5)';
+      setTimeout(function(){ document.getElementById('m-phone').style.borderColor = ''; }, 1500);
+      return;
+    }
+    modalSend.style.display = 'none';
+    document.getElementById('modal-ok').style.display = 'block';
+    setTimeout(closeModal, 2500);
+  });
+
+  // ─── Bind hero buttons ────────────────────────────────────────
+  document.querySelectorAll('.btn-gold, .btn-outline').forEach(function(btn){
+    var txt = btn.textContent.trim();
+    if (txt === 'Переглянути каталог') btn.addEventListener('click', function(){ show('catalog'); });
+    if (txt === 'Запросити розрахунок') btn.addEventListener('click', function(){ show('order'); });
+  });
+
+  // ─── Bind "Замовити" buttons in catalog cards ─────────────────
+  document.querySelectorAll('.prod-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ show('order'); });
+  });
+
+  // ─── Bind catalog "Замовити" in about/footer links ────────────
+  document.querySelectorAll('[data-goto]').forEach(function(el){
+    el.addEventListener('click', function(){ show(el.dataset.goto); });
+  });
+
+  // ─── Bind footer/about anchor links ───────────────────────────
+  document.querySelectorAll('a[href="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); });
+  });
+
+  // ─── Bind cat tabs ────────────────────────────────────────────
+  document.querySelectorAll('.cat-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var cat = tab.getAttribute('data-cat') || 'all';
+      filterCat(cat, tab);
+    });
+  });
+
+  // ─── Bind order form submit ───────────────────────────────────
+  var formBtn = document.getElementById('form-btn');
+  if (formBtn) formBtn.addEventListener('click', function(){
+    var name = document.getElementById('f-name').value.trim();
+    var phone = document.getElementById('f-phone').value.trim();
+    if (!name || !phone) {
+      formBtn.style.background = '#8B3A3A';
+      formBtn.textContent = '✕ Заповніть ім\'я та телефон';
+      setTimeout(function(){ formBtn.style.background = ''; formBtn.textContent = 'Надіслати заявку →'; }, 3000);
+      return;
+    }
+    formBtn.textContent = 'Надсилаємо...';
+    formBtn.disabled = true;
+    setTimeout(function(){
+      formBtn.textContent = '✓ Заявку надіслано — незабаром зв\'яжемося!';
+      formBtn.style.background = '#2e5c2e';
+      setTimeout(function(){ formBtn.textContent = 'Надіслати заявку →'; formBtn.style.background = ''; formBtn.disabled = false; }, 6000);
+    }, 1000);
+  });
+
+  // ─── Bind "Зателефонувати" ────────────────────────────────────
+  var callBtn = document.querySelector('.call-gold');
+  if (callBtn) callBtn.addEventListener('click', function(){ window.location='tel:+393895847556'; });
+
+  // ─── Navbar scroll ────────────────────────────────────────────
+  window.addEventListener('scroll', function(){
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ─── Set cat-tab data-cat attributes ──────────────────────────
+  var tabCats = ['all','molle','bonnel','memory','reti','cuscini'];
+  document.querySelectorAll('.cat-tab').forEach(function(tab, i){
+    tab.setAttribute('data-cat', tabCats[i] || 'all');
+  });
+
+  // ─── Bind all "Замовити →" / "Запросити розрахунок" links in footers ─
+  document.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var txt = a.textContent.trim();
+      if (txt === 'Каталог' || txt === 'Всі товари') { e.preventDefault(); show('catalog'); }
+      if (txt === 'Запросити розрахунок') { e.preventDefault(); show('order'); }
+      if (txt === 'Контакти') { e.preventDefault(); show('contacts'); }
+      if (txt === 'Головна') { e.preventDefault(); show('home'); }
+    });
+  });
+
+});
+</script>
+</body>
+</html>
