@@ -3,526 +3,146 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sogni d'Oro — Матраци з Італії</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>SleepPro — Матраци для вашого комфорту</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Nunito', sans-serif; background: #f7f5f0; color: #2d2d2d; }
+    
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --accent: #2563EB; --accent-dark: #1D4ED8; --dark: #111827; --text: #374151; --muted: #6B7280; --border: #E5E7EB; --bg: #F9FAFB; --white: #FFFFFF; --r: 10px; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.5; }
 
-    /* NAV */
-    nav { background: #fff; border-bottom: 2px solid #e8dcc8; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
-    .logo { font-size: 22px; font-weight: 800; color: #b8860b; }
-    .logo span { color: #2d2d2d; }
-    .nav-links { display: flex; gap: 4px; }
-    .nav-links button { background: none; border: none; padding: 8px 16px; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 600; color: #666; cursor: pointer; border-radius: 8px; transition: background 0.15s, color 0.15s; }
-    .nav-links button:hover { background: #f7f5f0; color: #2d2d2d; }
-    .nav-links button.active { background: #b8860b; color: #fff; }
-    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-    .hamburger span { width: 24px; height: 2px; background: #2d2d2d; display: block; border-radius: 2px; }
 
-    /* MOBILE MENU */
-    .mobile-menu { display: none; position: fixed; inset: 0; background: #fff; z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu button { font-family: 'Nunito', sans-serif; font-size: 20px; font-weight: 700; background: none; border: 2px solid #e8dcc8; border-radius: 12px; padding: 14px 48px; cursor: pointer; color: #2d2d2d; width: 260px; }
-    .mobile-menu button:hover { background: #b8860b; color: #fff; border-color: #b8860b; }
-    .mobile-close-btn { position: absolute; top: 20px; right: 24px; font-size: 28px; background: none; border: none; cursor: pointer; color: #999; }
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); height: 64px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 20px; font-weight: 700; color: var(--dark); cursor: pointer; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-btn { background: none; border: none; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: var(--muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .nav-btn.active, .nav-btn:hover { background: var(--bg); color: var(--accent); }
 
-    /* PAGES */
-    .page { display: none; }
+    /* Страницы */
+    .page { display: none; padding-bottom: 80px; }
     .page.active { display: block; }
 
-    /* HERO */
-    .hero { background: linear-gradient(135deg, #2d2416 0%, #4a3820 100%); color: #fff; padding: 80px 32px; text-align: center; }
-    .hero-badge { display: inline-block; background: rgba(184,134,11,0.25); border: 1px solid rgba(184,134,11,0.5); color: #f0c040; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 24px; }
-    .hero h1 { font-size: clamp(32px, 5vw, 62px); font-weight: 800; line-height: 1.15; margin-bottom: 18px; }
-    .hero h1 span { color: #f0c040; }
-    .hero p { font-size: 17px; color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
-    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { background: #b8860b; color: #fff; border: none; padding: 14px 32px; font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
-    .btn-primary:hover { background: #d4a017; }
-    .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); padding: 14px 32px; font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 600; border-radius: 10px; cursor: pointer; }
-    .btn-secondary:hover { background: rgba(255,255,255,0.2); }
-    .hero-stats { display: flex; justify-content: center; gap: 48px; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
-    .stat-num { font-size: 40px; font-weight: 800; color: #f0c040; }
-    .stat-label { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    /* Hero секция */
+    .hero { background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%); color: var(--white); padding: 100px 40px; text-align: center; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 56px); margin-bottom: 20px; }
+    .hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 30px; }
 
-    /* FEATURES */
-    .features { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #e8dcc8; }
-    .feat { padding: 32px 24px; border-right: 1px solid #e8dcc8; background: #fff; }
-    .feat:last-child { border-right: none; }
-    .feat-icon { font-size: 32px; margin-bottom: 12px; }
-    .feat-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-    .feat-desc { font-size: 13px; color: #777; line-height: 1.6; }
+    /* Сетка товаров */
+    .section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+    .prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .mat-card { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; transition: 0.3s; background: #fff; }
+    .mat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .mat-img { height: 200px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-size: 60px; }
+    .mat-body { padding: 24px; }
+    .mat-name { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
+    .mat-price { font-size: 22px; font-weight: 700; color: var(--accent); margin: 15px 0; }
+    .btn-buy { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
 
-    /* ABOUT */
-    .about { max-width: 860px; margin: 60px auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .about h2 { font-size: 28px; font-weight: 800; margin-bottom: 16px; }
-    .about h2 span { color: #b8860b; }
-    .about p { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 12px; }
-    .cert-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-    .cert-badge { background: #f7f5f0; border: 1px solid #e8dcc8; border-radius: 8px; padding: 8px 14px; font-size: 12px; font-weight: 700; color: #b8860b; }
-    .about-img { background: linear-gradient(135deg, #2d2416, #4a3820); border-radius: 16px; height: 260px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
-    .about-img span { font-size: 48px; }
+    /* Футер */
+    footer { background: var(--dark); color: white; padding: 60px 40px; text-align: center; }
+    .footer-content { max-width: 800px; margin: 0 auto; opacity: 0.8; font-size: 14px; }
 
-    /* CATALOG HEADER */
-    .cat-header { background: #fff; border-bottom: 1px solid #e8dcc8; padding: 40px 32px 0; }
-    .cat-header h1 { font-size: 30px; font-weight: 800; margin-bottom: 6px; }
-    .cat-header p { font-size: 14px; color: #777; margin-bottom: 24px; }
-    .tabs { display: flex; gap: 4px; overflow-x: auto; }
-    .tab { background: none; border: none; border-bottom: 3px solid transparent; padding: 10px 18px; font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 600; color: #888; cursor: pointer; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
-    .tab:hover { color: #2d2d2d; }
-    .tab.active { color: #b8860b; border-bottom-color: #b8860b; }
-
-    /* PRODUCTS */
-    .products { padding: 32px; }
-    .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-    .prod-card { background: #fff; border: 1px solid #e8dcc8; border-radius: 14px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; display: none; }
-    .prod-card.visible { display: block; }
-    .prod-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
-    .prod-top { background: linear-gradient(135deg, #f7f5f0, #ede8de); height: 160px; display: flex; align-items: center; justify-content: center; position: relative; font-size: 60px; }
-    .prod-badge-new { position: absolute; top: 12px; right: 12px; background: #b8860b; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-    .prod-badge-top { position: absolute; top: 12px; right: 12px; background: #2d6a4f; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
-    .prod-body { padding: 20px; }
-    .prod-name { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-    .prod-desc { font-size: 13px; color: #666; line-height: 1.65; margin-bottom: 14px; }
-    .prod-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-    .prod-tag { background: #f7f5f0; border: 1px solid #e8dcc8; border-radius: 6px; padding: 3px 10px; font-size: 11px; font-weight: 700; color: #888; }
-    .prod-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid #f0ece4; }
-    .prod-sizes { font-size: 12px; color: #aaa; }
-    .prod-sizes strong { color: #b8860b; }
-    .btn-order { background: #b8860b; color: #fff; border: none; padding: 9px 20px; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
-    .btn-order:hover { background: #d4a017; }
-
-    /* CONTACTS */
-    .contacts-wrap { max-width: 860px; margin: 0 auto; padding: 48px 32px; }
-    .contacts-wrap h1 { font-size: 30px; font-weight: 800; margin-bottom: 8px; }
-    .contacts-wrap > p { font-size: 14px; color: #777; margin-bottom: 36px; }
-    .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .info-box { background: #fff; border: 1px solid #e8dcc8; border-radius: 14px; padding: 28px; }
-    .info-box h3 { font-size: 16px; font-weight: 800; margin-bottom: 20px; color: #b8860b; }
-    .info-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #f0ece4; }
-    .info-row:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .info-icon { font-size: 20px; flex-shrink: 0; width: 36px; text-align: center; }
-    .info-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 3px; }
-    .info-val { font-size: 14px; font-weight: 600; color: #2d2d2d; line-height: 1.5; }
-    .hours { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 4px; }
-    .h-row { display: flex; justify-content: space-between; font-size: 13px; color: #666; }
-    .h-row span:last-child { color: #b8860b; font-weight: 700; }
-    .h-row.off span:last-child { color: #e05050; }
-    .btn-call { width: 100%; margin-top: 20px; background: #b8860b; color: #fff; border: none; padding: 14px; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; border-radius: 10px; cursor: pointer; }
-    .btn-call:hover { background: #d4a017; }
-    .map-box { background: #fff; border: 1px solid #e8dcc8; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 300px; }
-    .map-box span { font-size: 48px; }
-    .map-box p { font-size: 14px; font-weight: 600; color: #aaa; }
-    .map-box small { font-size: 12px; color: #ccc; }
-
-    /* ORDER */
-    .order-wrap { max-width: 860px; margin: 0 auto; padding: 48px 32px; }
-    .order-wrap h1 { font-size: 30px; font-weight: 800; margin-bottom: 8px; }
-    .order-wrap > p { font-size: 14px; color: #777; margin-bottom: 36px; }
-    .order-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; }
-    .form-box { background: #fff; border: 1px solid #e8dcc8; border-radius: 14px; padding: 28px; }
-    .form-box h3 { font-size: 18px; font-weight: 800; margin-bottom: 24px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-    .fg label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #aaa; }
-    .fg input, .fg select, .fg textarea { background: #f7f5f0; border: 1px solid #e8dcc8; border-radius: 8px; padding: 11px 14px; font-family: 'Nunito', sans-serif; font-size: 14px; color: #2d2d2d; outline: none; transition: border-color 0.2s; resize: none; -webkit-appearance: none; }
-    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: #b8860b; }
-    .fg input::placeholder, .fg textarea::placeholder { color: #bbb; }
-    .fg select option { background: #fff; }
-    .fg select optgroup { font-weight: 700; color: #b8860b; }
-    .btn-submit { width: 100%; background: #b8860b; color: #fff; border: none; padding: 15px; font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 700; border-radius: 10px; cursor: pointer; margin-top: 4px; }
-    .btn-submit:hover { background: #d4a017; }
-    .form-note { margin-top: 14px; background: #fffbf0; border: 1px solid #f0d890; border-radius: 8px; padding: 12px 14px; font-size: 13px; color: #7a6000; line-height: 1.6; }
-    .perks-box { display: flex; flex-direction: column; gap: 12px; }
-    .perks-box h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
-    .perk { background: #fff; border: 1px solid #e8dcc8; border-radius: 12px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; }
-    .perk:hover { border-color: #b8860b; }
-    .perk-icon { font-size: 22px; flex-shrink: 0; }
-    .perk-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
-    .perk-desc { font-size: 12px; color: #777; line-height: 1.5; }
-
-    /* FOOTER */
-    footer { background: #2d2416; color: rgba(255,255,255,0.6); padding: 40px 32px 24px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
-    .footer-logo { font-size: 20px; font-weight: 800; color: #f0c040; margin-bottom: 10px; }
-    .footer-logo span { color: #fff; }
-    .footer-desc { font-size: 13px; line-height: 1.7; }
-    .footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #f0c040; margin-bottom: 14px; }
-    .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
-    .footer-col a:hover { color: #f0c040; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 12px; display: flex; justify-content: space-between; }
-
-    /* FAB */
-    .fab { position: fixed; bottom: 24px; right: 24px; z-index: 99; width: 52px; height: 52px; border-radius: 50%; background: #b8860b; border: none; cursor: pointer; font-size: 22px; box-shadow: 0 4px 16px rgba(184,134,11,0.4); transition: transform 0.2s; }
-    .fab:hover { transform: scale(1.1); }
-
-    /* MODAL */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 150; display: none; align-items: center; justify-content: center; }
-    .modal-overlay.open { display: flex; }
-    .modal-box { background: #fff; border-radius: 16px; padding: 36px; width: 340px; position: relative; }
-    .modal-box h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
-    .modal-box p { font-size: 13px; color: #777; margin-bottom: 20px; line-height: 1.6; }
-    .modal-box input { width: 100%; background: #f7f5f0; border: 1px solid #e8dcc8; border-radius: 8px; padding: 12px 14px; font-family: 'Nunito', sans-serif; font-size: 14px; outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
-    .modal-box input:focus { border-color: #b8860b; }
-    .modal-box input::placeholder { color: #bbb; }
-    .modal-btn { width: 100%; background: #b8860b; color: #fff; border: none; padding: 13px; font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; border-radius: 10px; cursor: pointer; }
-    .modal-btn:hover { background: #d4a017; }
-    .modal-close-btn { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: #aaa; }
-    .modal-ok { display: none; text-align: center; padding: 12px 0; font-size: 15px; font-weight: 700; color: #2d6a4f; }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .features { grid-template-columns: 1fr 1fr; }
-      .about { grid-template-columns: 1fr; }
-      .about-img { display: none; }
-      .contacts-grid { grid-template-columns: 1fr; }
-      .order-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
-      .footer-bottom { flex-direction: column; gap: 6px; }
-      .form-row { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .features { grid-template-columns: 1fr; }
-      .hero { padding: 56px 20px; }
-    }
+    @media (max-width: 600px) { nav { padding: 0 15px; } .nav-links { gap: 0; } .nav-btn { padding: 8px 10px; font-size: 12px; } }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Sogni <span>d'Oro</span></div>
+  <div class="logo" onclick="showPage('home')"><span></span></div>
   <div class="nav-links">
-    <button id="btn-home" class="active">Головна</button>
-    <button id="btn-catalog">Каталог</button>
-    <button id="btn-contacts">Контакти</button>
-    <button id="btn-order">Замовити</button>
-  </div>
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
+    <button class="nav-btn active" onclick="showPage('home')">Головна</button>
+    <button class="nav-btn" onclick="showPage('catalog')">Каталог</button>
+    <button class="nav-btn" onclick="showPage('contacts')">Контакти</button>
   </div>
 </nav>
 
-<div class="mobile-menu" id="mobile-menu">
-  <button class="modal-close-btn" id="menu-close">✕</button>
-  <button id="mb-home">Головна</button>
-  <button id="mb-catalog">Каталог</button>
-  <button id="mb-contacts">Контакти</button>
-  <button id="mb-order">Замовити</button>
-</div>
-
-<!-- HOME -->
 <div class="page active" id="home">
   <div class="hero">
-    <div class="hero-badge">З 1985 року · Фрозіноне, Італія</div>
-    <h1>Матраци з Італії —<br><span>для вашого сну</span></h1>
-    <p>Повністю виробляємо на власних фабриках в Італії. Натуральний латекс, меморі фом, незалежні пружини — для ідеального відпочинку.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" id="hero-to-catalog">Переглянути каталог</button>
-      <button class="btn-secondary" id="hero-to-order">Замовити зараз</button>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">40+</div><div class="stat-label">Років досвіду</div></div>
-      <div><div class="stat-num">15</div><div class="stat-label">Моделей</div></div>
-      <div><div class="stat-num">100%</div><div class="stat-label">Виробництво Італія</div></div>
-    </div>
+    <h1>Здоровий сон починається тут</h1>
+    <p>Професійні матраци з італійських матеріалів за ціною виробника. Доставка по всій Україні.</p>
+    <button class="btn-buy" style="width: auto; padding: 15px 40px;" onclick="showPage('catalog')">Перейти до вибору</button>
   </div>
-
-  <div class="features">
-    <div class="feat"><div class="feat-icon">🌿</div><div class="feat-title">Натуральні матеріали</div><div class="feat-desc">Латекс, Memory Foam, гартована сталь — лише гіпоалергенні матеріали.</div></div>
-    <div class="feat"><div class="feat-icon">🚚</div><div class="feat-title">Доставка по Україні</div><div class="feat-desc">Нова Пошта або Укрпошта — швидко та безпечно.</div></div>
-    <div class="feat"><div class="feat-icon">🛡️</div><div class="feat-title">Офіційна гарантія</div><div class="feat-desc">Гарантія на всі товари. Завжди на зв'язку.</div></div>
-    <div class="feat"><div class="feat-icon">📐</div><div class="feat-title">Індивідуальні розміри</div><div class="feat-desc">Виготовляємо під будь-який розмір без доплати.</div></div>
-  </div>
-
-  <div class="about">
-    <div>
-      <h2>Матеріали <span>найвищого вибору</span> для вашого здоров'я</h2>
-      <p>Гарний сон необхідний для фізичного та психічного здоров'я. Матрац має підтримувати тіло, забезпечувати гігієну і повітропроникність.</p>
-      <p>Матраци Sogni d'Oro повністю виробляються в Італії за найвищими стандартами якості.</p>
-      <div class="cert-badges">
-        <span class="cert-badge">OEKO-TEX</span>
-        <span class="cert-badge">Made in Italy</span>
-        <span class="cert-badge">Гіпоалергенний</span>
-        <span class="cert-badge">Антибактеріальний</span>
+  
+  <div class="section">
+    <h2 style="text-align: center; margin-bottom: 40px;">Популярні моделі</h2>
+    <div class="prod-grid" id="featured-grid">
       </div>
-    </div>
-    <div class="about-img"><span>🏭</span>MADE IN ITALY</div>
   </div>
-
-  <footer>
-    <div class="footer-grid">
-      <div><div class="footer-logo">Sogni <span>d'Oro</span></div><p class="footer-desc">Італійські матраци найвищої якості — з 1985 року.</p></div>
-      <div class="footer-col"><h4>Каталог</h4><a href="#" class="footer-link" data-goto="catalog">Всі товари</a></div>
-      <div class="footer-col"><h4>Компанія</h4><a href="#" class="footer-link" data-goto="contacts">Контакти</a><a href="#" class="footer-link" data-goto="order">Замовити</a><a href="#">+39 389.584.7556</a></div>
-    </div>
-    <div class="footer-bottom"><span>© 2025 Sogni d'Oro Materassi — Via le Noci 31/A, 03100 Frosinone</span><span>Усі права захищені</span></div>
-  </footer>
 </div>
 
-<!-- CATALOG -->
 <div class="page" id="catalog">
-  <div class="cat-header">
-    <h1>Каталог матраців</h1>
-    <p>Всі матраци доступні у розмірах: 80 · 90 · 120 · 140 · 160 · 170 · 180 см</p>
-    <div class="tabs">
-      <button class="tab active" data-cat="all">Всі</button>
-      <button class="tab" data-cat="molle">Незалежні пружини</button>
-      <button class="tab" data-cat="bonnel">Пружини Бонель</button>
-      <button class="tab" data-cat="memory">Memory Foam</button>
-      <button class="tab" data-cat="reti">Основи</button>
-      <button class="tab" data-cat="cuscini">Подушки</button>
-    </div>
+  <div class="section">
+    <h1 style="margin-bottom: 30px;">Каталог матраців</h1>
+    <div class="prod-grid" id="main-catalog">
+      </div>
   </div>
-  <div class="products">
-    <div class="prod-grid">
-      <div class="prod-card visible" data-cat="molle"><div class="prod-top">🛏️<span class="prod-badge-top">Топ серії</span></div><div class="prod-body"><div class="prod-name">Excelsior 3000</div><div class="prod-desc">3000 незалежних пружин. 8 зон, Memory зверху і AcquaGel на літній стороні. Постійна циркуляція повітря.</div><div class="prod-tags"><span class="prod-tag">Повітропроникний</span><span class="prod-tag">Memory Foam</span><span class="prod-tag">Ортопедичний</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="molle"><div class="prod-top">💤</div><div class="prod-body"><div class="prod-name">Absolute 1600</div><div class="prod-desc">1600 пружин у мішечках. Ергономічний комфорт із диференційованими зонами та шаром Memory Foam.</div><div class="prod-tags"><span class="prod-tag">Мікропружини</span><span class="prod-tag">Ортопедичний</span><span class="prod-tag">Memory Foam</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="molle"><div class="prod-top">⭐<span class="prod-badge-new">Преміум</span></div><div class="prod-body"><div class="prod-name">Panarea</div><div class="prod-desc">Топ серії з Memory AIRCRAFT та AirSleep — надповітропроникний матеріал. Мікромасажний шар.</div><div class="prod-tags"><span class="prod-tag">AirSleep</span><span class="prod-tag">Мікропружини</span><span class="prod-tag">Memory Foam</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="molle"><div class="prod-top">🌿</div><div class="prod-body"><div class="prod-name">Pocket Memory</div><div class="prod-desc">800 пружин у бавовняних мішечках. 7 зон, масажна пластина. Допомагає при болях у спині та безсонні.</div><div class="prod-tags"><span class="prod-tag">7 зон</span><span class="prod-tag">Масажний</span><span class="prod-tag">Бавовна 3D</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="molle"><div class="prod-top">🛏️</div><div class="prod-body"><div class="prod-name">Pocket</div><div class="prod-desc">800 незалежних пружин. 7 зон із хвилеподібною пластиною. Ідеальний при болях у спині.</div><div class="prod-tags"><span class="prod-tag">7 зон</span><span class="prod-tag">Ортопедичний</span><span class="prod-tag">Протикліщовий</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="molle"><div class="prod-top">🔬</div><div class="prod-body"><div class="prod-name">FISIO System</div><div class="prod-desc">400 пружин зі структурою Box Fisyo System. Автоматичний повітрообмін при кожному русі.</div><div class="prod-tags"><span class="prod-tag">Box System</span><span class="prod-tag">Ергономічний</span><span class="prod-tag">Memory Foam</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="bonnel"><div class="prod-top">🌱</div><div class="prod-body"><div class="prod-name">Aloe Bianca</div><div class="prod-desc">Пружини Бонель із гартованої сталі 16×24×24. Напівортопедичний, посилений повстю та пінополіуретаном.</div><div class="prod-tags"><span class="prod-tag">Напівортопед.</span><span class="prod-tag">Протикліщовий</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="bonnel"><div class="prod-top">🌼<span class="prod-badge-new">Новинка</span></div><div class="prod-body"><div class="prod-name">Camomilla</div><div class="prod-desc">Технологія Polilatex® Ht на 5 зонах. 700 пружин, масажний профіль, висота 26 см. Варіанти: Alpaca і Memory Comfort.</div><div class="prod-tags"><span class="prod-tag">Polilatex® Ht</span><span class="prod-tag">5 зон</span><span class="prod-tag">26 см</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="bonnel"><div class="prod-top">🧬</div><div class="prod-body"><div class="prod-name">Ortomol Memory</div><div class="prod-desc">Пружини Бонель у System Box із периметральним посиленням. Антибактеріальне покриття та шар Memory 4 см.</div><div class="prod-tags"><span class="prod-tag">System Box</span><span class="prod-tag">Memory 4 см</span><span class="prod-tag">Антибактер.</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="bonnel"><div class="prod-top">💪</div><div class="prod-body"><div class="prod-name">Ortomol</div><div class="prod-desc">Пружини Бонель у System Box. Гарантує стабільність поверхні в найбільш навантажуваних місцях.</div><div class="prod-tags"><span class="prod-tag">System Box</span><span class="prod-tag">Ортопедичний</span><span class="prod-tag">Гіпоалергенний</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="memory"><div class="prod-top">✨</div><div class="prod-body"><div class="prod-name">Promo</div><div class="prod-desc">Простота та комфорт. Пластина 18 см густини 25. Оптимально розподіляє вагу та знімає тиск.</div><div class="prod-tags"><span class="prod-tag">Густ. 25</span><span class="prod-tag">Протитисковий</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="memory"><div class="prod-top">🏝️</div><div class="prod-body"><div class="prod-name">Capri</div><div class="prod-desc">Основа з пінополіуретану зі шаром Memory 4 см. Гумова пластина 19 см густини 28.</div><div class="prod-tags"><span class="prod-tag">Memory 4 см</span><span class="prod-tag">Густ. 28</span><span class="prod-tag">Протикліщовий</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="memory"><div class="prod-top">🌊</div><div class="prod-body"><div class="prod-name">Ischia</div><div class="prod-desc">Три шари: пінополіуретан + еластична піна + м'який Memory. Покращує кровообіг. Двосторонній: літо/зима.</div><div class="prod-tags"><span class="prod-tag">3 шари</span><span class="prod-tag">Літо/Зима</span><span class="prod-tag">Memory Foam</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="memory"><div class="prod-top">🏖️</div><div class="prod-body"><div class="prod-name">Ventotene</div><div class="prod-desc">Три шари в замок, центральна пластина 16 см Ergolatex T27 жорсткий. Підтримка хребта. Двосторонній: літо/зима.</div><div class="prod-tags"><span class="prod-tag">Ergolatex T27</span><span class="prod-tag">Літо/Зима</span><span class="prod-tag">Memory Foam</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="memory"><div class="prod-top">🌺<span class="prod-badge-new">Ексклюзив</span></div><div class="prod-body"><div class="prod-name">Lipari Waterlily</div><div class="prod-desc">Моноліт Waterlily — максимальна повітропроникність. Підкладка з чистої бавовни Jersey. Гіпоалергенний.</div><div class="prod-tags"><span class="prod-tag">Waterlily</span><span class="prod-tag">Jersey</span><span class="prod-tag">Гіпоалергенний</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="memory"><div class="prod-top">💎</div><div class="prod-body"><div class="prod-name">Ponza Memory Gel</div><div class="prod-desc">Memory 5 см T40 з Memory Gel у центральній зоні. Хвильовий шар D25 + пластина D30 + несуча D28. Разом 24 см.</div><div class="prod-tags"><span class="prod-tag">Memory Gel</span><span class="prod-tag">Мікропружини</span><span class="prod-tag">24 см</span></div><div class="prod-footer"><div class="prod-sizes">Розміри: <strong>80–180 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="reti"><div class="prod-top">🪵</div><div class="prod-body"><div class="prod-name">Основа одинарна — 13 ламелей</div><div class="prod-desc">Сталева конструкція Ш.89 × Г.190 см. 13 вузьких ламелей. Ортопедична ручна основа.</div><div class="prod-tags"><span class="prod-tag">Ортопедична</span><span class="prod-tag">Ручна</span></div><div class="prod-footer"><div class="prod-sizes"><strong>89 × 190 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="reti"><div class="prod-top">🛏️</div><div class="prod-body"><div class="prod-name">Основа двоспальна — 14 ламелей</div><div class="prod-desc">Сталева конструкція Ш.160 × Г.190 см. 14 ламелей. Доступна моторизована версія.</div><div class="prod-tags"><span class="prod-tag">Ортопедична</span><span class="prod-tag">Моторизована</span></div><div class="prod-footer"><div class="prod-sizes"><strong>160 × 190 см</strong></div><button class="btn-order to-order">Замовити</button></div></div></div>
-
-      <div class="prod-card visible" data-cat="cuscini"><div class="prod-top">😴</div><div class="prod-body"><div class="prod-name">Подушки Memory і Волокно</div><div class="prod-desc">Повна лінійка: волокно 500г/900г, Memory мильниця H12–15 см, Memory подвійна хвиля. Для шиї та плечей.</div><div class="prod-tags"><span class="prod-tag">Memory Foam</span><span class="prod-tag">Гіпоалергенний</span></div><div class="prod-footer"><div class="prod-sizes">Різні розміри</div><button class="btn-order to-order">Замовити</button></div></div></div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-grid">
-      <div><div class="footer-logo">Sogni <span>d'Oro</span></div><p class="footer-desc">Італійські матраци — виробляються у Фрозіноне з 1985 року.</p></div>
-      <div class="footer-col"><h4>Навігація</h4><a href="#" class="footer-link" data-goto="home">Головна</a><a href="#" class="footer-link" data-goto="contacts">Контакти</a><a href="#" class="footer-link" data-goto="order">Замовити</a></div>
-      <div class="footer-col"><h4>Контакти</h4><a href="#">+39 389.584.7556</a><a href="#">info@sognidoroonline.it</a></div>
-    </div>
-    <div class="footer-bottom"><span>© 2025 Sogni d'Oro Materassi</span><span>Усі права захищені</span></div>
-  </footer>
 </div>
 
-<!-- CONTACTS -->
 <div class="page" id="contacts">
-  <div class="contacts-wrap">
-    <h1>Контакти</h1>
-    <p>Ми завжди на зв'язку — зателефонуйте або напишіть нам</p>
-    <div class="contacts-grid">
-      <div class="info-box">
-        <h3>Sogni d'Oro Матраци</h3>
-        <div class="info-row"><div class="info-icon">📞</div><div><div class="info-label">Телефон</div><div class="info-val">+39 389.584.7556</div></div></div>
-        <div class="info-row"><div class="info-icon">✉️</div><div><div class="info-label">Email</div><div class="info-val">info@sognidoroonline.it</div></div></div>
-        <div class="info-row"><div class="info-icon">📍</div><div><div class="info-label">Адреса</div><div class="info-val">Via le Noci, 31/A<br>03100 Frosinone (FR), Italia</div></div></div>
-        <div class="info-row"><div class="info-icon">🕐</div><div><div class="info-label">Графік роботи</div><div class="hours"><div class="h-row"><span>Пн – Пт</span><span>9:00 – 18:00</span></div><div class="h-row"><span>Субота</span><span>9:00 – 13:00</span></div><div class="h-row off"><span>Неділя</span><span>Зачинено</span></div></div></div></div>
-        <button class="btn-call" id="btn-call">📞 Зателефонувати</button>
-      </div>
-      <div class="map-box"><span>🗺️</span><p>Карта</p><small>Вставте посилання на Google Maps</small></div>
+  <div class="section" style="text-align: center; max-width: 600px;">
+    <h1>Наші контакти</h1>
+    <div style="margin-top: 30px; text-align: left; background: var(--bg); padding: 30px; border-radius: 15px;">
+      <p><strong>📍 Адреса:</strong>//"</p>
+      <p style="margin: 15px 0;"><strong>📞 Телефон:</strong> +38 (067) 123-45-67</p>
+      <p><strong>✉️ Email:</strong> sales@sleeppro.ua</p>
+      <p style="margin-top: 15px;"><strong>⏰ Графік:</strong> Пн-Нд: 10:00 — 20:00</p>
     </div>
   </div>
-  <footer>
-    <div class="footer-grid">
-      <div><div class="footer-logo">Sogni <span>d'Oro</span></div><p class="footer-desc">Via le Noci, 31/A · 03100 Frosinone</p></div>
-      <div class="footer-col"><h4>Навігація</h4><a href="#" class="footer-link" data-goto="catalog">Каталог</a><a href="#" class="footer-link" data-goto="order">Замовити</a></div>
-      <div class="footer-col"><h4>Контакти</h4><a href="#">+39 389.584.7556</a></div>
-    </div>
-    <div class="footer-bottom"><span>© 2025 Sogni d'Oro</span><span>Усі права захищені</span></div>
-  </footer>
 </div>
 
-<!-- ORDER -->
-<div class="page" id="order">
-  <div class="order-wrap">
-    <h1>Замовити матрац</h1>
-    <p>Заповніть форму — зв'яжемося протягом 24 годин</p>
-    <div class="order-grid">
-      <div class="form-box">
-        <h3>Ваше замовлення</h3>
-        <div class="form-row">
-          <div class="fg"><label>Ім'я та прізвище</label><input type="text" id="f-name" placeholder="Іван Іваненко"></div>
-          <div class="fg"><label>Телефон</label><input type="tel" id="f-phone" placeholder="+38 0XX XXX XXXX"></div>
-        </div>
-        <div class="form-row">
-          <div class="fg"><label>Email</label><input type="email" id="f-email" placeholder="ivan@email.ua"></div>
-          <div class="fg"><label>Місто</label><input type="text" id="f-city" placeholder="Ваше місто"></div>
-        </div>
-        <div class="fg"><label>Модель матрацу</label>
-          <select id="f-model">
-            <option value="">— Оберіть модель —</option>
-            <optgroup label="Незалежні пружини"><option>Excelsior 3000</option><option>Absolute 1600</option><option>Panarea</option><option>Pocket Memory</option><option>Pocket</option><option>FISIO System</option></optgroup>
-            <optgroup label="Пружини Бонель"><option>Aloe Bianca</option><option>Camomilla</option><option>Ortomol Memory</option><option>Ortomol</option></optgroup>
-            <optgroup label="Memory Foam"><option>Promo</option><option>Capri</option><option>Ischia</option><option>Ventotene</option><option>Lipari Waterlily</option><option>Ponza Memory Gel</option></optgroup>
-            <optgroup label="Основи та подушки"><option>Основа одинарна</option><option>Основа двоспальна</option><option>Подушки Memory / Волокно</option></optgroup>
-          </select>
-        </div>
-        <div class="fg"><label>Розмір (см)</label><input type="text" id="f-size" placeholder="напр. 160×190"></div>
-        <div class="fg"><label>Примітки</label><textarea id="f-note" rows="3" placeholder="Побажання щодо жорсткості..."></textarea></div>
-        <button class="btn-submit" id="form-btn">Надіслати заявку →</button>
-        <div class="form-note">⚡ <strong>Без передоплати.</strong> Зв'яжемося протягом 24 годин для підтвердження.</div>
-      </div>
-      <div class="perks-box">
-        <h3>Чому обирають нас?</h3>
-        <div class="perk"><div class="perk-icon">🇮🇹</div><div><div class="perk-title">100% Зроблено в Італії</div><div class="perk-desc">Власні фабрики у Фрозіноне із сертифікованої сировини.</div></div></div>
-        <div class="perk"><div class="perk-icon">🌿</div><div><div class="perk-title">Відібрані матеріали</div><div class="perk-desc">Гіпоалергенні, антибактеріальні, протикліщові.</div></div></div>
-        <div class="perk"><div class="perk-icon">📐</div><div><div class="perk-title">Індивідуальні розміри</div><div class="perk-desc">Виготовляємо під будь-який розмір без доплати.</div></div></div>
-        <div class="perk"><div class="perk-icon">🚚</div><div><div class="perk-title">Доставка по всій Україні</div><div class="perk-desc">Нова Пошта або Укрпошта — безпечно та швидко.</div></div></div>
-        <div class="perk"><div class="perk-icon">🛡️</div><div><div class="perk-title">Гарантія та підтримка</div><div class="perk-desc">Офіційна гарантія. Завжди на зв'язку.</div></div></div>
-      </div>
-    </div>
+<footer>
+  <div class="footer-content">
+    <p>© 2026 SleepPro. Всі права захищені. Найкращий вибір для вашого дому.</p>
   </div>
-  <footer>
-    <div class="footer-grid">
-      <div><div class="footer-logo">Sogni <span>d'Oro</span></div><p class="footer-desc">Via le Noci, 31/A · 03100 Frosinone · +39 389.584.7556</p></div>
-      <div class="footer-col"><h4>Навігація</h4><a href="#" class="footer-link" data-goto="catalog">Каталог</a><a href="#" class="footer-link" data-goto="contacts">Контакти</a></div>
-      <div class="footer-col"><h4>Контакти</h4><a href="#">+39 389.584.7556</a><a href="#">info@sognidoroonline.it</a></div>
-    </div>
-    <div class="footer-bottom"><span>© 2025 Sogni d'Oro Materassi</span><span>Усі права захищені</span></div>
-  </footer>
-</div>
-
-<button class="fab" id="fab-btn">💬</button>
-
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal-box">
-    <button class="modal-close-btn" id="modal-close">✕</button>
-    <h3>Залишити заявку</h3>
-    <p>Залиште номер — передзвонимо протягом 24 робочих годин.</p>
-    <input type="tel" id="m-phone" placeholder="+38 0XX XXX XXXX">
-    <button class="modal-btn" id="modal-send">Передзвоніть мені</button>
-    <div class="modal-ok" id="modal-ok">✓ Отримали! Зв'яжемося найближчим часом.</div>
-  </div>
-</div>
+</footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+  // Данные для матрасов
+  const products = [
+    { id: 1, name: "Venezia Classic", price: "4 200", desc: "Натуральний латекс та кокосова койра. Середня жорсткість.", icon: "🛏️" },
+    { id: 2, name: "Firenze Memory", price: "6 850", desc: "Ефект пам'яті Memory Foam. Максимальний комфорт.", icon: "💤" },
+    { id: 3, name: "Roma Ortho", price: "5 400", desc: "Посилений блок пружин для підтримки хребта.", icon: "🛡️" },
+    { id: 4, name: "Eco Latex Mini", price: "3 900", desc: "Тонкий матрац (топпер) для вирівнювання дивана.", icon: "🌿" }
+  ];
 
-  function show(id) {
-    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-    document.querySelectorAll('.nav-links button').forEach(function(b) { b.classList.remove('active'); });
-    var pg = document.getElementById(id);
-    var btn = document.getElementById('btn-' + id);
-    if (pg) pg.classList.add('active');
-    if (btn) btn.classList.add('active');
+  // Функция отрисовки карточек
+  function renderProducts() {
+    const grids = ['main-catalog', 'featured-grid'];
+    grids.forEach(gridId => {
+      const grid = document.getElementById(gridId);
+      if(!grid) return;
+      
+      grid.innerHTML = products.map(p => `
+        <div class="mat-card">
+          <div class="mat-img">${p.icon}</div>
+          <div class="mat-body">
+            <div class="mat-name">${p.name}</div>
+            <p style="color: #6B7280; font-size: 14px;">${p.desc}</p>
+            <div class="mat-price">${p.price} ₴</div>
+            <button class="btn-buy" onclick="alert('Товар ${p.name} додано до кошика!')">Купити</button>
+          </div>
+        </div>
+      `).join('');
+    });
+  }
+
+  // Переключение страниц
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    
+    document.getElementById(id).classList.add('active');
+    // Подсветка активной кнопки в навигации
+    const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.textContent.toLowerCase().includes(id === 'home' ? 'гол' : id === 'catalog' ? 'кат' : 'кон'));
+    if(activeBtn) activeBtn.classList.add('active');
+    
     window.scrollTo(0, 0);
   }
 
-  // Nav buttons
-  document.getElementById('btn-home').addEventListener('click', function() { show('home'); });
-  document.getElementById('btn-catalog').addEventListener('click', function() { show('catalog'); });
-  document.getElementById('btn-contacts').addEventListener('click', function() { show('contacts'); });
-  document.getElementById('btn-order').addEventListener('click', function() { show('order'); });
-
-  // Mobile menu
-  var mm = document.getElementById('mobile-menu');
-  document.getElementById('hamburger').addEventListener('click', function() { mm.classList.add('open'); });
-  document.getElementById('menu-close').addEventListener('click', function() { mm.classList.remove('open'); });
-  document.getElementById('mb-home').addEventListener('click', function() { show('home'); mm.classList.remove('open'); });
-  document.getElementById('mb-catalog').addEventListener('click', function() { show('catalog'); mm.classList.remove('open'); });
-  document.getElementById('mb-contacts').addEventListener('click', function() { show('contacts'); mm.classList.remove('open'); });
-  document.getElementById('mb-order').addEventListener('click', function() { show('order'); mm.classList.remove('open'); });
-
-  // Hero buttons
-  document.getElementById('hero-to-catalog').addEventListener('click', function() { show('catalog'); });
-  document.getElementById('hero-to-order').addEventListener('click', function() { show('order'); });
-
-  // Catalog tabs
-  document.querySelectorAll('.tab').forEach(function(tab) {
-    tab.addEventListener('click', function() {
-      document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      var cat = tab.getAttribute('data-cat');
-      document.querySelectorAll('.prod-card').forEach(function(c) {
-        if (cat === 'all' || c.getAttribute('data-cat') === cat) { c.classList.add('visible'); }
-        else { c.classList.remove('visible'); }
-      });
-    });
-  });
-
-  // Order buttons in catalog
-  document.querySelectorAll('.to-order').forEach(function(btn) {
-    btn.addEventListener('click', function() { show('order'); });
-  });
-
-  // Footer links
-  document.querySelectorAll('.footer-link').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      e.preventDefault();
-      var gt = a.getAttribute('data-goto');
-      if (gt) show(gt);
-    });
-  });
-
-  // Call button
-  var cb = document.getElementById('btn-call');
-  if (cb) cb.addEventListener('click', function() { window.location = 'tel:+393895847556'; });
-
-  // Modal
-  var overlay = document.getElementById('modal-overlay');
-  function openModal() { overlay.classList.add('open'); }
-  function closeModal() { overlay.classList.remove('open'); }
-
-  document.getElementById('fab-btn').addEventListener('click', openModal);
-  document.getElementById('modal-close').addEventListener('click', closeModal);
-  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
-
-  document.getElementById('modal-send').addEventListener('click', function() {
-    var phone = document.getElementById('m-phone').value.trim();
-    if (phone.length < 8) {
-      document.getElementById('m-phone').style.borderColor = '#e05050';
-      setTimeout(function() { document.getElementById('m-phone').style.borderColor = ''; }, 1500);
-      return;
-    }
-    document.getElementById('modal-send').style.display = 'none';
-    document.getElementById('modal-ok').style.display = 'block';
-    setTimeout(closeModal, 2500);
-  });
-
-  // Order form
-  document.getElementById('form-btn').addEventListener('click', function() {
-    var name = document.getElementById('f-name').value.trim();
-    var phone = document.getElementById('f-phone').value.trim();
-    var btn = document.getElementById('form-btn');
-    if (!name || !phone) {
-      btn.style.background = '#c0392b';
-      btn.textContent = "✕ Заповніть ім'я та телефон";
-      setTimeout(function() { btn.style.background = ''; btn.textContent = 'Надіслати заявку →'; }, 3000);
-      return;
-    }
-    btn.textContent = 'Надсилаємо...';
-    btn.disabled = true;
-    setTimeout(function() {
-      btn.textContent = "✓ Заявку надіслано! Зв'яжемося найближчим часом.";
-      btn.style.background = '#2d6a4f';
-      setTimeout(function() { btn.textContent = 'Надіслати заявку →'; btn.style.background = ''; btn.disabled = false; }, 5000);
-    }, 900);
-  });
-
-});
+  // Инициализация
+  renderProducts();
 </script>
+
 </body>
 </html>
