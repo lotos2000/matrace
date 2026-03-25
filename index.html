@@ -1,148 +1,666 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SleepPro — Матраци для вашого комфорту</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
-  <style>
-    
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --accent: #2563EB; --accent-dark: #1D4ED8; --dark: #111827; --text: #374151; --muted: #6B7280; --border: #E5E7EB; --bg: #F9FAFB; --white: #FFFFFF; --r: 10px; }
-    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--text); line-height: 1.5; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СОМНІУМ — Матраси для глибокого сну</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --sand: #E8DCC8;
+    --warm: #C8A97A;
+    --dark: #1A1612;
+    --mid: #3D3530;
+    --soft: #8C7B6B;
+    --accent: #B87333;
+    --white: #FDFAF5;
+  }
 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); height: 64px; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 20px; font-weight: 700; color: var(--dark); cursor: pointer; }
-    .logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 8px; }
-    .nav-btn { background: none; border: none; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: var(--muted); padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
-    .nav-btn.active, .nav-btn:hover { background: var(--bg); color: var(--accent); }
+  html { scroll-behavior: smooth; }
 
-    /* Страницы */
-    .page { display: none; padding-bottom: 80px; }
-    .page.active { display: block; }
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
 
-    /* Hero секция */
-    .hero { background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%); color: var(--white); padding: 100px 40px; text-align: center; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 56px); margin-bottom: 20px; }
-    .hero p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 30px; }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 24px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,169,122,0.2);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; letter-spacing: 4px; color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; font-weight: 400;
+    transition: color .3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 10px 28px; border: 1px solid var(--accent);
+    color: var(--accent); background: transparent; cursor: pointer;
+    transition: all .3s; font-family: 'Jost', sans-serif;
+  }
+  .nav-cta:hover { background: var(--accent); color: var(--white); }
 
-    /* Сетка товаров */
-    .section { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-    .prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .mat-card { border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; transition: 0.3s; background: #fff; }
-    .mat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-    .mat-img { height: 200px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; font-size: 60px; }
-    .mat-body { padding: 24px; }
-    .mat-name { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
-    .mat-price { font-size: 22px; font-weight: 700; color: var(--accent); margin: 15px 0; }
-    .btn-buy { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+  }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px; font-weight: 500;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 6vw, 88px);
+    line-height: 1.05;
+    color: var(--dark);
+    margin-bottom: 32px;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 16px; line-height: 1.8; color: var(--soft);
+    max-width: 420px; margin-bottom: 48px; font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 20px; align-items: center; }
+  .btn-primary {
+    padding: 16px 44px; background: var(--dark); color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    border: none; cursor: pointer; transition: all .3s;
+  }
+  .btn-primary:hover { background: var(--accent); }
+  .btn-ghost {
+    font-size: 13px; letter-spacing: 2px; color: var(--mid);
+    text-decoration: none; text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .btn-ghost::after { content: '→'; transition: transform .3s; }
+  .btn-ghost:hover::after { transform: translateX(6px); }
 
-    /* Футер */
-    footer { background: var(--dark); color: white; padding: 60px 40px; text-align: center; }
-    .footer-content { max-width: 800px; margin: 0 auto; opacity: 0.8; font-size: 14px; }
+  .hero-right {
+    position: relative; background: var(--sand);
+    overflow: hidden;
+  }
+  .hero-visual {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  /* SVG mattress illustration */
+  .mattress-hero {
+    width: 80%; max-width: 520px;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0px) rotate(-2deg); }
+    50%      { transform: translateY(-20px) rotate(-2deg); }
+  }
+  .hero-stat {
+    position: absolute; background: var(--white);
+    padding: 18px 24px; border-left: 3px solid var(--accent);
+    animation: fadeSlide .8s ease both;
+  }
+  .hero-stat:nth-child(2) { bottom: 120px; left: 40px; animation-delay:.3s; }
+  .hero-stat:nth-child(3) { top: 140px; right: 40px; animation-delay:.5s; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--dark); }
+  .stat-label { font-size: 11px; letter-spacing: 2px; color: var(--soft); text-transform: uppercase; }
+  @keyframes fadeSlide {
+    from { opacity:0; transform: translateY(20px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
 
-    @media (max-width: 600px) { nav { padding: 0 15px; } .nav-links { gap: 0; } .nav-btn { padding: 8px 10px; font-size: 12px; } }
-  </style>
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--dark); padding: 18px 0; overflow: hidden;
+    border-top: 1px solid rgba(200,169,122,.3);
+    border-bottom: 1px solid rgba(200,169,122,.3);
+  }
+  .marquee-track {
+    display: flex; gap: 60px; width: max-content;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--warm); white-space: nowrap; display: flex; align-items: center; gap: 20px;
+  }
+  .marquee-item::after { content: '✦'; color: var(--accent); font-size: 10px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 120px 80px;
+    display: grid; grid-template-columns: 1fr 2fr;
+    gap: 80px; align-items: start;
+  }
+  .section-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 3.5vw, 52px); line-height: 1.15;
+    color: var(--dark);
+  }
+  .features-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--sand);
+  }
+  .feat-card {
+    background: var(--white); padding: 48px 40px;
+    transition: background .3s;
+  }
+  .feat-card:hover { background: var(--cream); }
+  .feat-icon { font-size: 36px; margin-bottom: 20px; }
+  .feat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: var(--dark); margin-bottom: 12px;
+  }
+  .feat-text { font-size: 14px; line-height: 1.8; color: var(--soft); font-weight: 300; }
+
+  /* ── CATALOG ── */
+  .catalog { padding: 80px; background: var(--white); }
+  .catalog-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  .catalog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--sand); }
+  .product-card {
+    background: var(--cream); padding: 0;
+    cursor: pointer; overflow: hidden;
+    transition: transform .3s;
+    position: relative;
+  }
+  .product-card:hover { transform: translateY(-4px); }
+  .product-img {
+    height: 280px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--sand);
+  }
+  .product-info { padding: 32px; }
+  .product-tag {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--dark); margin-bottom: 12px;
+  }
+  .product-desc { font-size: 13px; color: var(--soft); line-height: 1.7; font-weight: 300; margin-bottom: 24px; }
+  .product-footer { display: flex; justify-content: space-between; align-items: center; }
+  .product-price {
+    font-family: 'Playfair Display', serif; font-size: 26px; color: var(--dark);
+  }
+  .product-price span { font-size: 14px; color: var(--soft); font-family: 'Jost', sans-serif; }
+  .btn-add {
+    width: 44px; height: 44px; border: 1px solid var(--dark);
+    background: transparent; cursor: pointer; font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .3s;
+  }
+  .btn-add:hover { background: var(--dark); color: var(--white); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { padding: 120px 80px; background: var(--dark); }
+  .test-header { text-align: center; margin-bottom: 80px; }
+  .test-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px); color: var(--cream);
+  }
+  .test-title em { color: var(--warm); font-style: italic; }
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .test-card { background: #251F1B; padding: 48px 40px; position: relative; }
+  .test-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px; color: var(--accent); line-height: .8;
+    margin-bottom: 12px;
+  }
+  .test-text { font-size: 15px; line-height: 1.8; color: var(--sand); font-weight: 300; margin-bottom: 32px; }
+  .test-author { display: flex; align-items: center; gap: 14px; }
+  .test-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 18px; color: var(--white);
+  }
+  .test-name { font-size: 14px; color: var(--cream); font-weight: 500; }
+  .test-city { font-size: 12px; color: var(--soft); letter-spacing: 1px; }
+  .stars { color: var(--warm); font-size: 14px; margin-bottom: 20px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 160px 80px;
+    background: var(--sand);
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 4.5vw, 68px); line-height: 1.1;
+    color: var(--dark);
+  }
+  .cta-title em { font-style: italic; color: var(--accent); }
+  .cta-right { display: flex; flex-direction: column; gap: 24px; }
+  .cta-desc { font-size: 16px; line-height: 1.8; color: var(--soft); font-weight: 300; }
+  .cta-form { display: flex; gap: 0; }
+  .cta-input {
+    flex: 1; padding: 16px 20px;
+    border: 1px solid var(--warm); border-right: none;
+    background: var(--white); font-family: 'Jost', sans-serif;
+    font-size: 14px; color: var(--dark); outline: none;
+  }
+  .cta-submit {
+    padding: 16px 32px; background: var(--accent); color: var(--white);
+    border: none; cursor: pointer; font-family: 'Jost', sans-serif;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    transition: background .3s;
+  }
+  .cta-submit:hover { background: var(--dark); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark); padding: 80px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+  }
+  .footer-brand { }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; letter-spacing: 4px; color: var(--cream); margin-bottom: 20px;
+    display: block;
+  }
+  .footer-desc { font-size: 13px; color: var(--soft); line-height: 1.8; font-weight: 300; max-width: 260px; }
+  .footer-col h4 {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 24px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-col ul a { font-size: 14px; color: var(--soft); text-decoration: none; transition: color .3s; }
+  .footer-col ul a:hover { color: var(--cream); }
+  .footer-bottom {
+    background: var(--dark); padding: 20px 80px;
+    border-top: 1px solid rgba(200,169,122,.15);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 12px; color: #5A4E45; letter-spacing: 1px; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: all .8s cubic-bezier(.16,1,.3,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { height: 50vh; }
+    .hero-left { padding: 60px 24px; }
+    .features { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .catalog { padding: 60px 24px; }
+    .catalog-grid { grid-template-columns: 1fr; }
+    .catalog-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .test-grid { grid-template-columns: 1fr; }
+    .testimonials { padding: 60px 24px; }
+    .cta-section { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+    footer { grid-template-columns: 1fr 1fr; padding: 60px 24px; }
+    .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="logo" onclick="showPage('home')"><span></span></div>
-  <div class="nav-links">
-    <button class="nav-btn active" onclick="showPage('home')">Головна</button>
-    <button class="nav-btn" onclick="showPage('catalog')">Каталог</button>
-    <button class="nav-btn" onclick="showPage('contacts')">Контакти</button>
-  </div>
+  <a class="logo" href="#">СОМНІУМ</a>
+  <ul class="nav-links">
+    <li><a href="#catalog">Каталог</a></li>
+    <li><a href="#features">Про нас</a></li>
+    <li><a href="#testimonials">Відгуки</a></li>
+    <li><a href="#contact">Контакти</a></li>
+  </ul>
+  <button class="nav-cta">Обрати матрац</button>
 </nav>
 
-<div class="page active" id="home">
-  <div class="hero">
-    <h1>Здоровий сон починається тут</h1>
-    <p>Професійні матраци з італійських матеріалів за ціною виробника. Доставка по всій Україні.</p>
-    <button class="btn-buy" style="width: auto; padding: 15px 40px;" onclick="showPage('catalog')">Перейти до вибору</button>
-  </div>
-  
-  <div class="section">
-    <h2 style="text-align: center; margin-bottom: 40px;">Популярні моделі</h2>
-    <div class="prod-grid" id="featured-grid">
-      </div>
-  </div>
-</div>
-
-<div class="page" id="catalog">
-  <div class="section">
-    <h1 style="margin-bottom: 30px;">Каталог матраців</h1>
-    <div class="prod-grid" id="main-catalog">
-      </div>
-  </div>
-</div>
-
-<div class="page" id="contacts">
-  <div class="section" style="text-align: center; max-width: 600px;">
-    <h1>Наші контакти</h1>
-    <div style="margin-top: 30px; text-align: left; background: var(--bg); padding: 30px; border-radius: 15px;">
-      <p><strong>📍 Адреса:</strong>//"</p>
-      <p style="margin: 15px 0;"><strong>📞 Телефон:</strong> +38 (067) 123-45-67</p>
-      <p><strong>✉️ Email:</strong> sales@sleeppro.ua</p>
-      <p style="margin-top: 15px;"><strong>⏰ Графік:</strong> Пн-Нд: 10:00 — 20:00</p>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Колекція 2025</div>
+    <h1 class="hero-title">
+      Мистецтво<br>
+      <em>глибокого</em><br>
+      сна
+    </h1>
+    <p class="hero-desc">Матраси ручної роботи з натуральних матеріалів. Кожен продукт створено для того, щоб ваш сон став справжнім відновленням.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.querySelector('#catalog').scrollIntoView({behavior:'smooth'})">Переглянути каталог</button>
+      <a href="#features" class="btn-ghost">Дізнатися більше</a>
     </div>
   </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <!-- Mattress SVG Illustration -->
+      <svg class="mattress-hero" viewBox="0 0 520 340" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shadow -->
+        <ellipse cx="260" cy="330" rx="200" ry="12" fill="rgba(26,22,18,0.12)"/>
+        <!-- Mattress base -->
+        <rect x="40" y="160" width="440" height="140" rx="16" fill="#C8A97A"/>
+        <!-- Mattress top face -->
+        <rect x="40" y="100" width="440" height="80" rx="8" fill="#F5F0E8"/>
+        <!-- Side face -->
+        <path d="M40 140 L40 180 L480 180 L480 140 Z" fill="#E8DCC8"/>
+        <!-- Top layer highlight -->
+        <rect x="60" y="108" width="400" height="64" rx="4" fill="rgba(255,255,255,0.6)"/>
+        <!-- Quilting lines top -->
+        <line x1="60" y1="124" x2="460" y2="124" stroke="#C8A97A" stroke-width="1" opacity=".5"/>
+        <line x1="60" y1="140" x2="460" y2="140" stroke="#C8A97A" stroke-width="1" opacity=".5"/>
+        <!-- Quilting circles top -->
+        <circle cx="140" cy="132" r="6" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+        <circle cx="200" cy="124" r="6" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+        <circle cx="260" cy="132" r="6" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+        <circle cx="320" cy="124" r="6" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+        <circle cx="380" cy="132" r="6" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+        <!-- Stripe border -->
+        <rect x="40" y="100" width="440" height="8" rx="4" fill="#B87333" opacity=".7"/>
+        <rect x="40" y="172" width="440" height="6" fill="#B87333" opacity=".5"/>
+        <!-- Pillow left -->
+        <ellipse cx="130" cy="92" rx="70" ry="28" fill="#FDFAF5"/>
+        <ellipse cx="130" cy="88" rx="62" ry="22" fill="white" opacity=".8"/>
+        <!-- Pillow right -->
+        <ellipse cx="370" cy="92" rx="70" ry="28" fill="#FDFAF5"/>
+        <ellipse cx="370" cy="88" rx="62" ry="22" fill="white" opacity=".8"/>
+        <!-- Blanket fold -->
+        <path d="M40 160 Q260 145 480 160 L480 210 Q260 200 40 215 Z" fill="#D4C4B0" opacity=".6"/>
+        <!-- Spring icons -->
+        <text x="100" y="255" fill="#A0906A" font-size="20" font-family="serif" text-anchor="middle">⌇</text>
+        <text x="180" y="255" fill="#A0906A" font-size="20" font-family="serif" text-anchor="middle">⌇</text>
+        <text x="260" y="255" fill="#A0906A" font-size="20" font-family="serif" text-anchor="middle">⌇</text>
+        <text x="340" y="255" fill="#A0906A" font-size="20" font-family="serif" text-anchor="middle">⌇</text>
+        <text x="420" y="255" fill="#A0906A" font-size="20" font-family="serif" text-anchor="middle">⌇</text>
+        <!-- Label -->
+        <rect x="218" y="188" width="84" height="26" rx="4" fill="#B87333" opacity=".9"/>
+        <text x="260" y="205" fill="white" font-size="11" font-family="serif" letter-spacing="2" text-anchor="middle">SOMNIVM</text>
+      </svg>
+
+      <div class="hero-stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">років гарантії</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">4800+</div>
+        <div class="stat-label">задоволених клієнтів</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Натуральний латекс</span>
+    <span class="marquee-item">Незалежні пружини</span>
+    <span class="marquee-item">Ортопедична підтримка</span>
+    <span class="marquee-item">Доставка по Україні</span>
+    <span class="marquee-item">12 років гарантії</span>
+    <span class="marquee-item">Пробний період 100 ночей</span>
+    <span class="marquee-item">Натуральний латекс</span>
+    <span class="marquee-item">Незалежні пружини</span>
+    <span class="marquee-item">Ортопедична підтримка</span>
+    <span class="marquee-item">Доставка по Україні</span>
+    <span class="marquee-item">12 років гарантії</span>
+    <span class="marquee-item">Пробний період 100 ночей</span>
+  </div>
 </div>
 
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="reveal">
+    <div class="section-label">Чому ми</div>
+    <h2 class="section-title">Створено для вашого тіла</h2>
+  </div>
+  <div class="features-grid reveal">
+    <div class="feat-card">
+      <div class="feat-icon">🌿</div>
+      <div class="feat-title">Натуральні матеріали</div>
+      <p class="feat-text">Натуральний латекс, кокосовая койра, шерсть и хлопок — только сертифицированные экологически чистые компоненты.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⚙️</div>
+      <div class="feat-title">Незалежні пружини</div>
+      <p class="feat-text">Система з 500+ незалежних пружин адаптується до контурів тіла, забезпечуючи ідеальну підтримку хребта.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">❄️</div>
+      <div class="feat-title">Терморегуляція</div>
+      <p class="feat-text">Спеціальні охолоджувальні тканини та структура матраца підтримують комфортну температуру протягом усієї ночі.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🛡️</div>
+      <div class="feat-title">12 років гарантії</div>
+      <p class="feat-text">Каждый матрас проходит строгий контроль качества. Мы уверены в долговечности — поэтому даём 12 років гарантії.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section class="catalog" id="catalog">
+  <div class="catalog-header reveal">
+    <div>
+      <div class="section-label">Наші моделі</div>
+      <h2 class="section-title">Каталог матраців</h2>
+    </div>
+    <a href="#" style="font-size:13px;letter-spacing:2px;color:var(--accent);text-decoration:none;text-transform:uppercase;">Всі моделі →</a>
+  </div>
+
+  <div class="catalog-grid reveal">
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <svg viewBox="0 0 300 200" width="240" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="80" width="260" height="100" rx="10" fill="#C8A97A"/>
+          <rect x="20" y="50" width="260" height="50" rx="6" fill="#F5F0E8"/>
+          <line x1="40" y1="66" x2="260" y2="66" stroke="#C8A97A" stroke-width="1" opacity=".6"/>
+          <circle cx="100" cy="75" r="5" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+          <circle cx="160" cy="62" r="5" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+          <circle cx="220" cy="75" r="5" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+          <rect x="20" y="50" width="260" height="6" rx="3" fill="#B87333" opacity=".6"/>
+          <ellipse cx="90" cy="44" rx="48" ry="18" fill="white" opacity=".9"/>
+          <ellipse cx="210" cy="44" rx="48" ry="18" fill="white" opacity=".9"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">Базовий</div>
+        <div class="product-name">Natura Classic</div>
+        <p class="product-desc">Кокосове волокно + латекс. Середня жорсткість. Підходить для більшості людей.</p>
+        <div class="product-footer">
+          <div class="product-price">12 900 <span>грн</span></div>
+          <button class="btn-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card" style="position:relative;">
+      <div style="position:absolute;top:16px;left:16px;background:var(--accent);color:white;font-size:10px;letter-spacing:2px;padding:6px 14px;z-index:2;text-transform:uppercase;">Хіт продажів</div>
+      <div class="product-img" style="background:#E8DCC8;">
+        <svg viewBox="0 0 300 200" width="240" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="80" width="260" height="100" rx="10" fill="#B87333"/>
+          <rect x="20" y="42" width="260" height="56" rx="6" fill="#FDFAF5"/>
+          <rect x="30" y="54" width="240" height="34" rx="4" fill="white" opacity=".6"/>
+          <line x1="40" y1="60" x2="260" y2="60" stroke="#C8A97A" stroke-width="1"/>
+          <line x1="40" y1="70" x2="260" y2="70" stroke="#C8A97A" stroke-width="1"/>
+          <circle cx="80" cy="65" r="5" fill="none" stroke="#B87333" stroke-width="2"/>
+          <circle cx="150" cy="65" r="5" fill="none" stroke="#B87333" stroke-width="2"/>
+          <circle cx="220" cy="65" r="5" fill="none" stroke="#B87333" stroke-width="2"/>
+          <rect x="20" y="42" width="260" height="7" rx="3" fill="#8B5E3C"/>
+          <ellipse cx="90" cy="36" rx="52" ry="20" fill="white" opacity=".95"/>
+          <ellipse cx="210" cy="36" rx="52" ry="20" fill="white" opacity=".95"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">Преміум</div>
+        <div class="product-name">Somnivm Elite</div>
+        <p class="product-desc">500 незалежних пружин + 3 см натурального латексу. Анатомічна підтримка.</p>
+        <div class="product-footer">
+          <div class="product-price">24 500 <span>грн</span></div>
+          <button class="btn-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-img" style="background:#F0EDE5;">
+        <svg viewBox="0 0 300 200" width="240" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="85" width="260" height="90" rx="10" fill="#8C7B6B"/>
+          <rect x="20" y="38" width="260" height="66" rx="8" fill="#FDFAF5"/>
+          <rect x="28" y="46" width="244" height="50" rx="5" fill="#F5F0E8"/>
+          <rect x="28" y="46" width="244" height="12" rx="5" fill="#E8DCC8"/>
+          <line x1="40" y1="70" x2="260" y2="70" stroke="#C8A97A" stroke-width=".8" opacity=".5"/>
+          <circle cx="90" cy="78" r="5" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+          <circle cx="150" cy="70" r="5" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+          <circle cx="210" cy="78" r="5" fill="none" stroke="#C8A97A" stroke-width="1.5"/>
+          <rect x="110" y="96" width="80" height="20" rx="3" fill="#B87333" opacity=".8"/>
+          <text x="150" y="109" fill="white" font-size="8" text-anchor="middle" font-family="serif" letter-spacing="1">SOMNIVM</text>
+          <ellipse cx="100" cy="30" rx="56" ry="22" fill="white" opacity=".95"/>
+          <ellipse cx="210" cy="30" rx="56" ry="22" fill="white" opacity=".95"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="product-tag">Люкс</div>
+        <div class="product-name">Grand Reserve</div>
+        <p class="product-desc">Кінський волос, вовна мериноса, натуральний латекс. Ручна робота. Лімітована серія.</p>
+        <div class="product-footer">
+          <div class="product-price">48 000 <span>грн</span></div>
+          <button class="btn-add">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="reveal">
+    <h2 class="cta-title">100 ночей<br><em>безкоштовно</em></h2>
+  </div>
+  <div class="cta-right reveal">
+    <p class="cta-desc">Спробуйте будь-який матрац вдома протягом 100 ночей. Якщо він вам не підійде — ми заберемо його і повернемо гроші без питань.</p>
+    <div class="cta-form">
+      <input class="cta-input" type="tel" placeholder="+380 __ ___ __ __">
+      <button class="cta-submit">Замовити</button>
+    </div>
+    <p style="font-size:12px;color:var(--soft);letter-spacing:1px;">Або телефонуйте: <strong style="color:var(--dark)">0 800 123 456</strong> — безкоштовно</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-content">
-    <p>© 2026 SleepPro. Всі права захищені. Найкращий вибір для вашого дому.</p>
+  <div class="footer-brand">
+    <span class="footer-logo">СОМНІУМ</span>
+    <p class="footer-desc">Матраци ручної роботи з натуральних матеріалів. Створено для тих, хто цінує якісний сон.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Каталог</h4>
+    <ul>
+      <li><a href="#">Всі матраци</a></li>
+      <li><a href="#">Пружинні</a></li>
+      <li><a href="#">Безпружинні</a></li>
+      <li><a href="#">Дитячі</a></li>
+      <li><a href="#">Люкс-серія</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Компанія</h4>
+    <ul>
+      <li><a href="#">Про нас</a></li>
+      <li><a href="#">Виробництво</a></li>
+      <li><a href="#">Блог</a></li>
+      <li><a href="#">Вакансії</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Підтримка</h4>
+    <ul>
+      <li><a href="#">Доставка</a></li>
+      <li><a href="#">Повернення</a></li>
+      <li><a href="#">Гарантія</a></li>
+      <li><a href="#">Контакти</a></li>
+    </ul>
   </div>
 </footer>
+<div class="footer-bottom">
+  <span class="footer-copy">© 2025 СОМНІУМ. Усі права захищені.</span>
+  <span class="footer-copy">Зроблено з ❤ в Україні</span>
+</div>
 
 <script>
-  // Данные для матрасов
-  const products = [
-    { id: 1, name: "Venezia Classic", price: "4 200", desc: "Натуральний латекс та кокосова койра. Середня жорсткість.", icon: "🛏️" },
-    { id: 2, name: "Firenze Memory", price: "6 850", desc: "Ефект пам'яті Memory Foam. Максимальний комфорт.", icon: "💤" },
-    { id: 3, name: "Roma Ortho", price: "5 400", desc: "Посилений блок пружин для підтримки хребта.", icon: "🛡️" },
-    { id: 4, name: "Eco Latex Mini", price: "3 900", desc: "Тонкий матрац (топпер) для вирівнювання дивана.", icon: "🌿" }
-  ];
-
-  // Функция отрисовки карточек
-  function renderProducts() {
-    const grids = ['main-catalog', 'featured-grid'];
-    grids.forEach(gridId => {
-      const grid = document.getElementById(gridId);
-      if(!grid) return;
-      
-      grid.innerHTML = products.map(p => `
-        <div class="mat-card">
-          <div class="mat-img">${p.icon}</div>
-          <div class="mat-body">
-            <div class="mat-name">${p.name}</div>
-            <p style="color: #6B7280; font-size: 14px;">${p.desc}</p>
-            <div class="mat-price">${p.price} ₴</div>
-            <button class="btn-buy" onclick="alert('Товар ${p.name} додано до кошика!')">Купити</button>
-          </div>
-        </div>
-      `).join('');
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
     });
-  }
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
 
-  // Переключение страниц
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    
-    document.getElementById(id).classList.add('active');
-    // Подсветка активной кнопки в навигации
-    const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(b => b.textContent.toLowerCase().includes(id === 'home' ? 'гол' : id === 'catalog' ? 'кат' : 'кон'));
-    if(activeBtn) activeBtn.classList.add('active');
-    
-    window.scrollTo(0, 0);
-  }
+  // Add to cart feedback
+  document.querySelectorAll('.btn-add').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.textContent = '✓';
+      this.style.background = 'var(--accent)';
+      this.style.color = 'white';
+      setTimeout(() => {
+        this.textContent = '+';
+        this.style.background = '';
+        this.style.color = '';
+      }, 1500);
+    });
+  });
 
-  // Инициализация
-  renderProducts();
+  // CTA submit
+  document.querySelector('.cta-submit').addEventListener('click', function() {
+    const input = document.querySelector('.cta-input');
+    if (input.value.trim()) {
+      this.textContent = '✓ Готово';
+      this.style.background = '#4a7c59';
+      input.value = '';
+      setTimeout(() => {
+        this.textContent = 'Замовити';
+        this.style.background = '';
+      }, 2500);
+    } else {
+      input.style.borderColor = 'var(--accent)';
+      input.focus();
+      setTimeout(() => input.style.borderColor = '', 1500);
+    }
+  });
 </script>
-
 </body>
 </html>
