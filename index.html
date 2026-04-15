@@ -2,7 +2,8 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2c2417">
 <title>Sogni d'Oro – Materassi Artigianali Frosinone</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
@@ -10,289 +11,451 @@
 :root{
   --cream:#faf8f4;--warm-white:#f5f2ec;--beige:#e8e0d0;
   --light-gold:#c9a96e;--gold:#b8935a;--dark:#2c2417;
-  --gray:#7a7165;--light-gray:#d4cfc8;--red:#c0392b;
-  --shadow:0 8px 40px rgba(44,36,23,0.10);--radius:16px
+  --gray:#7a7165;--red:#c0392b;
+  --shadow:0 4px 24px rgba(44,36,23,.10);--radius:14px;
+  --header-h:64px;
 }
-html{scroll-behavior:smooth}
-body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--dark);font-weight:300}
+@media(min-width:768px){:root{--header-h:72px}}
 
-/* HEADER */
-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(250,248,244,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--beige);padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
-.logo-img{height:50px;filter:brightness(0.95)}
-nav{display:flex;gap:28px;align-items:center}
-nav a{text-decoration:none;color:var(--gray);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;transition:color .2s}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--dark);font-weight:300;overflow-x:hidden}
+
+/* ========== HEADER ========== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(250,248,244,.97);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--beige);
+  height:var(--header-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 16px;
+}
+@media(min-width:768px){header{padding:0 28px}}
+
+.logo-img{height:40px;max-width:130px;object-fit:contain}
+@media(min-width:768px){.logo-img{height:48px}}
+
+nav{display:flex;gap:22px;align-items:center}
+nav a{text-decoration:none;color:var(--gray);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;transition:color .2s;white-space:nowrap}
 nav a:hover{color:var(--gold)}
-.cart-btn{background:var(--dark);color:var(--cream)!important;padding:8px 18px;border-radius:24px;font-size:12px!important;display:flex;align-items:center;gap:7px;transition:background .2s!important}
+
+.cart-btn{
+  background:var(--dark);color:var(--cream)!important;
+  padding:8px 16px;border-radius:24px;font-size:11px!important;
+  display:flex;align-items:center;gap:6px;transition:background .2s!important;
+}
 .cart-btn:hover{background:var(--gold)!important}
-.cart-badge{background:var(--red);color:#fff;border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
-.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
-.mobile-menu-btn span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s}
+.cart-badge{
+  background:var(--red);color:#fff;border-radius:50%;
+  width:18px;height:18px;min-width:18px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;
+}
 
-/* HERO */
-.hero{margin-top:72px;min-height:92vh;background:linear-gradient(135deg,var(--warm-white) 0%,#ede6d8 40%,#f9f5ee 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.12) 0%,transparent 70%);top:-100px;right:-100px}
-.hero::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.08) 0%,transparent 70%);bottom:-60px;left:-80px}
-.hero-content{position:relative;z-index:1;max-width:780px}
-.hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;font-weight:400}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(34px,5.5vw,68px);font-weight:400;line-height:1.12;color:var(--dark);margin-bottom:12px}
+/* Hamburger */
+.mobile-menu-btn{
+  display:none;background:none;border:none;cursor:pointer;
+  flex-direction:column;gap:5px;padding:10px 6px;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+.mobile-menu-btn span{display:block;width:24px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s}
+.mobile-menu-btn.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mobile-menu-btn.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.mobile-menu-btn.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media(max-width:767px){
+  .mobile-menu-btn{display:flex}
+  nav{
+    display:none;flex-direction:column;align-items:flex-start;
+    position:fixed;top:var(--header-h);left:0;right:0;bottom:0;
+    background:var(--cream);padding:20px;gap:0;z-index:990;overflow-y:auto;
+  }
+  nav.open{display:flex}
+  nav a{
+    width:100%;padding:16px 0;font-size:15px;letter-spacing:.5px;
+    border-bottom:1px solid var(--beige);color:var(--dark);
+  }
+  nav a:last-child{border-bottom:none}
+  .cart-btn{
+    margin-top:20px;width:100%;justify-content:center;
+    padding:15px;font-size:14px!important;border-radius:12px;
+  }
+}
+
+/* ========== HERO ========== */
+.hero{
+  margin-top:var(--header-h);
+  min-height:calc(100svh - var(--header-h));
+  background:linear-gradient(135deg,var(--warm-white) 0%,#ede6d8 40%,#f9f5ee 100%);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:40px 20px;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.14) 0%,transparent 70%);top:-60px;right:-60px;pointer-events:none}
+.hero::after{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.09) 0%,transparent 70%);bottom:-40px;left:-40px;pointer-events:none}
+@media(min-width:768px){
+  .hero::before{width:600px;height:600px;top:-100px;right:-100px}
+  .hero::after{width:400px;height:400px}
+}
+.hero-content{position:relative;z-index:1;max-width:720px;width:100%}
+.hero-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(26px,7vw,62px);font-weight:400;line-height:1.15;color:var(--dark);margin-bottom:10px}
 .hero h1 em{font-style:italic;color:var(--gold)}
-.hero-subtitle{font-size:clamp(15px,2vw,18px);color:var(--gray);margin:20px 0 36px;font-weight:300;line-height:1.7;letter-spacing:.5px}
-.hero-cta-group{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.btn-primary{background:var(--dark);color:var(--cream);padding:14px 32px;border-radius:40px;text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;transition:background .2s,transform .15s,box-shadow .2s;display:inline-block}
+.hero-subtitle{font-size:clamp(13px,3.5vw,16px);color:var(--gray);margin:14px 0 28px;font-weight:300;line-height:1.7}
+.hero-cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary,.btn-secondary{
+  padding:13px 26px;border-radius:40px;text-decoration:none;
+  font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;display:inline-block;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.btn-primary{background:var(--dark);color:var(--cream)}
 .btn-primary:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,147,90,.35)}
-.btn-secondary{background:transparent;color:var(--dark);padding:14px 32px;border-radius:40px;text-decoration:none;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:400;border:1px solid var(--beige);transition:border-color .2s,transform .15s,color .2s;display:inline-block}
+.btn-secondary{background:transparent;color:var(--dark);border:1px solid var(--beige)}
 .btn-secondary:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+@media(max-width:380px){
+  .hero-cta-group{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;text-align:center}
+}
 
-/* FEATURES BAR */
-.features-bar{background:var(--dark);padding:24px 40px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
-.feat-item{display:flex;align-items:center;gap:12px;color:var(--cream)}
-.feat-icon{font-size:22px}
-.feat-text{font-size:12px;letter-spacing:1px;text-transform:uppercase;opacity:.85}
+/* ========== FEATURES BAR ========== */
+.features-bar{
+  background:var(--dark);padding:16px 16px;
+  display:flex;justify-content:flex-start;gap:28px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.features-bar::-webkit-scrollbar{display:none}
+@media(min-width:900px){.features-bar{justify-content:center;padding:22px 40px;gap:48px}}
+.feat-item{display:flex;align-items:center;gap:8px;color:var(--cream);flex-shrink:0}
+.feat-icon{font-size:18px}
+@media(min-width:768px){.feat-icon{font-size:22px}}
+.feat-text{font-size:10px;letter-spacing:1px;text-transform:uppercase;opacity:.85;white-space:nowrap}
+@media(min-width:768px){.feat-text{font-size:11px}}
 
-/* SECTIONS */
-section{padding:80px 24px}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:400;text-align:center;margin-bottom:8px;color:var(--dark)}
-.section-eyebrow{text-align:center;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.section-sub{text-align:center;color:var(--gray);font-size:15px;max-width:560px;margin:0 auto 56px;line-height:1.75}
-.divider{width:48px;height:2px;background:var(--light-gold);margin:20px auto;border-radius:2px}
+/* ========== SECTIONS ========== */
+section{padding:56px 16px}
+@media(min-width:768px){section{padding:80px 24px}}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,44px);font-weight:400;text-align:center;margin-bottom:8px;color:var(--dark)}
+.section-eyebrow{text-align:center;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.section-sub{text-align:center;color:var(--gray);font-size:14px;max-width:540px;margin:0 auto 40px;line-height:1.75}
+@media(min-width:768px){.section-sub{font-size:15px;margin-bottom:52px}}
+.divider{width:40px;height:2px;background:var(--light-gold);margin:14px auto;border-radius:2px}
 
-/* QUALITY */
+/* ========== QUALITY ========== */
 .quality-section{background:var(--warm-white)}
-.quality-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px}
-.quality-card{background:#fff;border-radius:var(--radius);padding:32px 24px;text-align:center;box-shadow:var(--shadow);border:1px solid var(--beige);transition:transform .25s,box-shadow .25s}
-.quality-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(44,36,23,.13)}
-.quality-icon{font-size:36px;margin-bottom:14px}
-.quality-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:8px;color:var(--dark)}
-.quality-desc{font-size:12px;color:var(--gray);line-height:1.6}
+.quality-grid{
+  max-width:1100px;margin:0 auto;display:grid;
+  grid-template-columns:repeat(2,1fr);gap:12px;
+}
+@media(min-width:480px){.quality-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.quality-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px}}
+.quality-card{
+  background:#fff;border-radius:var(--radius);padding:18px 14px;
+  text-align:center;box-shadow:var(--shadow);border:1px solid var(--beige);
+  transition:transform .25s,box-shadow .25s;
+}
+@media(min-width:768px){.quality-card{padding:28px 20px}}
+.quality-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(44,36,23,.12)}
+.quality-icon{font-size:26px;margin-bottom:8px}
+@media(min-width:768px){.quality-icon{font-size:32px;margin-bottom:12px}}
+.quality-name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;margin-bottom:5px;color:var(--dark)}
+@media(min-width:768px){.quality-name{font-size:14px}}
+.quality-desc{font-size:10px;color:var(--gray);line-height:1.5}
+@media(min-width:768px){.quality-desc{font-size:11px}}
 
-/* CATALOGUE */
+/* ========== CATALOGUE ========== */
 .catalogue-section{background:var(--cream)}
-.cat-filters{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.cat-filter{padding:8px 20px;border-radius:24px;border:1px solid var(--beige);background:transparent;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'Lato',sans-serif;color:var(--gray)}
+.cat-filters{
+  display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;
+  margin-bottom:28px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  padding-bottom:4px;scrollbar-width:none;
+}
+.cat-filters::-webkit-scrollbar{display:none}
+@media(min-width:600px){.cat-filters{justify-content:center;flex-wrap:wrap;margin-bottom:36px}}
+.cat-filter{
+  padding:8px 16px;border-radius:24px;border:1px solid var(--beige);
+  background:transparent;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:all .2s;font-family:'Lato',sans-serif;
+  color:var(--gray);white-space:nowrap;flex-shrink:0;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
 .cat-filter.active,.cat-filter:hover{background:var(--dark);color:var(--cream);border-color:var(--dark)}
-.mattress-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px}
-.mattress-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--beige);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
-.mattress-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(44,36,23,.14)}
-.card-img-wrap{background:linear-gradient(135deg,#f9f6f0 0%,#f0ebe0 100%);padding:20px;height:220px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+.mattress-grid{
+  max-width:1200px;margin:0 auto;display:grid;
+  grid-template-columns:1fr;gap:16px;
+}
+@media(min-width:460px){.mattress-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:860px){.mattress-grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+@media(min-width:1180px){.mattress-grid{grid-template-columns:repeat(4,1fr)}}
+
+.mattress-card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--beige);
+  transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;
+}
+@media(min-width:768px){.mattress-card:hover{transform:translateY(-5px);box-shadow:0 16px 50px rgba(44,36,23,.13)}}
+.mattress-card:active{transform:scale(0.98)}
+
+.card-img-wrap{
+  background:linear-gradient(135deg,#f9f6f0 0%,#f0ebe0 100%);
+  padding:14px;height:160px;display:flex;align-items:center;
+  justify-content:center;overflow:hidden;cursor:pointer;
+}
+@media(min-width:768px){.card-img-wrap{height:190px;padding:18px}}
 .card-img-wrap img{width:100%;height:100%;object-fit:contain;transition:transform .4s}
 .mattress-card:hover .card-img-wrap img{transform:scale(1.04)}
-.card-body{padding:22px 22px 18px;flex:1;display:flex;flex-direction:column}
-.card-line-badge{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
-.card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;margin-bottom:10px;color:var(--dark)}
-.card-desc{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:14px;flex:1}
-.card-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.badge{background:var(--warm-white);border:1px solid var(--beige);border-radius:12px;font-size:10px;padding:3px 10px;color:var(--gray);letter-spacing:.5px}
-.card-sizes{font-size:12px;color:var(--gray);margin-bottom:16px;line-height:1.6}
+
+.card-body{padding:14px;flex:1;display:flex;flex-direction:column}
+@media(min-width:768px){.card-body{padding:18px 18px 14px}}
+.card-line-badge{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;display:block}
+.card-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:7px;color:var(--dark);cursor:pointer}
+@media(min-width:768px){.card-title{font-size:17px}}
+.card-desc{font-size:11px;color:var(--gray);line-height:1.6;margin-bottom:9px;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-badges{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
+.badge{background:var(--warm-white);border:1px solid var(--beige);border-radius:10px;font-size:9px;padding:2px 7px;color:var(--gray)}
+.card-sizes{font-size:10px;color:var(--gray);margin-bottom:11px;line-height:1.55}
 .card-sizes strong{color:var(--dark);font-weight:700}
-.add-cart-btn{width:100%;padding:12px;background:var(--dark);color:var(--cream);border:none;border-radius:10px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:'Lato',sans-serif;font-weight:400;transition:background .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:8px}
-.add-cart-btn:hover{background:var(--gold);transform:translateY(-1px)}
+
+.add-cart-btn{
+  width:100%;padding:11px 8px;background:var(--dark);color:var(--cream);
+  border:none;border-radius:8px;font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;font-family:'Lato',sans-serif;font-weight:400;
+  transition:background .2s,transform .1s;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.add-cart-btn:hover{background:var(--gold)}
+.add-cart-btn:active{transform:scale(0.97)}
 .add-cart-btn.added{background:#27ae60}
 
-/* RETI SECTION */
+/* ========== RETI ========== */
 .reti-section{background:var(--warm-white)}
-.reti-intro{max-width:700px;margin:0 auto 56px;text-align:center}
-.reti-intro p{font-size:15px;color:var(--gray);line-height:1.8}
-.reti-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
-.reti-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--beige);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
-.reti-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(44,36,23,.14)}
-.reti-img-wrap{background:linear-gradient(135deg,#f9f6f0 0%,#f0ebe0 100%);padding:24px;height:200px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.reti-intro{max-width:680px;margin:0 auto 36px;text-align:center}
+.reti-intro p{font-size:14px;color:var(--gray);line-height:1.8}
+@media(min-width:768px){.reti-intro p{font-size:15px}}
+
+.reti-grid{
+  max-width:1200px;margin:0 auto;display:grid;
+  grid-template-columns:1fr;gap:16px;
+}
+@media(min-width:460px){.reti-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:860px){.reti-grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+@media(min-width:1180px){.reti-grid{grid-template-columns:repeat(4,1fr)}}
+
+.reti-card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--beige);
+  transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;
+}
+@media(min-width:768px){.reti-card:hover{transform:translateY(-5px);box-shadow:0 16px 50px rgba(44,36,23,.13)}}
+.reti-card:active{transform:scale(0.98)}
+.reti-img-wrap{
+  background:linear-gradient(135deg,#f9f6f0 0%,#f0ebe0 100%);
+  padding:18px;height:155px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
 .reti-img-wrap img{width:100%;height:100%;object-fit:contain;transition:transform .4s}
 .reti-card:hover .reti-img-wrap img{transform:scale(1.04)}
-.reti-body{padding:22px;flex:1;display:flex;flex-direction:column}
-.reti-type{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
-.reti-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:10px;color:var(--dark)}
-.reti-desc{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:16px;flex:1}
-.reti-specs{font-size:12px;color:var(--gray);line-height:1.7;margin-bottom:16px;padding:12px;background:var(--warm-white);border-radius:8px;border:1px solid var(--beige)}
-.reti-specs strong{color:var(--dark)}
-.reti-card .add-cart-btn{margin-top:auto}
+.reti-body{padding:14px;flex:1;display:flex;flex-direction:column}
+.reti-type{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;display:block}
+.reti-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;margin-bottom:7px;color:var(--dark)}
+@media(min-width:768px){.reti-title{font-size:16px}}
+.reti-desc{font-size:11px;color:var(--gray);line-height:1.6;margin-bottom:10px;flex:1}
+.reti-specs{
+  font-size:10px;color:var(--gray);line-height:1.65;
+  margin-bottom:11px;padding:9px;
+  background:var(--warm-white);border-radius:7px;border:1px solid var(--beige);
+}
 
-/* CUSCINI SECTION */
+/* ========== CUSCINI ========== */
 .cuscini-section{background:var(--cream)}
-.cuscini-intro{max-width:700px;margin:0 auto 56px;text-align:center}
-.cuscini-intro p{font-size:15px;color:var(--gray);line-height:1.8}
-.cuscini-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px}
-.cuscino-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--beige);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;text-align:center}
-.cuscino-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(44,36,23,.14)}
-.cuscino-img-wrap{background:linear-gradient(135deg,#f9f6f0 0%,#f0ebe0 100%);padding:24px;height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cuscini-intro{max-width:680px;margin:0 auto 36px;text-align:center}
+.cuscini-intro p{font-size:14px;color:var(--gray);line-height:1.8}
+
+.cuscini-grid{
+  max-width:1100px;margin:0 auto;display:grid;
+  grid-template-columns:repeat(2,1fr);gap:12px;
+}
+@media(min-width:480px){.cuscini-grid{gap:14px}}
+@media(min-width:650px){.cuscini-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1000px){.cuscini-grid{grid-template-columns:repeat(6,1fr)}}
+
+.cuscino-card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--beige);
+  transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;text-align:center;
+}
+@media(min-width:768px){.cuscino-card:hover{transform:translateY(-5px);box-shadow:0 16px 50px rgba(44,36,23,.13)}}
+.cuscino-card:active{transform:scale(0.98)}
+.cuscino-img-wrap{
+  background:linear-gradient(135deg,#f9f6f0 0%,#f0ebe0 100%);
+  padding:14px;height:120px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+@media(min-width:768px){.cuscino-img-wrap{height:140px}}
 .cuscino-img-wrap img{width:100%;height:100%;object-fit:contain;transition:transform .4s}
 .cuscino-card:hover .cuscino-img-wrap img{transform:scale(1.04)}
-.cuscino-body{padding:18px;flex:1;display:flex;flex-direction:column}
-.cuscino-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:8px;color:var(--dark)}
-.cuscino-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:14px;flex:1}
-.cuscino-card .add-cart-btn{font-size:11px;padding:10px}
+.cuscino-body{padding:12px 10px;flex:1;display:flex;flex-direction:column}
+.cuscino-title{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;margin-bottom:5px;color:var(--dark)}
+@media(min-width:768px){.cuscino-title{font-size:13px}}
+.cuscino-desc{font-size:10px;color:var(--gray);line-height:1.5;margin-bottom:10px;flex:1}
+.cuscino-card .add-cart-btn{font-size:9px;padding:8px 6px;letter-spacing:.8px}
 
-/* CART */
-.cart-overlay{position:fixed;inset:0;background:rgba(44,36,23,.5);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+/* ========== CART ========== */
+.cart-overlay{
+  position:fixed;inset:0;background:rgba(44,36,23,.55);
+  z-index:2000;opacity:0;pointer-events:none;
+  transition:opacity .3s;
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+}
 .cart-overlay.open{opacity:1;pointer-events:all}
-.cart-sidebar{position:fixed;top:0;right:-420px;width:420px;max-width:100vw;height:100%;background:var(--cream);z-index:2001;transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(0,0,0,.15)}
+.cart-sidebar{
+  position:fixed;top:0;right:-100%;width:100%;max-width:420px;height:100%;
+  background:var(--cream);z-index:2001;
+  transition:right .35s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+  box-shadow:-4px 0 28px rgba(0,0,0,.15);
+}
 .cart-sidebar.open{right:0}
-.cart-header{padding:24px;border-bottom:1px solid var(--beige);display:flex;justify-content:space-between;align-items:center}
-.cart-header h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:400}
-.close-cart{background:none;border:none;font-size:22px;cursor:pointer;color:var(--gray);padding:4px;line-height:1;transition:color .2s}
+.cart-header{
+  padding:16px 18px;border-bottom:1px solid var(--beige);
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:calc(16px + env(safe-area-inset-top,0px));
+}
+.cart-header h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:400}
+.close-cart{
+  background:none;border:none;font-size:22px;cursor:pointer;
+  color:var(--gray);padding:6px;line-height:1;transition:color .2s;
+  -webkit-tap-highlight-color:transparent;
+}
 .close-cart:hover{color:var(--dark)}
-.cart-items{flex:1;overflow-y:auto;padding:20px 24px}
-.cart-empty{text-align:center;color:var(--gray);font-size:14px;padding:60px 0}
-.cart-empty-icon{font-size:48px;margin-bottom:16px}
-.cart-item{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--beige)}
-.cart-item-img{width:72px;height:52px;object-fit:contain;background:var(--warm-white);border-radius:8px;padding:4px;flex-shrink:0}
-.cart-item-info{flex:1}
-.cart-item-name{font-family:'Playfair Display',serif;font-size:14px;margin-bottom:4px}
-.cart-item-detail{font-size:12px;color:var(--gray)}
-.remove-item{background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:4px;transition:color .2s;flex-shrink:0}
+.cart-items{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 18px}
+.cart-empty{text-align:center;color:var(--gray);font-size:14px;padding:50px 0}
+.cart-empty-icon{font-size:40px;margin-bottom:12px}
+.cart-item{display:flex;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid var(--beige)}
+.cart-item-img{width:60px;height:44px;object-fit:contain;background:var(--warm-white);border-radius:8px;padding:4px;flex-shrink:0}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-family:'Playfair Display',serif;font-size:13px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cart-item-detail{font-size:10px;color:var(--gray)}
+.remove-item{background:none;border:none;color:var(--gray);cursor:pointer;font-size:16px;padding:6px;transition:color .2s;flex-shrink:0;-webkit-tap-highlight-color:transparent}
 .remove-item:hover{color:var(--red)}
-.cart-footer{padding:20px 24px;border-top:1px solid var(--beige)}
-.cart-info{font-size:12px;color:var(--gray);margin-bottom:16px;line-height:1.6}
-.checkout-form{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.checkout-input{padding:11px 16px;border:1px solid var(--beige);border-radius:10px;font-size:14px;font-family:'Lato',sans-serif;background:#fff;color:var(--dark);transition:border-color .2s;outline:none}
+.cart-footer{
+  padding:14px 18px;border-top:1px solid var(--beige);
+  padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));
+}
+.cart-info{font-size:11px;color:var(--gray);margin-bottom:12px;line-height:1.6}
+.checkout-form{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.checkout-input{
+  padding:13px 14px;border:1px solid var(--beige);border-radius:9px;
+  font-size:16px;font-family:'Lato',sans-serif;background:#fff;color:var(--dark);
+  transition:border-color .2s;outline:none;
+}
 .checkout-input:focus{border-color:var(--gold)}
-.order-btn{width:100%;padding:14px;background:var(--dark);color:var(--cream);border:none;border-radius:12px;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Lato',sans-serif;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.order-btn{
+  width:100%;padding:14px;background:var(--dark);color:var(--cream);
+  border:none;border-radius:9px;font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;font-family:'Lato',sans-serif;
+  transition:background .2s;display:flex;align-items:center;justify-content:center;gap:7px;
+  -webkit-tap-highlight-color:transparent;
+}
 .order-btn:hover{background:var(--gold)}
 .order-btn:disabled{opacity:.5;cursor:not-allowed}
 
-/* CONTACT */
-.contact-section{background:var(--dark);color:var(--cream);padding:80px 24px;text-align:center}
+/* ========== CONTACT ========== */
+.contact-section{background:var(--dark);color:var(--cream);padding:56px 20px;text-align:center}
+@media(min-width:768px){.contact-section{padding:80px 24px}}
 .contact-section .section-title{color:var(--cream)}
 .contact-section .section-sub{color:rgba(250,248,244,.65)}
 .contact-section .section-eyebrow{color:var(--light-gold)}
 .contact-section .divider{background:var(--light-gold)}
-.phone-big{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);color:var(--light-gold);text-decoration:none;display:block;margin:24px 0;transition:color .2s;letter-spacing:2px}
+.phone-big{
+  font-family:'Playfair Display',serif;font-size:clamp(22px,6vw,44px);
+  color:var(--light-gold);text-decoration:none;
+  display:block;margin:18px 0;transition:color .2s;
+}
 .phone-big:hover{color:#fff}
-.callback-form{max-width:420px;margin:36px auto 0;display:flex;flex-direction:column;gap:12px}
-.callback-input{padding:14px 20px;border:1px solid rgba(250,248,244,.2);border-radius:12px;background:rgba(250,248,244,.07);color:var(--cream);font-size:14px;font-family:'Lato',sans-serif;outline:none;transition:border-color .2s}
+.callback-form{max-width:420px;margin:24px auto 0;display:flex;flex-direction:column;gap:10px}
+.callback-input{
+  padding:13px 18px;border:1px solid rgba(250,248,244,.2);border-radius:9px;
+  background:rgba(250,248,244,.07);color:var(--cream);
+  font-size:16px;font-family:'Lato',sans-serif;outline:none;transition:border-color .2s;
+}
 .callback-input:focus{border-color:var(--light-gold)}
 .callback-input::placeholder{color:rgba(250,248,244,.4)}
-.callback-btn{padding:14px;background:var(--light-gold);color:var(--dark);border:none;border-radius:12px;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:'Lato',sans-serif;font-weight:700;transition:background .2s,transform .15s}
+.callback-btn{
+  padding:14px;background:var(--light-gold);color:var(--dark);
+  border:none;border-radius:9px;font-size:12px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;font-family:'Lato',sans-serif;font-weight:700;
+  transition:background .2s,transform .15s;-webkit-tap-highlight-color:transparent;
+}
 .callback-btn:hover{background:#d4a96e;transform:translateY(-1px)}
+.callback-btn:active{transform:scale(0.98)}
 
-/* FOOTER */
-footer{background:#1a1410;color:rgba(250,248,244,.5);text-align:center;padding:28px 24px;font-size:12px;letter-spacing:.5px}
+/* ========== FOOTER ========== */
+footer{
+  background:#1a1410;color:rgba(250,248,244,.5);
+  text-align:center;padding:22px 20px;font-size:11px;letter-spacing:.4px;
+  padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));
+}
 footer a{color:var(--light-gold);text-decoration:none}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark);color:var(--cream);padding:14px 28px;border-radius:40px;font-size:13px;z-index:3000;transition:transform .35s cubic-bezier(.4,0,.2,1);pointer-events:none;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+/* ========== TOAST ========== */
+.toast{
+  position:fixed;bottom:24px;left:50%;
+  transform:translateX(-50%) translateY(120px);
+  background:var(--dark);color:var(--cream);
+  padding:11px 22px;border-radius:40px;
+  font-size:13px;z-index:9999;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;white-space:nowrap;
+  box-shadow:0 6px 28px rgba(0,0,0,.25);
+  max-width:calc(100vw - 40px);overflow:hidden;text-overflow:ellipsis;
+}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  nav{display:none}
-  nav.open{display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:var(--cream);padding:20px 24px;border-bottom:1px solid var(--beige);gap:16px;z-index:999}
-  .mobile-menu-btn{display:flex}
-  .cart-sidebar{width:100vw}
-  .mattress-grid{grid-template-columns:1fr;gap:20px}
-  .reti-grid{grid-template-columns:1fr;gap:20px}
-  .cuscini-grid{grid-template-columns:repeat(2,1fr);gap:16px}
-  .quality-grid{grid-template-columns:repeat(2,1fr);gap:16px}
-  .features-bar{gap:24px;padding:20px 16px}
-  section{padding:60px 16px}
+/* ========== MODAL ========== */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(44,36,23,.75);
+  z-index:8000;display:none;align-items:flex-end;justify-content:center;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
 }
-@media(max-width:480px){
-  .quality-grid{grid-template-columns:1fr}
-  .cuscini-grid{grid-template-columns:1fr}
-  header{padding:0 16px}
+@media(min-width:600px){.modal-overlay{align-items:center}}
+.modal-overlay.show{display:flex}
+.modal-content{
+  background:#fff;width:100%;max-width:860px;
+  max-height:92svh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  box-shadow:0 -8px 48px rgba(0,0,0,.25);
+  position:relative;display:flex;flex-direction:column;
+  border-radius:20px 20px 0 0;
 }
-/* MODAL */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(44,36,23,0.7);
-  z-index: 3000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(8px);
+@media(min-width:600px){
+  .modal-content{border-radius:var(--radius);margin:20px;flex-direction:row;max-height:86svh}
 }
-
-.modal-overlay.show {
-  display: flex;
+.modal-content::before{
+  content:'';display:block;width:36px;height:4px;
+  background:var(--beige);border-radius:2px;margin:12px auto 0;flex-shrink:0;
 }
-
-.modal-content {
-  background: #fff;
-  border-radius: var(--radius);
-  max-width: 900px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 80px rgba(0,0,0,0.3);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
+@media(min-width:600px){.modal-content::before{display:none}}
+.modal-close{
+  position:absolute;top:12px;right:14px;
+  background:rgba(0,0,0,.07);border:none;font-size:18px;cursor:pointer;color:var(--gray);
+  z-index:10;border-radius:50%;width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;-webkit-tap-highlight-color:transparent;
 }
-
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--gray);
-  z-index: 10;
+.modal-close:hover{background:var(--beige);color:var(--dark)}
+.modal-img{
+  background:linear-gradient(135deg,#f9f6f0 0%,#f0ebe0 100%);
+  padding:22px;display:flex;align-items:center;justify-content:center;min-height:180px;
 }
-
-.modal-close:hover {
-  color: var(--dark);
-}
-
-.modal-img {
-  padding: 30px;
-  background: linear-gradient(135deg, #f9f6f0 0%, #f0ebe0 100%);
-  text-align: center;
-}
-
-.modal-img img {
-  max-height: 380px;
-  width: auto;
-  object-fit: contain;
-}
-
-.modal-body {
-  padding: 30px;
-  flex: 1;
-}
-
-.modal-line-badge {
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-  display: block;
-}
-
-.modal-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  margin-bottom: 16px;
-  color: var(--dark);
-}
-
-.modal-desc {
-  font-size: 15px;
-  color: var(--gray);
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.modal-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.modal-sizes {
-  font-size: 14px;
-  color: var(--gray);
-  margin-bottom: 24px;
-  line-height: 1.6;
-}
-
-.modal-sizes strong {
-  color: var(--dark);
-}
+@media(min-width:600px){.modal-img{width:42%;min-width:42%;position:sticky;top:0;align-self:flex-start;min-height:auto;padding:32px}}
+.modal-img img{max-height:240px;width:auto;max-width:100%;object-fit:contain}
+@media(min-width:600px){.modal-img img{max-height:320px}}
+.modal-body{padding:18px 20px 24px}
+@media(min-width:600px){.modal-body{padding:28px 28px 28px;overflow-y:auto}}
+.modal-line-badge{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;display:block}
+.modal-title{font-family:'Playfair Display',serif;font-size:clamp(18px,4vw,24px);margin-bottom:10px;color:var(--dark)}
+.modal-desc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:14px}
+.modal-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.modal-sizes{font-size:12px;color:var(--gray);margin-bottom:18px;line-height:1.6}
+.modal-sizes strong{color:var(--dark)}
 </style>
 </head>
 <body>
@@ -301,14 +464,14 @@ footer a{color:var(--light-gold);text-decoration:none}
 <header>
   <img src="1111.jpg" alt="Sogni d'Oro Materassi" class="logo-img">
   <nav id="nav">
-    <a href="#chi-siamo">Chi siamo</a>
-    <a href="#catalogo">Materassi</a>
-    <a href="#reti">Reti</a>
-    <a href="#cuscini">Cuscini</a>
-    <a href="#contatti">Contatti</a>
+    <a href="#chi-siamo" onclick="closeMenu()">Chi siamo</a>
+    <a href="#catalogo" onclick="closeMenu()">Materassi</a>
+    <a href="#reti" onclick="closeMenu()">Reti</a>
+    <a href="#cuscini" onclick="closeMenu()">Cuscini</a>
+    <a href="#contatti" onclick="closeMenu()">Contatti</a>
     <a href="#" class="cart-btn" onclick="openCart(event)">🛒 Carrello <span class="cart-badge" id="cart-badge">0</span></a>
   </nav>
-  <button class="mobile-menu-btn" id="menu-btn" onclick="toggleMenu()" aria-label="Menu">
+  <button class="mobile-menu-btn" id="menu-btn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
@@ -319,10 +482,10 @@ footer a{color:var(--light-gold);text-decoration:none}
     <p class="hero-eyebrow">Frosinone, Italia — Artigianato dal 1985</p>
     <h1>Produzione italiana <em>Frosinone</em><br>realizziamo fuori misura<br>in tempi brevi</h1>
     <div class="divider"></div>
-    <p class="hero-subtitle">Materassi artigianali realizzati interamente nelle nostre fabbriche italiane.<br>Materiali di prima scelta, anallergici, antibatterici, anti-acaro. Zero compromessi sul comfort.</p>
+    <p class="hero-subtitle">Materassi artigianali realizzati nelle nostre fabbriche italiane.<br>Anallergici, antibatterici, anti-acaro. Zero compromessi sul comfort.</p>
     <div class="hero-cta-group">
       <a href="#catalogo" class="btn-primary">Scopri il catalogo</a>
-      <a href="#contatti" class="btn-secondary">Richiedici un preventivo</a>
+      <a href="#contatti" class="btn-secondary">Preventivo gratuito</a>
     </div>
   </div>
 </section>
@@ -330,10 +493,10 @@ footer a{color:var(--light-gold);text-decoration:none}
 <!-- FEATURES BAR -->
 <div class="features-bar">
   <div class="feat-item"><span class="feat-icon">🇮🇹</span><span class="feat-text">100% Made in Italy</span></div>
-  <div class="feat-item"><span class="feat-icon">📐</span><span class="feat-text">Fuori misura su richiesta</span></div>
+  <div class="feat-item"><span class="feat-icon">📐</span><span class="feat-text">Fuori misura</span></div>
   <div class="feat-item"><span class="feat-icon">⚡</span><span class="feat-text">Consegna rapida</span></div>
-  <div class="feat-item"><span class="feat-icon">🌿</span><span class="feat-text">Materiali eco-sostenibili</span></div>
-  <div class="feat-item"><span class="feat-icon">🕒</span><span class="feat-text">Realizimo fuorimisura in tempi brevi</span></div>
+  <div class="feat-item"><span class="feat-icon">🌿</span><span class="feat-text">Eco-sostenibile</span></div>
+  <div class="feat-item"><span class="feat-icon">🕒</span><span class="feat-text">Tempi brevi</span></div>
 </div>
 
 <!-- QUALITÀ -->
@@ -341,26 +504,26 @@ footer a{color:var(--light-gold);text-decoration:none}
   <p class="section-eyebrow">La nostra filosofia</p>
   <h2 class="section-title" id="chi-siamo">Qualità artigianale italiana</h2>
   <div class="divider"></div>
-  <p class="section-sub">I materassi Sogni d'Oro sono interamente realizzati presso le nostre fabbriche italiane con materiali di prima scelta certificati.</p>
+  <p class="section-sub">I materassi Sogni d'Oro sono interamente realizzati nelle nostre fabbriche con materiali di prima scelta certificati.</p>
   <div class="quality-grid">
-    <div class="quality-card"><div class="quality-icon">🛡️</div><div class="quality-name">Anti-acaro</div><div class="quality-desc">Trattamenti specifici che proteggono dagli acari, ideale per chi soffre di allergie respiratorie.</div></div>
-    <div class="quality-card"><div class="quality-icon">🦠</div><div class="quality-name">Antibatterico</div><div class="quality-desc">Rivestimenti con proprietà antibatteriche per un'igiene costante e un ambiente sano dove dormire.</div></div>
-    <div class="quality-card"><div class="quality-icon">🌸</div><div class="quality-name">Anallergico</div><div class="quality-desc">Materiali selezionati privi di allergeni, adatti alle pelli sensibili e ai bambini più piccoli.</div></div>
-    <div class="quality-card"><div class="quality-icon">💨</div><div class="quality-name">Traspirante</div><div class="quality-desc">Tecnologia Air System per un costante ricircolo d'aria e temperature ottimali durante il riposo.</div></div>
-    <div class="quality-card"><div class="quality-icon">🧬</div><div class="quality-name">Memory Foam</div><div class="quality-desc">Schiuma a lenta memoria che si adatta alla forma del corpo eliminando tutti i punti di pressione.</div></div>
-    <div class="quality-card"><div class="quality-icon">🇮🇹</div><div class="quality-name">Made in Italy</div><div class="quality-desc">Interamente prodotti a Frosinone nelle nostre fabbriche, con materie prime certificate italiane.</div></div>
-    <div class="quality-card"><div class="quality-icon">🔥</div><div class="quality-name">Ignifugo</div><div class="quality-desc">Trattamenti ignifughi per la massima sicurezza, conformi agli standard europei più elevati.</div></div>
-    <div class="quality-card"><div class="quality-icon">📐</div><div class="quality-name">Su misura</div><div class="quality-desc">Realizziamo materassi in qualsiasi dimensione fuori standard nei tempi più brevi possibili.</div></div>
-    <div class="quality-card"><div class="quality-icon">🔄</div><div class="quality-name">Sfoderabile</div><div class="quality-desc">Fodere removibili e lavabili per una pulizia facile e il mantenimento dell'igiene nel tempo.</div></div>
+    <div class="quality-card"><div class="quality-icon">🛡️</div><div class="quality-name">Anti-acaro</div><div class="quality-desc">Protezione dagli acari per chi soffre di allergie.</div></div>
+    <div class="quality-card"><div class="quality-icon">🦠</div><div class="quality-name">Antibatterico</div><div class="quality-desc">Rivestimenti antibatterici per un'igiene costante.</div></div>
+    <div class="quality-card"><div class="quality-icon">🌸</div><div class="quality-name">Anallergico</div><div class="quality-desc">Materiali privi di allergeni, adatti a bambini e pelli sensibili.</div></div>
+    <div class="quality-card"><div class="quality-icon">💨</div><div class="quality-name">Traspirante</div><div class="quality-desc">Air System per temperature ottimali durante il riposo.</div></div>
+    <div class="quality-card"><div class="quality-icon">🧬</div><div class="quality-name">Memory Foam</div><div class="quality-desc">Si adatta al corpo eliminando i punti di pressione.</div></div>
+    <div class="quality-card"><div class="quality-icon">🇮🇹</div><div class="quality-name">Made in Italy</div><div class="quality-desc">Prodotti a Frosinone con materie prime certificate.</div></div>
+    <div class="quality-card"><div class="quality-icon">🔥</div><div class="quality-name">Ignifugo</div><div class="quality-desc">Conformi agli standard europei di sicurezza.</div></div>
+    <div class="quality-card"><div class="quality-icon">📐</div><div class="quality-name">Su misura</div><div class="quality-desc">Qualsiasi dimensione fuori standard, in tempi brevi.</div></div>
+    <div class="quality-card"><div class="quality-icon">🔄</div><div class="quality-name">Sfoderabile</div><div class="quality-desc">Fodere removibili e lavabili per igiene duratura.</div></div>
   </div>
 </section>
 
-<!-- CATALOGO MATERASSI -->
+<!-- CATALOGO -->
 <section class="catalogue-section" id="catalogo">
   <p class="section-eyebrow">I nostri prodotti</p>
   <h2 class="section-title">Catalogo Materassi</h2>
   <div class="divider"></div>
-  <p class="section-sub">Tutte le misure disponibili: 80 / 90 / 120 / 140 / 160 / 170 / 180 cm. Ogni modello realizzabile anche fuori misura su richiesta.</p>
+  <p class="section-sub">Misure: 80 / 90 / 120 / 140 / 160 / 170 / 180 cm. Ogni modello realizzabile anche fuori misura.</p>
   <div class="cat-filters">
     <button class="cat-filter active" onclick="filterMattresses('all',this)">Tutti</button>
     <button class="cat-filter" onclick="filterMattresses('indipendenti',this)">Molle Indipendenti</button>
@@ -370,13 +533,13 @@ footer a{color:var(--light-gold);text-decoration:none}
   <div class="mattress-grid" id="mattress-grid"></div>
 </section>
 
-<!-- RETI ORTOPEDICHE -->
+<!-- RETI -->
 <section class="reti-section" id="reti">
   <p class="section-eyebrow">Reti ortopediche</p>
   <h2 class="section-title">Reti Ortopediche</h2>
   <div class="divider"></div>
   <div class="reti-intro">
-    <p>La rete è un elemento essenziale per un salubre e comodo riposo. Spendere per un materasso di primo livello e poi adoperare una rete mediocre vanifica ogni buon intento: è la rete la superficie su cui tutto poggia, e se presenta cedimenti o zone deboli ne risente l'intero sistema del riposo.</p>
+    <p>La rete è un elemento essenziale per un salubre e comodo riposo. Una rete mediocre vanifica ogni buon investimento: è la superficie su cui tutto poggia.</p>
   </div>
   <div class="reti-grid" id="reti-grid"></div>
 </section>
@@ -387,7 +550,7 @@ footer a{color:var(--light-gold);text-decoration:none}
   <h2 class="section-title">Cuscini</h2>
   <div class="divider"></div>
   <div class="cuscini-intro">
-    <p>La scelta del guanciale è fondamentale per contribuire ad un'elevata qualità del sonno. Tutti i prodotti Sogni d'Oro sono studiati e realizzati per rispondere al meglio ai bisogni di termoregolazione, anallergicità e giusta postura. Una linea di cuscini in lattice e memory foam per ridurre i disturbi di nuca, collo e spalle.</p>
+    <p>La scelta del guanciale è fondamentale per la qualità del sonno. Cuscini in fibra e memory foam per ridurre i disturbi di nuca, collo e spalle.</p>
   </div>
   <div class="cuscini-grid" id="cuscini-grid"></div>
 </section>
@@ -397,12 +560,12 @@ footer a{color:var(--light-gold);text-decoration:none}
   <p class="section-eyebrow">Siamo qui per te</p>
   <h2 class="section-title">Contattaci</h2>
   <div class="divider"></div>
-  <p class="section-sub">Chiamaci per informazioni, preventivi o per ordinare un materasso su misura. Rispondiamo subito.</p>
+  <p class="section-sub">Chiamaci per informazioni, preventivi o per ordinare un materasso su misura.</p>
   <a href="tel:+393280951377" class="phone-big">+39 328 095 1377</a>
-  <p style="color:rgba(250,248,244,.55);font-size:13px;margin-bottom:8px;">Oppure lascia il tuo numero, ti richiamiamo noi:</p>
+  <p style="color:rgba(250,248,244,.55);font-size:13px;margin-bottom:8px">Oppure lascia il tuo numero, ti richiamiamo noi:</p>
   <form class="callback-form" onsubmit="sendCallback(event)">
-    <input type="text" class="callback-input" id="cb-name" placeholder="Il tuo nome" required>
-    <input type="tel" class="callback-input" id="cb-phone" placeholder="Il tuo numero di telefono" required>
+    <input type="text" class="callback-input" id="cb-name" placeholder="Il tuo nome" required autocomplete="name">
+    <input type="tel" class="callback-input" id="cb-phone" placeholder="Il tuo numero di telefono" required autocomplete="tel">
     <textarea class="callback-input" id="cb-msg" placeholder="Messaggio (opzionale)" rows="3" style="resize:vertical"></textarea>
     <button type="submit" class="callback-btn">📞 Richiedimi di essere ricontattato</button>
   </form>
@@ -410,11 +573,11 @@ footer a{color:var(--light-gold);text-decoration:none}
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2024 Sogni d'Oro Materassi — Via Le Noci, 31A – 03100 Frosinone &nbsp;|&nbsp; Tel: <a href="tel:+393280951377">+39 328 095 1377</a></p>
-  <p style="margin-top:8px;font-size:11px;opacity:.5">Produzione artigianale italiana · Consegna in tutta Italia</p>
+  <p>© 2024 Sogni d'Oro Materassi — Via Le Noci, 31A – 03100 Frosinone &nbsp;|&nbsp; <a href="tel:+393280951377">+39 328 095 1377</a></p>
+  <p style="margin-top:6px;opacity:.5">Produzione artigianale italiana · Consegna in tutta Italia</p>
 </footer>
 
-<!-- CART -->
+<!-- CART OVERLAY -->
 <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
 <div class="cart-sidebar" id="cart-sidebar">
   <div class="cart-header">
@@ -422,13 +585,13 @@ footer a{color:var(--light-gold);text-decoration:none}
     <button class="close-cart" onclick="closeCart()">✕</button>
   </div>
   <div class="cart-items" id="cart-items-list">
-    <div class="cart-empty"><div class="cart-empty-icon">🛏️</div><p>Il carrello è vuoto</p><p style="margin-top:8px;font-size:12px;opacity:.6">Aggiungi un prodotto dal catalogo</p></div>
+    <div class="cart-empty"><div class="cart-empty-icon">🛏️</div><p>Il carrello è vuoto</p><p style="margin-top:8px;font-size:11px;opacity:.6">Aggiungi un prodotto dal catalogo</p></div>
   </div>
   <div class="cart-footer">
     <p class="cart-info">Inserisci il tuo numero e invia l'ordine. Ti contatteremo per confermare dettagli e consegna.</p>
     <div class="checkout-form">
-      <input type="text" class="checkout-input" id="order-name" placeholder="Il tuo nome *">
-      <input type="tel" class="checkout-input" id="order-phone" placeholder="Il tuo numero di telefono *">
+      <input type="text" class="checkout-input" id="order-name" placeholder="Il tuo nome *" autocomplete="name">
+      <input type="tel" class="checkout-input" id="order-phone" placeholder="Il tuo numero di telefono *" autocomplete="tel">
       <textarea class="checkout-input" id="order-notes" placeholder="Note / dimensioni speciali..." rows="2" style="resize:none"></textarea>
     </div>
     <button class="order-btn" id="order-btn" onclick="sendOrder()">📦 Conferma ordine</button>
@@ -438,215 +601,108 @@ footer a{color:var(--light-gold);text-decoration:none}
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-
-<!-- MODAL CARD -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
-  <div class="modal-content" onclick="event.stopImmediatePropagation()">
+  <div class="modal-content" onclick="event.stopPropagation()">
     <button class="modal-close" onclick="closeModal()">✕</button>
-    
     <div class="modal-img" id="modal-img"></div>
-    
     <div class="modal-body">
       <span class="modal-line-badge" id="modal-line"></span>
       <h2 class="modal-title" id="modal-title"></h2>
       <div class="modal-desc" id="modal-desc"></div>
-      
       <div class="modal-badges" id="modal-badges"></div>
-      
       <div class="modal-sizes" id="modal-sizes"></div>
-      
-      <button class="add-cart-btn" id="modal-add-btn" onclick="addCurrentToCart()">
-        🛒 Aggiungi al carrello
-      </button>
+      <button class="add-cart-btn" id="modal-add-btn" onclick="addCurrentToCart()">🛒 Aggiungi al carrello</button>
     </div>
   </div>
 </div>
 
-
-
-
-
 <script>
-/* ===== IMMAGINI ===== */
-const IMGS = {
-  /* Materassi */
-  excelsior3000: 'excelsior3000.jpg',
-  panarea: 'panarea.jpg',
-  absolute1600: 'absolute1600.jpg',
-  pocket: 'pocket.jpg',
-  pocket_memory: 'pocket_memory.jpg',
-  fisio_system: 'fisio_system.jpg',
-  aloe_bianca: 'aloe_bianca.jpg',
-  ortomol: 'ortomol.jpg',
-  ortomol_memory: 'ortomol_memory.jpg',
-  capri: 'capri.jpg',
-  ischia: 'ischia.jpg',
-  ventotene: 'ventotene.jpg',
-  ponza_memory_gel: 'ponza_memory_gel.jpg',
-  lipari_waterlily: 'lipari_waterlily.jpg',
+const IMGS={
+  excelsior3000:'excelsior3000.jpg',panarea:'panarea.jpg',
+  absolute1600:'absolute1600.jpg',pocket:'pocket.jpg',
+  pocket_memory:'pocket_memory.jpg',fisio_system:'fisio_system.jpg',
+  aloe_bianca:'aloe_bianca.jpg',ortomol:'ortomol.jpg',
+  ortomol_memory:'ortomol_memory.jpg',capri:'capri.jpg',
+  ischia:'ischia.jpg',ventotene:'ventotene.jpg',
+  ponza_memory_gel:'ponza_memory_gel.jpg',lipari_waterlily:'lipari_waterlily.jpg',
+  rete_fissa_13_singola:'rete_fissa_13_singola.jpg',
+  rete_fissa_13_matrimoniale:'rete_fissa_13_matrimoniale.jpg',
+  rete_fissa_14_singola:'rete_fissa_14_singola.jpg',
+  rete_fissa_14_matrimoniale:'rete_fissa_14_matrimoniale.jpg',
+  rete_manuale:'rete_manuale.jpg',
+  rete_doppia_motore:'rete_doppia_motore.jpg',
+  cuscino_fibra_siliconata:'fibra_siliconata.jpg',
+  cuscino_fibra_500:'fibra_500.jpg',cuscino_fibra_900:'fibra_900.jpg',
+  cuscino_memory_saponetta:'memory_saponetta.jpg',
+  cuscino_memory_doppia_onda_forato:'memory_doppia_onda_forato.jpg',
+  cuscino_memory_doppia_onda:'memory_doppia_onda.jpg'
+};
 
-  /* Reti */
-  rete_fissa_13_singola: 'rete_fissa_13_singola.jpg',
-  rete_fissa_13_matrimoniale: 'rete_fissa_13_matrimoniale.jpg',
-  rete_fissa_14_singola: 'rete_fissa_14_singola.jpg',
-  rete_fissa_14_matrimoniale: 'rete_fissa_14_matrimoniale.jpg',
-  rete_manuale: 'rete_manuale.jpg',
-  rete_doppia_motore: 'rete_doppia_motore.jpg',
-
-
-  /* Cuscini */
-
-  cuscino_fibra_siliconata: 'fibra_siliconata.jpg',
-  cuscino_fibra_500: 'fibra_500.jpg',
-  cuscino_fibra_900: 'fibra_900.jpg',
-  cuscino_memory_saponetta: 'memory_saponetta.jpg',
-  cuscino_memory_doppia_onda_forato: 'memory_doppia_onda_forato.jpg',
-  cuscino_memory_doppia_onda: 'memory_doppia_onda.jpg'
-
-
-}
-
-/* ===== MATERASSI ===== */
-const MATTRESSES = [
-  {id:'excelsior3000',line:'indipendenti',name:'Excelsior 3000',desc:'Materasso top di gamma con 3000 micromolle insacchettate indipendenti. Si adatta alle 8 zone differenziate sostenendo il peso in modo omogeneo. Memory foam sul lato superiore e acquagel sul lato estivo. Fascia perimetrale Air System con maniglie laterali.',badges:['Memory Foam','Anti-acaro','Antibatterico','Ortopedico','Micromolle','Traspirante','Sfoderabile'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'excelsior3000'},
-  {id:'panarea',line:'indipendenti',name:'Panarea',desc:'Top di gamma a molle insacchettate con Memory AIRCRAFT, strato micromassaggiante AirSleep super traspirante elastico reattivo. Tessuto cotone 100%, lato estivo e invernale, cerniera lampo sdoppiabile sfoderabile. Fascia 3D interamente traspirante.',badges:['Memory Foam','Anallergico','Sfoderabile','Anti-acaro','Micromolle','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'panarea'},
-  {id:'absolute1600',line:'indipendenti',name:'Absolute 1600',desc:'1600 micromolle insacchettate per un comfort ergonomico a zone differenziate. Tecnologia traspirante con tessuto 3D, tessuto lino canapa indeformabile anallergico e struttura a molle indipendenti Ø mm 40. Fascia perimetrale traspirante 3D.',badges:['Memory Foam','Anallergico','Antibatterico','Ortopedico','Micromolle','Traspirante','Sfoderabile'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'absolute1600'},
-  {id:'pocket',line:'indipendenti',name:'Pocket',desc:'800 molle insacchettate, materasso a 7 zone differenziate. Lastra ondulata per effetto massaggiante su schiena e articolazioni: rimedio per contratture, dolori articolari, insonnia, crampi e problemi di circolazione sanguigna. Tessuto in cotone con fascia 3D Air System.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Micromolle','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 23/24 cm',img:'pocket'},
-  {id:'pocket_memory',line:'indipendenti',name:'Pocket Memory',desc:'800 molle insacchettate a 7 zone differenziate con lastra ondulata massaggiante. Struttura a molle indipendenti a 9 zone con lastra da 5 cm in memory foam. Tessuto in cotone con fascia 3D traspirante.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Micromolle','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'pocket_memory'},
-  {id:'fisio_system',line:'indipendenti',name:'Fisio System',desc:'Box Fisyo System Pocket con 400 molle indipendenti. Ricambio d\'aria automatico ad ogni movimento, corpo sempre fresco. Lato estivo completamente traspirante 3D. Tessuto in cotone cottonflex con 1 lampo sfoderabile. Schiuma poliuretanica a lenta memoria. Apprezzato in tutto il mondo.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Micromolle','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25/26 cm',img:'fisio_system'},
-  {id:'aloe_bianca',line:'bonnel',name:'Aloe Bianca',desc:'Struttura molle Bonnel in acciaio temperato biconiche 16×24×2,4. Semiortopedico rinforzato con feltro e poliuretano espanso resistente agli affossamenti con rinforzo perimetrale del molleggio. Molle biconiche "interconesse" legate da spirali in filo d\'acciaio. Con lampo sfoderabile.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Molle Bonnel','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'aloe_bianca'},
-  {id:'ortomol',line:'bonnel',name:'Ortomol',desc:'Molle Bonnel racchiuse nel System Box per rinforzo perimetrale. Irrigidisce nei punti più sollecitati garantendo stabilità della superficie nel tempo. Tessuto antibatterico in cotone con struttura Box System e lampo sfoderabile.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Molle Bonnel','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24/25 cm',img:'ortomol'},
-  {id:'ortomol_memory',line:'bonnel',name:'Ortomol Memory',desc:'Molle Bonnel System Box con rinforzo perimetrale. Rivestimento antistatico antibatterico con fascia 3D in cotone e lastra Memory da 4 cm. Struttura Box System con lampo sfoderabile. Schiuma poliuretanica a lenta memoria.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Molle Bonnel','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 22,5 cm',img:'ortomol_memory'},
-  {id:'capri',line:'memory',name:'Capri',desc:'Base in poliuretano espanso con 4 cm di Memory T40 e lastra in gomma 19 cm densità 28. Tessuto cotone 89% con interno in palma naturale. Schiuma poliuretanica a lenta memoria.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'capri'},
-  {id:'ischia',line:'memory',name:'Ischia',desc:'Tre strati che favoriscono la distribuzione ottimale del peso: lastra inferiore in poliuretano per il sostegno, lastra centrale in schiuma poliuretana per elasticità, lastra superiore in memory morbida per minimizzare i punti di pressione. Lato estivo e invernale.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'ischia'},
-  {id:'ventotene',line:'memory',name:'Ventotene',desc:'Tre lastre ad incastro con lastra centrale 16 cm in Ergolatex T27. Lastra inferiore in Ergolatex 4 cm T27 medio elastico. Memory Foam 4 cm T40. Tessuto spirale beige alcantara 370g/mq, cotone 100%, fascia velvet con 4 maniglie. Lato estivo e invernale.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24/25 cm',img:'ventotene'},
-  {id:'ponza_memory_gel',line:'memory',name:'Ponza Memory Gel',desc:'Lastra Memory 5 cm T40 buganta con Memory Gel nella zona centrale. Lastra in poliuretano espanso ad onda 3 cm D25, lastra centrale 13 D30, lastra portante elastico 3 cm D28. Memory Gel altezza 6 cm T40. Tessuto spirale beige alcantara, cotone 100%, fascia in velvet.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'ponza_memory_gel'},
-  {id:'lipari_waterlily',line:'memory',name:'Lipari Waterlily Bordato',desc:'Massello di Waterlily — uno dei poliuretani espansi più nobili con eccellente resilienza e massima traspirabilità. Jersey di puro cotone, imbottitura fibra anallergica antiacaro. Memory Foam 5 cm. Fodera luxury bordata lavabile in lavatrice a 30°, antiacaro e antistress. 4 maniglie in cotone.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24/25 cm',img:'lipari_waterlily'},
+const MATTRESSES=[
+  {id:'excelsior3000',line:'indipendenti',name:'Excelsior 3000',desc:'3000 micromolle insacchettate indipendenti, 8 zone differenziate. Memory foam lato superiore e acquagel lato estivo. Fascia perimetrale Air System con maniglie.',badges:['Memory Foam','Anti-acaro','Antibatterico','Ortopedico','Micromolle','Traspirante','Sfoderabile'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'excelsior3000'},
+  {id:'panarea',line:'indipendenti',name:'Panarea',desc:'Molle insacchettate con Memory AIRCRAFT, strato micromassaggiante AirSleep super traspirante. Cotone 100%, lato estivo e invernale, cerniera lampo sdoppiabile.',badges:['Memory Foam','Anallergico','Sfoderabile','Anti-acaro','Micromolle','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'panarea'},
+  {id:'absolute1600',line:'indipendenti',name:'Absolute 1600',desc:'1600 micromolle insacchettate, comfort ergonomico a zone differenziate. Tessuto 3D, lino canapa indeformabile anallergico, molle Ø mm 40.',badges:['Memory Foam','Anallergico','Antibatterico','Ortopedico','Micromolle','Traspirante','Sfoderabile'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'absolute1600'},
+  {id:'pocket',line:'indipendenti',name:'Pocket',desc:'800 molle insacchettate, 7 zone differenziate. Lastra ondulata massaggiante per schiena e articolazioni. Rimedio per contratture e insonnia.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Micromolle','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 23/24 cm',img:'pocket'},
+  {id:'pocket_memory',line:'indipendenti',name:'Pocket Memory',desc:'800 molle insacchettate a 9 zone differenziate con lastra da 5 cm in memory foam. Tessuto in cotone con fascia 3D traspirante.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Micromolle','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'pocket_memory'},
+  {id:'fisio_system',line:'indipendenti',name:'Fisio System',desc:'Box Fisyo System Pocket con 400 molle indipendenti. Ricambio d\'aria automatico, lato estivo traspirante 3D. Cottonflex sfoderabile. Schiuma a lenta memoria.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Micromolle','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25/26 cm',img:'fisio_system'},
+  {id:'aloe_bianca',line:'bonnel',name:'Aloe Bianca',desc:'Molle Bonnel acciaio temperato biconiche 16×24×2,4. Semiortopedico rinforzato feltro e poliuretano. Molle interconesse con spirali in filo d\'acciaio.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Molle Bonnel','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'aloe_bianca'},
+  {id:'ortomol',line:'bonnel',name:'Ortomol',desc:'Molle Bonnel nel System Box per rinforzo perimetrale. Irrigidisce nei punti più sollecitati garantendo stabilità nel tempo.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Molle Bonnel','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24/25 cm',img:'ortomol'},
+  {id:'ortomol_memory',line:'bonnel',name:'Ortomol Memory',desc:'Molle Bonnel System Box con rinforzo perimetrale. Fascia 3D in cotone e lastra Memory da 4 cm. Schiuma poliuretanica a lenta memoria.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Molle Bonnel','Ortopedico','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 22,5 cm',img:'ortomol_memory'},
+  {id:'capri',line:'memory',name:'Capri',desc:'Base poliuretano espanso, 4 cm Memory T40, lastra gomma 19 cm densità 28. Cotone 89% con interno in palma naturale.',badges:['Memory Foam','Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'capri'},
+  {id:'ischia',line:'memory',name:'Ischia',desc:'Tre strati: poliuretano per sostegno, schiuma per elasticità, memory morbida per minimizzare i punti di pressione. Lato estivo e invernale.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 25 cm',img:'ischia'},
+  {id:'ventotene',line:'memory',name:'Ventotene',desc:'Tre lastre ad incastro, lastra centrale 16 cm Ergolatex T27. Memory Foam 4 cm T40. Tessuto alcantara 370g/mq, cotone 100%, fascia velvet 4 maniglie.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24/25 cm',img:'ventotene'},
+  {id:'ponza_memory_gel',line:'memory',name:'Ponza Memory Gel',desc:'Lastra Memory 5 cm T40 con Memory Gel centrale. Poliuretano a onda 3 cm D25, lastra 13 D30, portante elastico D28. Memory Gel 6 cm T40.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24 cm',img:'ponza_memory_gel'},
+  {id:'lipari_waterlily',line:'memory',name:'Lipari Waterlily Bordato',desc:'Massello Waterlily, poliuretano espanso nobile con ottima resilienza. Jersey puro cotone, fibra anallergica antiacaro. Memory Foam 5 cm. Fodera luxury lavabile a 30°.',badges:['Anallergico','Antibatterico','Sfoderabile','Anti-acaro','Memory Foam','Traspirante'],sizes:'80 / 90 / 120 / 140 / 160 / 170 / 180 cm',height:'H 24/25 cm',img:'lipari_waterlily'},
 ];
 
-/* ===== RETI ===== */
-const RETI = [
-  {
-    id: 'rete_fissa_13_singola',
-    type: 'Rete Fissa',
-    name: 'Rete Fissa 13 Doghe — Singola',
-    desc: 'Rete ortopedica singola con struttura in ferro e 13 doghe strette.',
-    specs: 'Struttura in ferro cm L.89 × P.190\n13 doghe strette',
-    img: 'rete_fissa_13_singola'
-  },
-  {
-    id: 'rete_fissa_13_matrimoniale',
-    type: 'Rete Fissa',
-    name: 'Rete Fissa 13 Doghe — Matrimoniale',
-    desc: 'Rete ortopedica matrimoniale con struttura in ferro e 13 doghe strette.',
-    specs: 'Struttura in ferro cm L.160 × P.190\n13 doghe strette',
-    img: 'rete_fissa_13_matrimoniale'
-  },
-  {
-    id: 'rete_fissa_14_singola',
-    type: 'Rete Fissa',
-    name: 'Rete Fissa 14 Doghe — Singola',
-    desc: 'Rete ortopedica singola con struttura in ferro e 14 doghe strette.',
-    specs: 'Struttura in ferro cm L.89 × P.190\n14 doghe strette',
-    img: 'rete_fissa_14_singola'
-  },
-  {
-    id: 'rete_fissa_14_matrimoniale',
-    type: 'Rete Fissa',
-    name: 'Rete Fissa 14 Doghe — Matrimoniale',
-    desc: 'Rete ortopedica matrimoniale con struttura in ferro e 14 doghe strette.',
-    specs: 'Struttura in ferro cm L.160 × P.190\n14 doghe strette',
-    img: 'rete_fissa_14_matrimoniale'
-  },
-  {
-    id: 'rete_manuale',
-    type: 'Rete Reclinabile',
-    name: 'Rete Manuale',
-    desc: 'Rete reclinabile manuale con regolazione della posizione testa e piedi.',
-    specs: 'Regolazione manuale\n2 movimenti',
-    img: 'rete_manuale'
-  },
-  {
-    id: 'rete_doppia_motore',
-    type: 'Rete Doppia',
-    name: 'Rete Doppia con Motore',
-    desc: 'Rete matrimoniale composta da due elementi indipendenti motorizzati con 3 movimenti.',
-    specs: '3 movimenti motorizzati per elemento\nDue telecomandi inclusi',
-    img: 'rete_doppia_motore'
-  }
-];
-/* ===== CUSCINI ===== */
-const CUSCINI = [
-  {
-    id:'cuscino_fibra_siliconata',
-    name:'Fibra Siliconata',
-    desc:'Cuscino in fibra siliconata, morbido e avvolgente. Ideale per chi preferisce un guanciale soffice e anallergico.',
-    img:'cuscino_fibra_siliconata'
-  },
-  {
-    id:'cuscino_fibra_500',
-    name:'Fibra 500 gr',
-    desc:'Cuscino in fibra da 500 grammi, equilibrio perfetto tra morbidezza e sostegno. Anallergico e traspirante.',
-    img:'cuscino_fibra_500'
-  },
-  {
-    id:'cuscino_fibra_900',
-    name:'Fibra 900 gr',
-    desc:'Cuscino in fibra da 900 grammi per un sostegno maggiore. Ideale per chi dorme su un fianco e necessita di più supporto.',
-    img:'cuscino_fibra_900'
-  },
-  {
-    id:'cuscino_memory_saponetta',
-    name:'Memory Saponetta',
-    desc:'Cuscino in memory foam a forma piatta "saponetta". Altezza 12-15 cm. Si adatta perfettamente alla forma di collo e testa.',
-    img:'cuscino_memory_saponetta'
-  },
-  {
-    id:'cuscino_memory_doppia_onda_forato',
-    name:'Memory Doppia Onda Forato',
-    desc:'Cuscino in memory foam con profilo a doppia onda e forature per una migliore traspirazione. Riduce i disturbi di nuca, collo e spalle.',
-    img:'cuscino_memory_doppia_onda_forato'
-  },
-  {
-    id:'cuscino_memory_doppia_onda',
-    name:'Memory Doppia Onda',
-    desc:'Cuscino in memory foam con profilo ergonomico a doppia onda. Si adatta alla postura offrendo il massimo sostegno cervicale durante il riposo.',
-    img:'cuscino_memory_doppia_onda'
-  },
+const RETI=[
+  {id:'rete_fissa_13_singola',type:'Rete Fissa',name:'Rete Fissa 13 Doghe — Singola',desc:'Rete ortopedica singola con struttura in ferro e 13 doghe strette.',specs:'Struttura ferro cm L.89 × P.190\n13 doghe strette',img:'rete_fissa_13_singola'},
+  {id:'rete_fissa_13_matrimoniale',type:'Rete Fissa',name:'Rete Fissa 13 Doghe — Matrimoniale',desc:'Rete ortopedica matrimoniale con struttura in ferro e 13 doghe strette.',specs:'Struttura ferro cm L.160 × P.190\n13 doghe strette',img:'rete_fissa_13_matrimoniale'},
+  {id:'rete_fissa_14_singola',type:'Rete Fissa',name:'Rete Fissa 14 Doghe — Singola',desc:'Rete ortopedica singola con struttura in ferro e 14 doghe strette.',specs:'Struttura ferro cm L.89 × P.190\n14 doghe strette',img:'rete_fissa_14_singola'},
+  {id:'rete_fissa_14_matrimoniale',type:'Rete Fissa',name:'Rete Fissa 14 Doghe — Matrimoniale',desc:'Rete ortopedica matrimoniale con struttura in ferro e 14 doghe strette.',specs:'Struttura ferro cm L.160 × P.190\n14 doghe strette',img:'rete_fissa_14_matrimoniale'},
+  {id:'rete_manuale',type:'Rete Reclinabile',name:'Rete Manuale',desc:'Rete reclinabile manuale con regolazione testa e piedi. 2 movimenti.',specs:'Regolazione manuale\n2 movimenti',img:'rete_manuale'},
+  {id:'rete_doppia_motore',type:'Rete Doppia',name:'Rete Doppia con Motore',desc:'Rete matrimoniale due elementi indipendenti motorizzati. 3 movimenti per lato.',specs:'3 movimenti motorizzati per elemento\nDue telecomandi inclusi',img:'rete_doppia_motore'},
 ];
 
-let cart=[];
+const CUSCINI=[
+  {id:'cuscino_fibra_siliconata',name:'Fibra Siliconata',desc:'Morbido e avvolgente. Anallergico.',img:'cuscino_fibra_siliconata'},
+  {id:'cuscino_fibra_500',name:'Fibra 500 gr',desc:'Equilibrio tra morbidezza e sostegno. Traspirante.',img:'cuscino_fibra_500'},
+  {id:'cuscino_fibra_900',name:'Fibra 900 gr',desc:'Sostegno maggiore, ideale per chi dorme su un fianco.',img:'cuscino_fibra_900'},
+  {id:'cuscino_memory_saponetta',name:'Memory Saponetta',desc:'Memory foam piatto H 12-15 cm. Si adatta a collo e testa.',img:'cuscino_memory_saponetta'},
+  {id:'cuscino_memory_doppia_onda_forato',name:'Memory Doppia Onda Forato',desc:'Doppia onda con forature per migliore traspirazione.',img:'cuscino_memory_doppia_onda_forato'},
+  {id:'cuscino_memory_doppia_onda',name:'Memory Doppia Onda',desc:'Profilo ergonomico a doppia onda. Massimo sostegno cervicale.',img:'cuscino_memory_doppia_onda'},
+];
 
-/* ===== RENDER MATERASSI ===== */
+let cart=[],currentItem=null;
+
 function lineLabel(l){return{indipendenti:'Molle Indipendenti',bonnel:'Molle Bonnel',memory:'Linea Memory'}[l]||''}
 
 function renderMattresses(filter='all'){
-  const grid=document.getElementById('mattress-grid');
+  const g=document.getElementById('mattress-grid');
   const list=filter==='all'?MATTRESSES:MATTRESSES.filter(m=>m.line===filter);
-  grid.innerHTML=list.map(m=>`
+  g.innerHTML=list.map(m=>`
     <div class="mattress-card">
-      <div class="card-img-wrap"><img src="${IMGS[m.img]}" alt="${m.name}" loading="lazy"></div>
+      <div class="card-img-wrap" onclick="openModal('mattress','${m.id}')">
+        <img src="${IMGS[m.img]}" alt="${m.name}" loading="lazy">
+      </div>
       <div class="card-body">
         <span class="card-line-badge">${lineLabel(m.line)}</span>
-        <div class="card-title">${m.name}</div>
+        <div class="card-title" onclick="openModal('mattress','${m.id}')">${m.name}</div>
         <div class="card-desc">${m.desc}</div>
         <div class="card-badges">${m.badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div>
-        <div class="card-sizes"><strong>Misure disponibili:</strong><br>${m.sizes} — <em>${m.height}</em><br><span style="color:var(--gold);font-size:11px;letter-spacing:.5px">✦ Fuori misura su richiesta</span></div>
+        <div class="card-sizes"><strong>Misure:</strong> ${m.sizes} — <em>${m.height}</em><br><span style="color:var(--gold);font-size:9px">✦ Fuori misura su richiesta</span></div>
         <button class="add-cart-btn" id="btn-${m.id}" onclick="addToCart('mattress','${m.id}')">🛒 Aggiungi al carrello</button>
       </div>
     </div>`).join('');
 }
-
 function filterMattresses(f,btn){
   document.querySelectorAll('.cat-filter').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderMattresses(f);
+  btn.classList.add('active');renderMattresses(f);
 }
-
-/* ===== RENDER RETI ===== */
 function renderReti(){
-  const grid=document.getElementById('reti-grid');
-  grid.innerHTML=RETI.map(r=>`
+  const g=document.getElementById('reti-grid');
+  g.innerHTML=RETI.map(r=>`
     <div class="reti-card">
       <div class="reti-img-wrap"><img src="${IMGS[r.img]}" alt="${r.name}" loading="lazy"></div>
       <div class="reti-body">
@@ -658,11 +714,9 @@ function renderReti(){
       </div>
     </div>`).join('');
 }
-
-/* ===== RENDER CUSCINI ===== */
 function renderCuscini(){
-  const grid=document.getElementById('cuscini-grid');
-  grid.innerHTML=CUSCINI.map(c=>`
+  const g=document.getElementById('cuscini-grid');
+  g.innerHTML=CUSCINI.map(c=>`
     <div class="cuscino-card">
       <div class="cuscino-img-wrap"><img src="${IMGS[c.img]}" alt="${c.name}" loading="lazy"></div>
       <div class="cuscino-body">
@@ -673,43 +727,30 @@ function renderCuscini(){
     </div>`).join('');
 }
 
-/* ===== CARRELLO ===== */
-function addToCart(type, id){
+/* CART */
+function addToCart(type,id){
   let item=null;
   if(type==='mattress') item=MATTRESSES.find(x=>x.id===id);
   else if(type==='rete') item=RETI.find(x=>x.id===id);
   else if(type==='cuscino') item=CUSCINI.find(x=>x.id===id);
   if(!item) return;
-  cart.push({...item, _type: type});
-  updateCartUI();
-  showToast(`${item.name} aggiunto al carrello ✓`);
+  cart.push({...item,_type:type});updateCartUI();
+  showToast(`${item.name} aggiunto ✓`);
   const btn=document.getElementById('btn-'+id);
   if(btn){btn.classList.add('added');btn.innerHTML='✓ Aggiunto!';setTimeout(()=>{btn.classList.remove('added');btn.innerHTML='🛒 Aggiungi al carrello';},2000);}
 }
-
-function removeFromCart(i){cart.splice(i,1);updateCartUI();}
-
-function getItemImg(item){
-  if(item._type==='mattress') return IMGS[item.img]||'';
-  if(item._type==='rete') return IMGS[item.img]||'';
-  if(item._type==='cuscino') return IMGS[item.img]||'';
-  return '';
-}
-
+function removeFromCart(i){cart.splice(i,1);updateCartUI()}
+function getItemImg(item){return IMGS[item.img]||''}
 function getItemDetail(item){
   if(item._type==='mattress') return item.sizes||'';
-  if(item._type==='rete') return item.specs ? item.specs.split('\n')[0] : '';
-  if(item._type==='cuscino') return 'Cuscino';
-  return '';
+  if(item._type==='rete') return item.specs?item.specs.split('\n')[0]:'';
+  return 'Cuscino';
 }
-
 function updateCartUI(){
   const b=document.getElementById('cart-badge');
-  b.textContent=cart.length;
-  b.style.display=cart.length===0?'none':'inline-flex';
+  b.textContent=cart.length;b.style.display=cart.length===0?'none':'inline-flex';
   renderCartItems();
 }
-
 function renderCartItems(){
   const l=document.getElementById('cart-items-list');
   if(!cart.length){l.innerHTML='<div class="cart-empty"><div class="cart-empty-icon">🛏️</div><p>Il carrello è vuoto</p></div>';return;}
@@ -720,26 +761,24 @@ function renderCartItems(){
       <button class="remove-item" onclick="removeFromCart(${i})">✕</button>
     </div>`).join('');
 }
-
-function openCart(e){if(e)e.preventDefault();document.getElementById('cart-sidebar').classList.add('open');document.getElementById('cart-overlay').classList.add('open');document.body.style.overflow='hidden';}
-function closeCart(){document.getElementById('cart-sidebar').classList.remove('open');document.getElementById('cart-overlay').classList.remove('open');document.body.style.overflow='';}
+function openCart(e){if(e)e.preventDefault();document.getElementById('cart-sidebar').classList.add('open');document.getElementById('cart-overlay').classList.add('open');document.body.style.overflow='hidden'}
+function closeCart(){document.getElementById('cart-sidebar').classList.remove('open');document.getElementById('cart-overlay').classList.remove('open');document.body.style.overflow=''}
 
 async function sendOrder(){
-  if(!cart.length){showToast('Il carrello è vuoto!');return;}
+  if(!cart.length){showToast('Il carrello è vuoto!');return}
   const name=document.getElementById('order-name').value.trim();
   const phone=document.getElementById('order-phone').value.trim();
   const notes=document.getElementById('order-notes').value.trim();
-  if(!name||!phone){showToast('Inserisci nome e telefono');return;}
+  if(!name||!phone){showToast('Inserisci nome e telefono');return}
   const btn=document.getElementById('order-btn');
   btn.disabled=true;btn.textContent='Invio in corso...';
-  const items=cart.map(item=>`• ${item.name}`).join('\n');
-  const text=`🛏️ NUOVO ORDINE – Sogni d'Oro\n\n👤 Nome: ${name}\n📞 Tel: ${phone}\n\nProdotti:\n${items}${notes?'\n\n📝 Note: '+notes:''}`;
+  const text=`🛏️ NUOVO ORDINE – Sogni d'Oro\n\n👤 ${name}\n📞 ${phone}\n\n${cart.map(i=>`• ${i.name}`).join('\n')}${notes?'\n\n📝 '+notes:''}`;
   const TG='8712414645:AAF4nfeU5FybIazR59lvdD7deYutTCOleQA';
   const CHATS=['8702965779','8272212055'];
   let ok=false;
   for(const c of CHATS){try{const r=await fetch(`https://api.telegram.org/bot${TG}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:c,text})});if(r.ok)ok=true;}catch(e){}}
-  if(ok){showToast('✓ Ordine inviato! Vi contatteremo presto.');cart=[];updateCartUI();document.getElementById('order-name').value='';document.getElementById('order-phone').value='';document.getElementById('order-notes').value='';setTimeout(closeCart,1500);}
-  else{showToast('Errore. Chiama: +39 328 095 1377');}
+  if(ok){showToast('✓ Ordine inviato!');cart=[];updateCartUI();['order-name','order-phone','order-notes'].forEach(id=>document.getElementById(id).value='');setTimeout(closeCart,1500);}
+  else showToast('Errore. Chiama: +39 328 095 1377');
   btn.disabled=false;btn.innerHTML='📦 Conferma ordine';
 }
 
@@ -748,117 +787,59 @@ async function sendCallback(e){
   const name=document.getElementById('cb-name').value.trim();
   const phone=document.getElementById('cb-phone').value.trim();
   const msg=document.getElementById('cb-msg').value.trim();
-  const text=`📞 RICHIESTA RICONTATTO\n\n👤 ${name}\n📱 ${phone}${msg?'\n💬 '+msg:''}`;
+  const text=`📞 RICONTATTO\n\n👤 ${name}\n📱 ${phone}${msg?'\n💬 '+msg:''}`;
   const TG='8712414645:AAF4nfeU5FybIazR59lvdD7deYutTCOleQA';
-  const CHATS=['8702965779','8272212055'];
-  for(const c of CHATS){try{await fetch(`https://api.telegram.org/bot${TG}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:c,text})});}catch(e){}}
-  showToast('✓ Richiesta inviata! Vi chiameremo presto.');
-  document.getElementById('cb-name').value='';document.getElementById('cb-phone').value='';document.getElementById('cb-msg').value='';
+  for(const c of['8702965779','8272212055']){try{await fetch(`https://api.telegram.org/bot${TG}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:c,text})});}catch(e){}}
+  showToast('✓ Richiesta inviata!');
+  ['cb-name','cb-phone','cb-msg'].forEach(id=>document.getElementById(id).value='');
 }
 
-/* ===== ТРЕКИНГ ПОСЕЩЕНИЙ В ТЕЛЕГРАМ (ДВА ЧАТА) ===== */
-(async function trackVisit(){
-  try {
-    const now = new Date();
-    const time = now.toLocaleString('it-IT', {
-      timeZone: 'Europe/Rome',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    });
+/* MENU */
+function toggleMenu(){
+  const nav=document.getElementById('nav'),btn=document.getElementById('menu-btn');
+  const isOpen=nav.classList.toggle('open');
+  btn.classList.toggle('is-open',isOpen);
+  btn.setAttribute('aria-expanded',isOpen);
+  document.body.style.overflow=isOpen?'hidden':'';
+}
+function closeMenu(){
+  const nav=document.getElementById('nav'),btn=document.getElementById('menu-btn');
+  nav.classList.remove('open');btn.classList.remove('is-open');
+  btn.setAttribute('aria-expanded','false');document.body.style.overflow='';
+}
+/* Close menu on resize to desktop */
+window.addEventListener('resize',()=>{if(window.innerWidth>=768)closeMenu()});
 
-    const userAgent = navigator.userAgent.substring(0, 100);
-    const referrer = document.referrer ? document.referrer : "Прямой заход";
-
-    const message = `🔔 Новый посетитель на сайте!\n\n` +
-                    `Время: ${time}\n`;
-
-    const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";
-    const CHATS = ["8702965779", "8272212055"];   // два твоих чата
-
-    // Отправляем сообщение в каждый чат
-    for (const chat_id of CHATS) {
-      try {
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: chat_id,          // ← правильно используем chat_id
-            text: message,
-            parse_mode: 'HTML'
-          })
-        });
-        console.log(`Сообщение отправлено в чат: ${chat_id}`);
-      } catch (err) {
-        console.log(`Ошибка при отправке в чат ${chat_id}:`, err);
-      }
-    }
-
-  } catch (e) {
-    console.log("Track error:", e);
-  }
-})();
-
-/* ===== MODAL FUNCTIONS ===== */
-let currentItem = null;
-
-function openModal(type, id) {
-  let item = null;
-  
-  if (type === 'mattress') item = MATTRESSES.find(x => x.id === id);
-  else if (type === 'rete') item = RETI.find(x => x.id === id);
-  else if (type === 'cuscino') item = CUSCINI.find(x => x.id === id);
-
-  if (!item) return;
-
-  currentItem = { ...item, _type: type };
-
-  document.getElementById('modal-img').innerHTML = 
-    `<img src="${IMGS[item.img]}" alt="${item.name}">`;
-
-  document.getElementById('modal-line').textContent = 
-    type === 'mattress' ? lineLabel(item.line) : (item.type || '');
-
-  document.getElementById('modal-title').textContent = item.name;
-  document.getElementById('modal-desc').textContent = item.desc;
-
-  let badgesHTML = '';
-  if (item.badges) {
-    badgesHTML = item.badges.map(b => `<span class="badge">${b}</span>`).join('');
-  }
-  document.getElementById('modal-badges').innerHTML = badgesHTML;
-
-  let sizesHTML = '';
-  if (item.sizes) {
-    sizesHTML = `<strong>Misure disponibili:</strong><br>${item.sizes} — <em>${item.height}</em>`;
-  } else if (item.specs) {
-    sizesHTML = item.specs.replace(/\n/g, '<br>');
-  }
-  document.getElementById('modal-sizes').innerHTML = sizesHTML;
-
+/* MODAL */
+function openModal(type,id){
+  let item=null;
+  if(type==='mattress') item=MATTRESSES.find(x=>x.id===id);
+  else if(type==='rete') item=RETI.find(x=>x.id===id);
+  else if(type==='cuscino') item=CUSCINI.find(x=>x.id===id);
+  if(!item) return;
+  currentItem={...item,_type:type};
+  document.getElementById('modal-img').innerHTML=`<img src="${IMGS[item.img]}" alt="${item.name}">`;
+  document.getElementById('modal-line').textContent=type==='mattress'?lineLabel(item.line):(item.type||'');
+  document.getElementById('modal-title').textContent=item.name;
+  document.getElementById('modal-desc').textContent=item.desc;
+  document.getElementById('modal-badges').innerHTML=item.badges?item.badges.map(b=>`<span class="badge">${b}</span>`).join(''):'';
+  let sz='';
+  if(item.sizes) sz=`<strong>Misure:</strong> ${item.sizes} — <em>${item.height}</em>`;
+  else if(item.specs) sz=item.specs.replace(/\n/g,'<br>');
+  document.getElementById('modal-sizes').innerHTML=sz;
   document.getElementById('modal-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
 }
+function closeModal(){document.getElementById('modal-overlay').classList.remove('show');document.body.style.overflow='';}
+function addCurrentToCart(){if(!currentItem)return;cart.push(currentItem);updateCartUI();showToast(`${currentItem.name} aggiunto ✓`);closeModal();}
 
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('show');
-}
+/* TOAST */
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 
-function addCurrentToCart() {
-  if (!currentItem) return;
-  cart.push(currentItem);
-  updateCartUI();
-  showToast(`${currentItem.name} aggiunto al carrello ✓`);
-  closeModal();
-}
+/* TRACKING */
+(async()=>{try{const t=new Date().toLocaleString('it-IT',{timeZone:'Europe/Rome'});const m=`🔔 Nuovo visitatore\n${t}`;for(const c of['8702965779','8272212055'])await fetch('https://api.telegram.org/bot8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:c,text:m})});}catch(e){}})();
 
-/* ===== INIT ===== */
-renderMattresses();
-renderReti();
-renderCuscini();
-updateCartUI();
+renderMattresses();renderReti();renderCuscini();updateCartUI();
 </script>
 </body>
 </html>
