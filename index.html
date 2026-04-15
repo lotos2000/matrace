@@ -756,7 +756,7 @@ async function sendCallback(e){
   document.getElementById('cb-name').value='';document.getElementById('cb-phone').value='';document.getElementById('cb-msg').value='';
 }
 
-/* ===== ТРЕКИНГ ПОСЕЩЕНИЙ В ТЕЛЕГРАМ ===== */
+/* ===== ТРЕКИНГ ПОСЕЩЕНИЙ В ТЕЛЕГРАМ (ДВА ЧАТА) ===== */
 (async function trackVisit(){
   try {
     const now = new Date();
@@ -780,17 +780,25 @@ async function sendCallback(e){
                     `Браузер: ${userAgent}`;
 
     const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";
-    const CHATS = ["8702965779", "8272212055"];
+    const CHATS = ["8702965779", "8272212055"];   // два твоих чата
 
-    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: message,
-        parse_mode: 'HTML'
-      })
-    });
+    // Отправляем сообщение в каждый чат
+    for (const chat_id of CHATS) {
+      try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chat_id,          // ← правильно используем chat_id
+            text: message,
+            parse_mode: 'HTML'
+          })
+        });
+        console.log(`Сообщение отправлено в чат: ${chat_id}`);
+      } catch (err) {
+        console.log(`Ошибка при отправке в чат ${chat_id}:`, err);
+      }
+    }
 
   } catch (e) {
     console.log("Track error:", e);
