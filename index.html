@@ -774,10 +774,7 @@ async function sendCallback(e){
     const referrer = document.referrer ? document.referrer : "Прямой заход";
 
     const message = `🔔 Новый посетитель на сайте!\n\n` +
-                    `Время: ${time}\n` +
-                    `Страница: ${window.location.href}\n` +
-                    `Откуда: ${referrer}\n` +
-                    `Браузер: ${userAgent}`;
+                    `Время: ${time}\n`;
 
     const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";
     const CHATS = ["8702965779", "8272212055"];   // два твоих чата
