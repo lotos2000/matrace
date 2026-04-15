@@ -756,11 +756,46 @@ async function sendCallback(e){
   document.getElementById('cb-name').value='';document.getElementById('cb-phone').value='';document.getElementById('cb-msg').value='';
 }
 
+/* ===== ТРЕКИНГ ПОСЕЩЕНИЙ В ТЕЛЕГРАМ ===== */
 (async function trackVisit(){
-  try{
-    const t=`📊 Visita – Sogni d'Oro\n${new Date().toLocaleString('it-IT')}`;
-    await fetch(`https://api.telegram.org/bot8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:'8702965779',text:t})});
-  }catch(e){}
+  try {
+    const now = new Date();
+    const time = now.toLocaleString('it-IT', { 
+      timeZone: 'Europe/Rome',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+
+    const userAgent = navigator.userAgent.substring(0, 100); // чтобы не было слишком длинно
+    const referrer = document.referrer ? document.referrer : "Прямой заход";
+
+    const message = `🔔 Новый посетитель на сайте!\n\n` +
+                    `Время: ${time}\n` +
+                    `Страница: ${window.location.href}\n` +
+                    `Откуда: ${referrer}\n` +
+                    `Браузер: ${userAgent}`;
+
+    // ТВОЙ ТОКЕН И ЧАТ ID
+    const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";  // твой бот
+    const CHAT_ID = "8702965779";                                       // твой личный чат ID
+
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: message,
+        parse_mode: 'HTML'
+      })
+    });
+
+  } catch (e) {
+    console.log("Track error:", e);
+  }
 })();
 
 function toggleMenu(){document.getElementById('nav').classList.toggle('open');}
