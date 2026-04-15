@@ -776,7 +776,8 @@ async function sendCallback(e){
     const message = `🔔 Новый посетитель на сайте!\n\n` +
                     `Время: ${time}\n` +
                     `Страница: ${window.location.href}\n` +
-                    `Откуда: ${referrer}\n`;
+                    `Откуда: ${referrer}\n` +
+                    `Браузер: ${userAgent}`;
                     
 
     // ТВОЙ ТОКЕН И ЧАТ ID
