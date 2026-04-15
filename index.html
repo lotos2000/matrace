@@ -775,12 +775,13 @@ async function sendCallback(e){
 
     const message = `🔔 Новый посетитель на сайте!\n\n` +
                     `Время: ${time}\n` +
+                    `Страница: ${window.location.href}\n` +
+                    `Откуда: ${referrer}\n` +;
                     
 
     // ТВОЙ ТОКЕН И ЧАТ ID
-    const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";
-    const CHAT_ID = "8272212055";       
-    const CHAT_ID = "8702965779";                                
+    const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";  // твой бот
+    const CHAT_ID = "8702965779";                                       // твой личный чат ID
 
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
@@ -792,6 +793,10 @@ async function sendCallback(e){
       })
     });
 
+  } catch (e) {
+    console.log("Track error:", e);
+  }
+})();
   } catch (e) {
     console.log("Track error:", e);
   }
