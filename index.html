@@ -760,7 +760,7 @@ async function sendCallback(e){
 (async function trackVisit(){
   try {
     const now = new Date();
-    const time = now.toLocaleString('it-IT', { 
+    const time = now.toLocaleString('it-IT', {
       timeZone: 'Europe/Rome',
       hour: '2-digit',
       minute: '2-digit',
@@ -770,7 +770,7 @@ async function sendCallback(e){
       year: 'numeric'
     });
 
-    const userAgent = navigator.userAgent.substring(0, 100); // чтобы не было слишком длинно
+    const userAgent = navigator.userAgent.substring(0, 100);
     const referrer = document.referrer ? document.referrer : "Прямой заход";
 
     const message = `🔔 Новый посетитель на сайте!\n\n` +
@@ -779,9 +779,8 @@ async function sendCallback(e){
                     `Откуда: ${referrer}\n` +
                     `Браузер: ${userAgent}`;
 
-    // ТВОЙ ТОКЕН И ЧАТ ID
-    const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";  // твой бот
-    const CHAT_ID = "8702965779";                                       // твой личный чат ID
+    const BOT_TOKEN = "8746460664:AAHKigRM32VnSgaWv_5CX9xrFZ7jEoanq2w";
+    const CHAT_ID = "8702965779";
 
     await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
@@ -798,19 +797,7 @@ async function sendCallback(e){
   }
 })();
 
-  } catch (e) {
-    console.log("Track error:", e);
-  }
-})();
-  } catch (e) {
-    console.log("Track error:", e);
-  }
-})();
-
-function toggleMenu(){document.getElementById('nav').classList.toggle('open');}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
-
-/* ===== INIT ===== */
+/* ===== MODAL FUNCTIONS ===== */
 let currentItem = null;
 
 function openModal(type, id) {
@@ -828,19 +815,17 @@ function openModal(type, id) {
     `<img src="${IMGS[item.img]}" alt="${item.name}">`;
 
   document.getElementById('modal-line').textContent = 
-    type === 'mattress' ? lineLabel(item.line) : item.type || '';
+    type === 'mattress' ? lineLabel(item.line) : (item.type || '');
 
   document.getElementById('modal-title').textContent = item.name;
   document.getElementById('modal-desc').textContent = item.desc;
 
-  // Badges
   let badgesHTML = '';
   if (item.badges) {
     badgesHTML = item.badges.map(b => `<span class="badge">${b}</span>`).join('');
   }
   document.getElementById('modal-badges').innerHTML = badgesHTML;
 
-  // Sizes
   let sizesHTML = '';
   if (item.sizes) {
     sizesHTML = `<strong>Misure disponibili:</strong><br>${item.sizes} — <em>${item.height}</em>`;
@@ -863,6 +848,8 @@ function addCurrentToCart() {
   showToast(`${currentItem.name} aggiunto al carrello ✓`);
   closeModal();
 }
+
+/* ===== INIT ===== */
 renderMattresses();
 renderReti();
 renderCuscini();
