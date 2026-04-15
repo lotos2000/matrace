@@ -86,10 +86,10 @@ nav a:hover{color:var(--gold)}
     top:var(--header-h);
     left:0;
     right:0;
-    bottom:0;                    /* важно */
+    bottom:0;
     background:var(--cream);
-    padding:20px 20px 40px;
-    gap:4px;
+    padding:20px 20px 30px;        /* уменьшили снизу */
+    gap:2px;                       /* уменьшили расстояние между пунктами */
     z-index:990;
     overflow-y:auto;
     box-shadow:0 10px 30px rgba(0,0,0,0.15);
@@ -101,25 +101,32 @@ nav a:hover{color:var(--gold)}
 
   nav a{
     width:100%;
-    padding:16px 12px;
+    padding:14px 12px;             /* уменьшили высоту пунктов */
     font-size:15.5px;
-    letter-spacing:.6px;
+    letter-spacing:.5px;
     border-bottom:1px solid var(--beige);
     color:var(--dark);
     text-decoration:none;
+    min-height:52px;               /* удобнее для пальца */
+    display:flex;
+    align-items:center;
   }
 
   nav a:last-child{
     border-bottom:none;
   }
 
+  /* Корзина в меню делаем компактнее */
   .cart-btn{
-    margin-top:24px;
+    margin-top:20px;
     width:100%;
     justify-content:center;
-    padding:16px;
+    padding:15px 20px;
     font-size:15px!important;
     border-radius:12px;
+    min-height:54px;
+  }
+}
   }
 }
 /* ========== HERO ========== */
